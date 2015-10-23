@@ -1,7 +1,7 @@
 {
   "name": "common-tags",
   "description": "a few common utility template tags for ES2015",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "keywords": [
     "es2015",
     "es6",
