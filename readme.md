@@ -49,6 +49,25 @@ Outputs:
 This is a super crazy long string that will probably exceed our constraint of a maximum of 80 characters in length, and we'd probably have to horizontally scroll our editor if we didn't have ES6 in our utility belt.
 ```
 
+If you want keep your single-line strings under 80 characters while triming the new lines:
+
+```js
+import {oneLineTrim} from 'common-tags';
+let verb = 'crazy';
+console.log(oneLineTrim`
+  https://www.google.fr/search?q=common-tags
+  &oq=common-tags&aqs=chrome..69i57j0l5.1303j0j7
+  &sourceid=chrome&es_sm=91
+  &ie=UTF-8#safe=off&q=common-tags+npm`);
+`);
+```
+
+Outputs:
+
+```
+https://www.google.fr/search?q=common-tags&oq=common-tags&aqs=chrome..69i57j0l5.1303j0j7&sourceid=chrome&es_sm=91&ie=UTF-8#safe=off&q=common-tags+npm`
+```
+
 If you want to strip the annoying indentation from the beginning of each line in a multiline string:
 
 ```js
@@ -140,7 +159,8 @@ I like fruits, but I especially love apples, bananas and kiwi.
 ```js
 {
   trim: true, // trims leading and trailing whitespace
-  oneLine: false, // outputs everything on one line
+  oneLine: false, // outputs everything on one line with 1 space between new lines
+  oneLineTrim: false, // outputs everything on one line without spaces between new lines
   stripIndent: false, // strips leading indents
   includeArrays: false // inlines arrays
 }
@@ -162,6 +182,8 @@ This module also exports aliases for some commonly used combinations:
   - `includeArrays: true`
 - *oneLine*
   - `oneLine: true`
+- *oneLineTrim*
+  - `oneLineTrim: true`
 - *inlineLists*
   - `includeArrays: true`
 - *stripIndent*

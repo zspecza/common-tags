@@ -14,6 +14,17 @@ describe('tags', () => {
     `).to.equal('this should be reduced to one line and work with variables');
   });
 
+  it('should strip new lines', () => {
+    const tag = tags({ oneLineTrim: true });
+    const num = 'one';
+    expect(tag`
+      this should be reduced
+      to ${num} line
+      and work with
+      variables
+    `).to.equal('this should be reducedto one lineand work withvariables');
+  });
+
   it('should strip indents', () => {
     const tag = tags({ stripIndent: true });
     const lan = 'en';
