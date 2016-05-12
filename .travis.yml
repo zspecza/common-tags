@@ -1,8 +1,15 @@
+sudo: false
 language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: true
 node_js:
-  - "0.12"
-  - "0.11"
-  - "0.10"
-  - "iojs"
+  - "6"
+  - "5"
+  - "4"
+before_script:
+  - npm prune
 after_script:
   - npm run codecov
