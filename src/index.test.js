@@ -1,4 +1,7 @@
+'use strict'
+
 import test from 'ava'
+
 import {
   default as tags,
   commaLists,
