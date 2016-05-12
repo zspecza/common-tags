@@ -1,3 +1,5 @@
+'use strict'
+
 import tags from './tags'
 import commaLists from './commaLists'
 import commaListsAnd from './commaListsAnd'

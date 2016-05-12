@@ -1,3 +1,5 @@
+'use strict'
+
 export default function tags (opts) {
   const settings = {
     trim: true,
