@@ -31,8 +31,7 @@
     "lint": "snazzy",
     "build": "babel src -d lib",
     "release": "npm publish",
-    "prerelease": "mv lib src && babel src -d lib --stage 0",
-    "postrelease": "rm -rf lib && mv src lib",
+    "prerelease": "rimraf lib && npm run build",
     "test": "npm run lint && nyc ava",
     "coverage": "nyc report --reporter=lcov",
     "coveralls": "coveralls < coverage/lcov.info",
@@ -76,6 +75,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.8.0",
     "nyc": "^6.4.4",
+    "rimraf": "^2.5.2",
     "snazzy": "^4.0.0",
     "when": "^3.7.7"
   }
