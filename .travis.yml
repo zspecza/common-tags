@@ -4,4 +4,5 @@ node_js:
   - "0.11"
   - "0.10"
   - "iojs"
-after_script: npm run coveralls
+after_script:
+  - npm run codecov
