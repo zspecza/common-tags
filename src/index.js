@@ -1,5 +1,5 @@
 
-export default function tags(opts) {
+export default function tags (opts) {
   const settings = {
     trim: true,
     oneLine: false,
@@ -8,87 +8,87 @@ export default function tags(opts) {
     ...opts
   }
   // return a tag function that transforms our template
-  return function tag(template, ...expressions) {
+  return function tag (template, ...expressions) {
     // join the parts necessary to re-construct the template
     let temp = template.reduce((accumulator, part, i) => {
-      let expression = expressions[i - 1];
+      let expression = expressions[i - 1]
       if (settings.includeArrays && Array.isArray(expression)) {
-        const sep = settings.includeArrays.separator || '';
-        const con = settings.includeArrays.conjunction;
+        const sep = settings.includeArrays.separator || ''
+        const con = settings.includeArrays.conjunction
         // inline arrays, making sure to include item separator
-        expression = expression.join(sep + accumulator.match(/(\s+)$/)[1]);
+        expression = expression.join(sep + accumulator.match(/(\s+)$/)[1])
         if (con) {
           // replace the last separator with the conjunction
-          const sepIndex = expression.lastIndexOf(sep);
-          expression = expression.substr(0, sepIndex) + ' ' + con + expression.substr(sepIndex + 1);
+          const sepIndex = expression.lastIndexOf(sep)
+          expression = expression.substr(0, sepIndex) + ' ' + con + expression.substr(sepIndex + 1)
         }
       }
-      return accumulator + expression + part;
-    });
+      return accumulator + expression + part
+    })
     // replace any newlines with spaces if we just want
     // a one liner
-    if (settings.oneLine) temp = temp.replace(/(?:\s+)/g, ' ');
-    if (settings.oneLineTrim) temp = temp.replace(/(?:\n\s+)/g, '');
+    if (settings.oneLine) temp = temp.replace(/(?:\s+)/g, ' ')
+    if (settings.oneLineTrim) temp = temp.replace(/(?:\n\s+)/g, '')
     if (settings.stripIndent) {
       // strip leading indents
-      const match = temp.match(/^[ \t]*(?=\S)/gm);
-      const indent = Math.min(...match.map(el => el.length));
-      const regexp = new RegExp('^[ \\t]{' + indent + '}', 'gm');
-      temp = indent > 0 ? temp.replace(regexp, '') : temp;
+      const match = temp.match(/^[ \t]*(?=\S)/gm)
+      const indent = Math.min(...match.map(el => el.length))
+      const regexp = new RegExp('^[ \\t]{' + indent + '}', 'gm')
+      temp = indent > 0 ? temp.replace(regexp, '') : temp
     }
     // trim leading and trailing whitespace
-    if (settings.trim) temp = temp.trim();
-    return temp;
+    if (settings.trim) temp = temp.trim()
+    return temp
   }
 }
 
 export const html = tags({
   stripIndent: true,
   includeArrays: true
-});
+})
 
 export const oneLine = tags({
   oneLine: true
-});
+})
 
 export const oneLineTrim = tags({
   oneLineTrim: true
-});
+})
 
 export const inlineLists = tags({
   includeArrays: true
-});
+})
 
 export const stripIndent = tags({
   stripIndent: true
-});
+})
 
 export const commaLists = tags({
   includeArrays: {
     separator: ','
   }
-});
+})
 
 export const commaListsOr = tags({
   includeArrays: {
     separator: ',',
     conjunction: 'or'
   }
-});
+})
 
 export const commaListsAnd = tags({
   includeArrays: {
     separator: ',',
     conjunction: 'and'
   }
-});
+})
 
 export const oneLineCommaLists = tags({
   includeArrays: {
     separator: ','
   },
   oneLine: true
-});
+})
 
 export const oneLineCommaListsOr = tags({
   includeArrays: {
@@ -96,7 +96,7 @@ export const oneLineCommaListsOr = tags({
     conjunction: 'or'
   },
   oneLine: true
-});
+})
 
 export const oneLineCommaListsAnd = tags({
   includeArrays: {
@@ -104,4 +104,4 @@ export const oneLineCommaListsAnd = tags({
     conjunction: 'and'
   },
   oneLine: true
-});
+})

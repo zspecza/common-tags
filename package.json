@@ -28,6 +28,7 @@
     "array"
   ],
   "scripts": {
+    "lint": "snazzy",
     "build": "babel src -d lib",
     "release": "npm publish",
     "prerelease": "mv lib src && babel src -d lib --stage 0",
@@ -36,6 +37,10 @@
     "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
     "coveralls": "coveralls < coverage/lcov.info",
     "precoveralls": "npm run coverage"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": ["test", "readme.md"]
   },
   "main": "lib",
   "license": "MIT",
@@ -58,6 +63,7 @@
     "chai": "^3.4.0",
     "coveralls": "^2.11.4",
     "isparta": "^3.1.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "snazzy": "^4.0.0"
   }
 }
