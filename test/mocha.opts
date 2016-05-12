@@ -1,1 +1,1 @@
---compilers babel:babel/register
+--compilers babel:babel-register

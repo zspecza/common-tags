@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import tags from '../lib';
+import tags from '../src';
 
 describe('tags', () => {
 
