@@ -69,12 +69,12 @@
     "url": "https://github.com/declandewet/common-tags"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
     "codecov": "npm run coverage && codecov",
     "coverage": "nyc report --reporter=lcov",
     "lint": "snazzy",
     "precoveralls": "npm run coverage",
-    "prerelease": "rimraf lib && npm run build",
+    "prerelease": "npm run build",
     "release": "npm publish",
     "test": "npm run lint && nyc ava"
   },
