@@ -1,0 +1,6 @@
+<h1>amaze</h1>
+<ul>
+  <li>apple</li>
+  <li>banana</li>
+  <li>kiwi</li>
+</ul>

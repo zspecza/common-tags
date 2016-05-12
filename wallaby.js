@@ -17,7 +17,7 @@ module.exports = function (wallaby) {
       runner: 'node'
     },
 
-    testFramework: 'mocha',
+    testFramework: 'ava',
 
     debug: true
   }

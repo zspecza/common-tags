@@ -187,14 +187,18 @@ This module also exports aliases for some commonly used combinations:
   - `oneLineTrim: true`
 - *inlineLists*
   - `includeArrays: true`
+  - `stripIndent: true`
 - *stripIndent*
   - `stripIndent: true`
 - *commaLists*
   - `includeArrays: { separator: ',' }`
+  - `stripIndent: true`
 - *commaListsOr*
   - `includeArrays: { separator: ',', conjunction: 'or' }`
+  - `stripIndent: true`
 - *commaListsAnd*
   - `includeArrays: { separator: ',', conjunction: 'and' }`
+  - `stripIndent: true`
 - *oneLineCommaLists*
   - `oneLine: true`
   - `includeArrays: { separator: ',' }`
