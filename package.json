@@ -32,6 +32,10 @@
   "directories": {
     "lib": "lib"
   },
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
+  },
   "homepage": "https://github.com/declandewet/common-tags",
   "keywords": [
     "array",
@@ -66,8 +70,8 @@
   },
   "scripts": {
     "build": "babel src -d lib",
-    "coverage": "nyc report --reporter=lcov",
     "codecov": "npm run coverage && codecov",
+    "coverage": "nyc report --reporter=lcov",
     "lint": "snazzy",
     "precoveralls": "npm run coverage",
     "prerelease": "rimraf lib && npm run build",
