@@ -8,8 +8,9 @@ Info | Badges
 Version | [![github release](https://img.shields.io/github/release/declandewet/common-tags.svg?style=flat-square)](https://github.com/declandewet/common-tags/releases/latest) [![npm version](https://img.shields.io/npm/v/common-tags.svg?style=flat-square)](http://npmjs.org/package/common-tags)
 License | [![npm license](https://img.shields.io/npm/l/common-tags.svg?style=flat-square)](https://github.com/declandewet/common-tags/blob/master/license.md)
 Popularity | [![npm downloads](https://img.shields.io/npm/dm/common-tags.svg?style=flat-square)](http://npm-stat.com/charts.html?package=common-tags)
-Testing | [![build status](https://img.shields.io/travis/declandewet/common-tags.svg?style=flat-square)](https://travis-ci.org/declandewet/common-tags) [![test coverage](https://img.shields.io/coveralls/declandewet/common-tags.svg?style=flat-square)](https://coveralls.io/github/declandewet/common-tags)
+Testing | [![build status](https://img.shields.io/travis/declandewet/common-tags.svg?style=flat-square)](https://travis-ci.org/declandewet/common-tags)[![codecov.io](https://img.shields.io/codecov/c/gh/declandewet/common-tags.svg?style=flat-square)](https://codecov.io/gh/declandewet/common-tags?branch=master)
 Quality | [![dependency status](https://img.shields.io/david/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags) [![dev dependency status](https://img.shields.io/david/dev/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags#info=devDependencies)
+Style | [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 ### Installation:
 
@@ -23,8 +24,8 @@ If you want to keep your single-line strings under 80 characters without
 resorting to crazy string concatenation:
 
 ```js
-import {oneLine} from 'common-tags';
-let verb = 'crazy';
+import {oneLine} from 'common-tags'
+let verb = 'crazy'
 console.log(oneLine`
   this is a
   super ${verb}
@@ -40,7 +41,7 @@ console.log(oneLine`
   if we didn't have
   ES6 in our
   utility belt.
-`);
+`)
 ```
 
 Outputs:
@@ -52,14 +53,14 @@ This is a super crazy long string that will probably exceed our constraint of a 
 If you want keep your single-line strings under 80 characters while triming the new lines:
 
 ```js
-import {oneLineTrim} from 'common-tags';
-let verb = 'crazy';
+import {oneLineTrim} from 'common-tags'
+let verb = 'crazy'
 console.log(oneLineTrim`
   https://www.google.fr/search?q=common-tags
   &oq=common-tags&aqs=chrome..69i57j0l5.1303j0j7
   &sourceid=chrome&es_sm=91
-  &ie=UTF-8#safe=off&q=common-tags+npm`);
-`);
+  &ie=UTF-8#safe=off&q=common-tags+npm`)
+`)
 ```
 
 Outputs:
@@ -96,8 +97,8 @@ in an HTML template and want to maintain the indentation? You'd have to count th
 spaces manually and include them in the `.join()` call - which is a bit *ugly* for my taste.
 
 ```js
-import {html} from 'common-tags';
-let fruits = ['apple', 'orange', 'watermelon'];
+import {html} from 'common-tags'
+let fruits = ['apple', 'orange', 'watermelon']
 console.log(html`
   <div class="list">
     <ul>
@@ -109,7 +110,7 @@ console.log(html`
 
 Outputs:
 
-```
+```html
 <div class="list">
   <ul>
     <li>apple</li>
@@ -121,7 +122,7 @@ Outputs:
 
 ## API
 
-#### Default Export: `tags(<Object:setttings>)`
+#### Default Export: `tags(<Object:settings>)`
 
 Accepts an object where keys are the
 name of tags you wish to combine.
@@ -133,19 +134,19 @@ For example, to inline arrays as a
 comma-separated list, and keep everything on one line:
 
 ```js
-import tags from 'common-tags';
-let fruits = ['apples', 'bananas', 'kiwi'];
+import tags from 'common-tags'
+let fruits = ['apples', 'bananas', 'kiwi']
 let tag = tags({
   oneLine: true,
   includeArrays: {
     separator: ',',
     conjunction: 'and'
   }
-});
+})
 console.log(tag`
   I like fruits, but I especially love
   ${fruits.map(fruit => `${fruit}`)}.
-`);
+`)
 ```
 
 Outputs:
@@ -186,14 +187,18 @@ This module also exports aliases for some commonly used combinations:
   - `oneLineTrim: true`
 - *inlineLists*
   - `includeArrays: true`
+  - `stripIndent: true`
 - *stripIndent*
   - `stripIndent: true`
 - *commaLists*
   - `includeArrays: { separator: ',' }`
+  - `stripIndent: true`
 - *commaListsOr*
   - `includeArrays: { separator: ',', conjunction: 'or' }`
+  - `stripIndent: true`
 - *commaListsAnd*
   - `includeArrays: { separator: ',', conjunction: 'and' }`
+  - `stripIndent: true`
 - *oneLineCommaLists*
   - `oneLine: true`
   - `includeArrays: { separator: ',' }`

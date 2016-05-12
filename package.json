@@ -2,58 +2,92 @@
   "name": "common-tags",
   "description": "a few common utility template tags for ES2015",
   "version": "0.0.3",
-  "keywords": [
-    "es2015",
-    "es6",
-    "babel",
-    "template",
-    "tag",
-    "tagged",
-    "literal",
-    "string",
-    "strings",
-    "multi",
-    "single",
-    "one",
-    "line",
-    "multiline",
-    "singleline",
-    "oneline",
-    "es6-tag",
-    "es2015-tag",
-    "strip",
-    "indent",
-    "indents",
-    "normalize",
-    "array"
-  ],
-  "scripts": {
-    "release": "npm publish",
-    "prerelease": "mv lib src && babel src -d lib --stage 0",
-    "postrelease": "rm -rf lib && mv src lib",
-    "test": "mocha",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha",
-    "coveralls": "coveralls < coverage/lcov.info",
-    "precoveralls": "npm run coverage"
-  },
-  "main": "lib",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/declandewet/common-tags"
+  "author": "Declan de Wet <declandewet@me.com>",
+  "ava": {
+    "verbose": true,
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ],
+    "files": [
+      "src/**/*.test.js"
+    ]
   },
   "bugs": {
-    "url": "http://github.com/declandewet/common-tags/issues",
-    "email": "declandewet@me.com"
+    "url": "http://github.com/declandewet/common-tags/issues"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.6.1"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-cli": "^6.8.0",
+    "babel-eslint": "^6.0.4",
+    "babel-plugin-transform-runtime": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.8.0",
+    "codecov": "^1.0.1",
+    "nyc": "^6.4.4",
+    "rimraf": "^2.5.2",
+    "snazzy": "^4.0.0",
+    "when": "^3.7.7"
   },
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {
-    "babel": "^5.8.23",
-    "chai": "^3.4.0",
-    "coveralls": "^2.11.4",
-    "isparta": "^3.1.0",
-    "mocha": "^2.3.3"
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
+  },
+  "homepage": "https://github.com/declandewet/common-tags",
+  "keywords": [
+    "array",
+    "babel",
+    "es2015",
+    "es2015-tag",
+    "es6",
+    "es6-tag",
+    "html",
+    "indent",
+    "indents",
+    "line",
+    "literal",
+    "multi",
+    "multiline",
+    "normalize",
+    "one",
+    "oneline",
+    "single",
+    "singleline",
+    "string",
+    "strings",
+    "strip",
+    "tag",
+    "tagged",
+    "template"
+  ],
+  "license": "MIT",
+  "main": "lib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/declandewet/common-tags"
+  },
+  "scripts": {
+    "build": "rimraf lib && babel src -d lib",
+    "codecov": "npm run coverage && codecov",
+    "coverage": "nyc report --reporter=lcov",
+    "lint": "snazzy",
+    "precoveralls": "npm run coverage",
+    "prerelease": "npm run build",
+    "release": "npm publish",
+    "test": "npm run lint && nyc ava"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "test",
+      "readme.md"
+    ]
   }
 }
