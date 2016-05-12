@@ -59,7 +59,7 @@ console.log(oneLineTrim`
   https://www.google.fr/search?q=common-tags
   &oq=common-tags&aqs=chrome..69i57j0l5.1303j0j7
   &sourceid=chrome&es_sm=91
-  &ie=UTF-8#safe=off&q=common-tags+npm`)
+  &ie=UTF-8#safe=off&q=common-tags+npm
 `)
 ```
 
