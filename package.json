@@ -85,5 +85,8 @@
       "test",
       "readme.md"
     ]
+  },
+  "dependencies": {
+    "babel-runtime": "^6.6.1"
   }
 }
