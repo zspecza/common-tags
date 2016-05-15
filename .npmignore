@@ -1,0 +1,10 @@
+src
+.babelrc
+.editorconfig
+.gitignore
+.travis.yml
+contributing.md
+wallaby.js
+.nyc_output
+coverage
+lib/**/*.test.js
