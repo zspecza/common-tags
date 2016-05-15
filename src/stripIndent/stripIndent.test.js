@@ -1,23 +1,13 @@
 'use strict'
 
-import fs from 'fs'
 import test from 'ava'
-import node from 'when/node'
 import stripIndent from './stripIndent'
+import {readFromFixture} from '../utils'
 
 const val = 'amaze'
 
-async function fixture (name) {
-  const txt = await node.call(
-    fs.readFile,
-    `./fixtures/${name}.txt`,
-    'utf8'
-  )
-  return txt.trim()
-}
-
 test('strips indentation', async (t) => {
-  const expected = await fixture('stripIndent')
+  const expected = await readFromFixture('stripIndent')
   const actual = stripIndent`
     wow such indent gone
     very ${val}
@@ -26,7 +16,7 @@ test('strips indentation', async (t) => {
 })
 
 test('strips larger indentation', async (t) => {
-  const expected = await fixture('stripIndent')
+  const expected = await readFromFixture('stripIndent')
   const actual = stripIndent`
       wow such indent gone
       very ${val}
@@ -35,7 +25,7 @@ test('strips larger indentation', async (t) => {
 })
 
 test('maintains deeper indentation', async (t) => {
-  const expected = await fixture('maintainIndent')
+  const expected = await readFromFixture('maintainIndent')
   const actual = stripIndent`
     wow such indent gone
         very ${val}
