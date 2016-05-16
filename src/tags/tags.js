@@ -1,6 +1,9 @@
 'use strict'
 
+import {depracation} from '../utils'
+
 export default function tags (opts) {
+  depracation(new Error('`tag()` method is depracated. Use `TemplateTag` instead.'))
   const settings = {
     trim: true,
     oneLine: false,
