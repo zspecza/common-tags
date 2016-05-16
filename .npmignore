@@ -3,6 +3,7 @@ src
 .editorconfig
 .gitignore
 .travis.yml
+.appveyor.yml
 contributing.md
 wallaby.js
 .nyc_output

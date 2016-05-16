@@ -11,5 +11,5 @@ import node from 'when/node'
  */
 export default function readFromFixture (name) {
   return node.call(fs.readFile, `./fixtures/${name}.txt`, 'utf8')
-    .then((contents) => contents.trim())
+    .then((contents) => contents.replace(/\r\n/g, '\n').trim())
 }
