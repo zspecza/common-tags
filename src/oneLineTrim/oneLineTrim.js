@@ -1,5 +1,12 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import trimResultTransformer from '../trimResultTransformer'
+import replaceResultTransformer from '../replaceResultTransformer'
 
-export default tags({ oneLineTrim: true })
+const oneLineTrim = new TemplateTag(
+  replaceResultTransformer(/(?:\n\s+)/g, ''),
+  trimResultTransformer
+)
+
+export default oneLineTrim

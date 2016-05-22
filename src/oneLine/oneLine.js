@@ -2,10 +2,10 @@
 
 import TemplateTag from '../TemplateTag'
 import trimResultTransformer from '../trimResultTransformer'
-import replaceSequentialSpaceTransformer from '../replaceSequentialSpaceTransformer'
+import replaceResultTransformer from '../replaceResultTransformer'
 
 const oneLine = new TemplateTag(
-  replaceSequentialSpaceTransformer,
+  replaceResultTransformer(/(?:\s+)/g, ' '),
   trimResultTransformer
 )
 
