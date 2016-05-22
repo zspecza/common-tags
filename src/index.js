@@ -6,6 +6,7 @@ import TemplateTag from './TemplateTag'
 import trimResultTransformer from './trimResultTransformer'
 import stripIndentTransformer from './stripIndentTransformer'
 import replaceResultTransformer from './replaceResultTransformer'
+import inlineArrayTransformer from './inlineArrayTransformer'
 
 // tags
 import tags from './tags'
@@ -28,6 +29,7 @@ export {
   trimResultTransformer,
   stripIndentTransformer,
   replaceResultTransformer,
+  inlineArrayTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
