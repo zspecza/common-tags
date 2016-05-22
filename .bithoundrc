@@ -1,0 +1,10 @@
+{
+  "test": [
+    "src/**/*.test.js"
+  ],
+  "critics": {
+    "lint": {
+      "engine": "standard"
+    }
+  }
+}
