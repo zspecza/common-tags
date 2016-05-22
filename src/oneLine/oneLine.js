@@ -1,5 +1,12 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import trimResultTransformer from '../trimResultTransformer'
+import replaceSequentialSpaceTransformer from '../replaceSequentialSpaceTransformer'
 
-export default tags({ oneLine: true })
+const oneLine = new TemplateTag(
+  replaceSequentialSpaceTransformer,
+  trimResultTransformer
+)
+
+export default oneLine
