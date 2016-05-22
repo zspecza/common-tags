@@ -20,3 +20,10 @@ test('replaces last separator with a conjunction', (t) => {
   )
   t.is(tag`I like ${['apple', 'banana', 'kiwi']}`, 'I like apple, banana and kiwi')
 })
+
+test('does not require preceded whitespace', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer({ separator: ',' })
+  )
+  t.is(tag`My friends are (${['bob', 'sally', 'jim']})`, 'My friends are (bob, sally, jim)')
+})

@@ -18,7 +18,12 @@ const inlineArrayTransformer = (opts = defaults) => ({
       const conjunction = opts.conjunction
       // join each item in the array into a string where each item is separated by separator
       // be sure to maintain indentation
-      substitution = substitution.join(separator + resultSoFar.match(/(\s+)$/)[1])
+      const indent = resultSoFar.match(/(\s+)$/)
+      if (indent) {
+        substitution = substitution.join(separator + indent[1])
+      } else {
+        substitution = substitution.join(separator + ' ')
+      }
       // if conjunction is set, replace the last separator with conjunction
       if (conjunction) {
         const separatorIndex = substitution.lastIndexOf(separator)
