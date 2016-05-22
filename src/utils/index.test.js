@@ -2,14 +2,12 @@
 
 import test from 'ava'
 import {
-  readFromFixture,
-  depracation
+  readFromFixture
 } from './'
 
 test('exports all the right modules', (t) => {
   const exports = [
-    readFromFixture,
-    depracation
+    readFromFixture
   ]
 
   t.plan(exports.length)

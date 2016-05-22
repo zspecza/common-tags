@@ -3,7 +3,6 @@
 import test from 'ava'
 
 import {
-  default as tags,
   TemplateTag,
   trimResultTransformer,
   stripIndentTransformer,
@@ -25,7 +24,6 @@ import {
 
 test('common-tags exports all the right modules', (t) => {
   const exports = [
-    tags,
     TemplateTag,
     trimResultTransformer,
     stripIndentTransformer,

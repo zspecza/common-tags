@@ -9,7 +9,6 @@ import replaceResultTransformer from './replaceResultTransformer'
 import inlineArrayTransformer from './inlineArrayTransformer'
 
 // tags
-import tags from './tags'
 import commaLists from './commaLists'
 import commaListsAnd from './commaListsAnd'
 import commaListsOr from './commaListsOr'
@@ -24,7 +23,6 @@ import stripIndent from './stripIndent'
 import stripIndents from './stripIndents'
 
 export {
-  tags as default,
   TemplateTag,
   trimResultTransformer,
   stripIndentTransformer,
