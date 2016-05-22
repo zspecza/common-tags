@@ -1,5 +1,14 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import stripIndentTransformer from '../stripIndentTransformer'
+import inlineArrayTransformer from '../inlineArrayTransformer'
+import trimResultTransformer from '../trimResultTransformer'
 
-export default tags({ stripIndent: true, includeArrays: true })
+const html = new TemplateTag(
+  inlineArrayTransformer,
+  stripIndentTransformer,
+  trimResultTransformer
+)
+
+export default html
