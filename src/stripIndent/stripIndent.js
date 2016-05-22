@@ -1,5 +1,12 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import stripIndentTransformer from '../stripIndentTransformer'
+import trimResultTransformer from '../trimResultTransformer'
 
-export default tags({ stripIndent: true })
+const stripIndent = new TemplateTag(
+  stripIndentTransformer,
+  trimResultTransformer
+)
+
+export default stripIndent
