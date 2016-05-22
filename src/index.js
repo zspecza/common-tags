@@ -5,6 +5,7 @@ import TemplateTag from './TemplateTag'
 // transformers
 import trimResultTransformer from './trimResultTransformer'
 import stripIndentTransformer from './stripIndentTransformer'
+import replaceSequentialSpaceTransformer from './replaceSequentialSpaceTransformer'
 
 // tags
 import tags from './tags'
@@ -26,6 +27,7 @@ export {
   TemplateTag,
   trimResultTransformer,
   stripIndentTransformer,
+  replaceSequentialSpaceTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
