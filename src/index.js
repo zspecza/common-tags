@@ -19,6 +19,7 @@ import oneLineCommaLists from './oneLineCommaLists'
 import oneLineCommaListsOr from './oneLineCommaListsOr'
 import oneLineCommaListsAnd from './oneLineCommaListsAnd'
 import inlineLists from './inlineLists'
+import oneLineInlineLists from './oneLineInlineLists'
 import stripIndent from './stripIndent'
 import stripIndents from './stripIndents'
 
@@ -38,6 +39,7 @@ export {
   oneLineCommaListsOr,
   oneLineCommaListsAnd,
   inlineLists,
+  oneLineInlineLists,
   stripIndent,
   stripIndents
 }
