@@ -4,6 +4,8 @@ import test from 'ava'
 
 import {
   default as tags,
+  TemplateTag,
+  trimResultTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
@@ -20,6 +22,8 @@ import {
 test('common-tags exports all the right modules', (t) => {
   const exports = [
     tags,
+    TemplateTag,
+    trimResultTransformer,
     commaLists,
     commaListsAnd,
     commaListsOr,

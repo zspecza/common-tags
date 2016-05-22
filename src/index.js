@@ -1,5 +1,11 @@
 'use strict'
 
+import TemplateTag from './TemplateTag'
+
+// transformers
+import trimResultTransformer from './trimResultTransformer'
+
+// tags
 import tags from './tags'
 import commaLists from './commaLists'
 import commaListsAnd from './commaListsAnd'
@@ -15,6 +21,8 @@ import stripIndent from './stripIndent'
 
 export {
   tags as default,
+  TemplateTag,
+  trimResultTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
