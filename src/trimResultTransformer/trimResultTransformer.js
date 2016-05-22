@@ -3,7 +3,7 @@
 /**
  * TemplateTag transformer that trims whitespace on the end result of a tagged template
  * @param  {String} side = '' - The side of the string to trim. Can be 'left' or 'right'
- * @return {String}           - The trimmed string without the superfluous whitespace
+ * @return {Object}           - a TemplateTag transformer
  */
 const trimResultTransformer = (side = '') => ({
   onEndResult (endResult) {
