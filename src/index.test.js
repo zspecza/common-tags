@@ -16,7 +16,8 @@ import {
   oneLineCommaListsAnd,
   oneLineCommaListsOr,
   oneLineTrim,
-  stripIndent
+  stripIndent,
+  stripIndents
 } from './'
 
 test('common-tags exports all the right modules', (t) => {
@@ -34,7 +35,8 @@ test('common-tags exports all the right modules', (t) => {
     oneLineCommaListsAnd,
     oneLineCommaListsOr,
     oneLineTrim,
-    stripIndent
+    stripIndent,
+    stripIndents
   ]
 
   t.plan(exports.length)
