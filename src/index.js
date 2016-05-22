@@ -4,6 +4,7 @@ import TemplateTag from './TemplateTag'
 
 // transformers
 import trimResultTransformer from './trimResultTransformer'
+import stripIndentTransformer from './stripIndentTransformer'
 
 // tags
 import tags from './tags'
@@ -23,6 +24,7 @@ export {
   tags as default,
   TemplateTag,
   trimResultTransformer,
+  stripIndentTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
