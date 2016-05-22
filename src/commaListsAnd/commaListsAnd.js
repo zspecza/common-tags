@@ -1,11 +1,14 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import stripIndentTransformer from '../stripIndentTransformer'
+import inlineArrayTransformer from '../inlineArrayTransformer'
+import trimResultTransformer from '../trimResultTransformer'
 
-export default tags({
-  stripIndent: true,
-  includeArrays: {
-    separator: ',',
-    conjunction: 'and'
-  }
-})
+const commaListsAnd = new TemplateTag(
+  inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
+  stripIndentTransformer,
+  trimResultTransformer
+)
+
+export default commaListsAnd

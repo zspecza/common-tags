@@ -1,14 +1,14 @@
 'use strict'
 
 import TemplateTag from '../TemplateTag'
-import stripIndentTransformer from '../stripIndentTransformer'
 import inlineArrayTransformer from '../inlineArrayTransformer'
 import trimResultTransformer from '../trimResultTransformer'
+import replaceResultTransformer from '../replaceResultTransformer'
 
-const html = new TemplateTag(
+const oneLineInlineLists = new TemplateTag(
   inlineArrayTransformer,
-  stripIndentTransformer,
+  replaceResultTransformer(/(?:\s+)/g, ' '),
   trimResultTransformer
 )
 
-export default html
+export default oneLineInlineLists

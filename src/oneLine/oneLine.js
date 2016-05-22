@@ -1,5 +1,12 @@
 'use strict'
 
-import tags from '../tags'
+import TemplateTag from '../TemplateTag'
+import trimResultTransformer from '../trimResultTransformer'
+import replaceResultTransformer from '../replaceResultTransformer'
 
-export default tags({ oneLine: true })
+const oneLine = new TemplateTag(
+  replaceResultTransformer(/(?:\s+)/g, ' '),
+  trimResultTransformer
+)
+
+export default oneLine

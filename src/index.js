@@ -1,6 +1,14 @@
 'use strict'
 
-import tags from './tags'
+import TemplateTag from './TemplateTag'
+
+// transformers
+import trimResultTransformer from './trimResultTransformer'
+import stripIndentTransformer from './stripIndentTransformer'
+import replaceResultTransformer from './replaceResultTransformer'
+import inlineArrayTransformer from './inlineArrayTransformer'
+
+// tags
 import commaLists from './commaLists'
 import commaListsAnd from './commaListsAnd'
 import commaListsOr from './commaListsOr'
@@ -11,10 +19,16 @@ import oneLineCommaLists from './oneLineCommaLists'
 import oneLineCommaListsOr from './oneLineCommaListsOr'
 import oneLineCommaListsAnd from './oneLineCommaListsAnd'
 import inlineLists from './inlineLists'
+import oneLineInlineLists from './oneLineInlineLists'
 import stripIndent from './stripIndent'
+import stripIndents from './stripIndents'
 
 export {
-  tags as default,
+  TemplateTag,
+  trimResultTransformer,
+  stripIndentTransformer,
+  replaceResultTransformer,
+  inlineArrayTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
@@ -25,5 +39,7 @@ export {
   oneLineCommaListsOr,
   oneLineCommaListsAnd,
   inlineLists,
-  stripIndent
+  oneLineInlineLists,
+  stripIndent,
+  stripIndents
 }
