@@ -21,10 +21,7 @@ test('utils exports all the right modules directly', async (t) => {
   t.plan(modules.length)
   modules.forEach((module) => {
     const _path = path.join(__dirname, module)
-    t.true(
-      typeof require(_path).default === 'function',
-      `${module} is not exported properly`
-    )
+    t.true(require(_path).default != null, `${module} is not exported properly`)
   })
 })
 
@@ -32,9 +29,6 @@ test('utils exports all the right modules as props', async (t) => {
   const modules = t.context.modules
   t.plan(modules.length)
   modules.forEach((module) => {
-    t.true(
-      typeof require('./index')[module] === 'function',
-      `${module} is not exported properly`
-    )
+    t.true(require('./index')[module] != null, `${module} is not exported properly`)
   })
 })

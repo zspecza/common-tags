@@ -1,5 +1,6 @@
 'use strict'
 
+// core
 export TemplateTag from './TemplateTag'
 
 // transformers
