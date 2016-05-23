@@ -1,5 +1,3 @@
 'use strict'
 
-import html from './html'
-
-export default html
+export default from './html'

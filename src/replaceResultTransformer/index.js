@@ -1,5 +1,3 @@
 'use strict'
 
-import replaceResultTransformer from './replaceResultTransformer'
-
-export default replaceResultTransformer
+export default from './replaceResultTransformer'

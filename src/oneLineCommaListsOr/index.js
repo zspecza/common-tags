@@ -1,5 +1,3 @@
 'use strict'
 
-import oneLineCommaListsOr from './oneLineCommaListsOr'
-
-export default oneLineCommaListsOr
+export default from './oneLineCommaListsOr'

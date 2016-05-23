@@ -1,5 +1,3 @@
 'use strict'
 
-import oneLineTrim from './oneLineTrim'
-
-export default oneLineTrim
+export default from './oneLineTrim'
