@@ -7,6 +7,7 @@ import trimResultTransformer from './trimResultTransformer'
 import stripIndentTransformer from './stripIndentTransformer'
 import replaceResultTransformer from './replaceResultTransformer'
 import inlineArrayTransformer from './inlineArrayTransformer'
+import splitStringTransformer from './splitStringTransformer'
 
 // tags
 import commaLists from './commaLists'
@@ -29,6 +30,7 @@ export {
   stripIndentTransformer,
   replaceResultTransformer,
   inlineArrayTransformer,
+  splitStringTransformer,
   commaLists,
   commaListsAnd,
   commaListsOr,
