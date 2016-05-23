@@ -12,7 +12,7 @@ const observe = [
   '!index.test.js'
 ]
 
-test('exports all the right modules', async (t) => {
+test('utils exports all the right modules directly', async (t) => {
   let modules = await node.call(fs.readdir, __dirname)
   modules = mm(modules, observe)
   t.plan(modules.length)
@@ -20,6 +20,18 @@ test('exports all the right modules', async (t) => {
     const _path = path.join(__dirname, module)
     t.true(
       typeof require(_path).default === 'function',
+      `${module} is not exported properly`
+    )
+  })
+})
+
+test('utils exports all the right modules as props', async (t) => {
+  let modules = await node.call(fs.readdir, __dirname)
+  modules = mm(modules, observe)
+  t.plan(modules.length)
+  modules.forEach((module) => {
+    t.true(
+      typeof require('./index')[module] === 'function',
       `${module} is not exported properly`
     )
   })
