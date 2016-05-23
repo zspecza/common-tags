@@ -57,6 +57,7 @@
         - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
         - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
         - [`inlineArrayTransformer(opts = { separator: '' })`](#inlinearraytransformeropts---separator--)
+        - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
 - [How to Contribute](#how-to-contribute)
 - [License](#license)
 - [:stars: Other ES2015 Template Tag Modules](#stars-other-es2015-template-tag-modules)
@@ -146,7 +147,7 @@ import stripIndent from 'common-tags/lib/stripIndent'
 
 #### `html`
 
-You'll often find that you might want to include an array in a template. Typically, doing something like `${array.join(', ')}` would work - but what if you're printing a list of items in an HTML template and want to maintain the indentation? You'd have to count the spaces manually and include them in the `.join()` call - which is a bit *ugly* for my taste.
+You'll often find that you might want to include an array in a template. Typically, doing something like `${array.join(', ')}` would work - but what if you're printing a list of items in an HTML template and want to maintain the indentation? You'd have to count the spaces manually and include them in the `.join()` call - which is a bit *ugly* for my taste. This tag properly indents arrays, as well as newline characters in string substitutions, by converting them to an array split by newline and re-using the same array inclusion logic:
 
 ```js
 import {html} from 'common-tags'
@@ -155,6 +156,7 @@ html`
   <div class="list">
     <ul>
       ${fruits.map(fruit => `<li>${fruit}</li>`)}
+      ${'<li>kiwi</li>\n<li>guava</li>'}
     </ul>
   </div>
 `);
@@ -168,6 +170,8 @@ Outputs:
     <li>apple</li>
     <li>orange</li>
     <li>watermelon</li>
+    <li>kiwi</li>
+    <li>guava</li>
   </ul>
 </div>
 ```
@@ -619,7 +623,9 @@ opts = {
 
 
 
+##### `splitStringTransformer(splitBy)`
 
+Splits a string substitution into an array by the provided `splitBy` substring, **only** if the string contains the `splitBy` substring.
 
 
 
