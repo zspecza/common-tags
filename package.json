@@ -51,6 +51,7 @@
     "es2015-tag",
     "es6",
     "es6-tag",
+    "heredoc",
     "html",
     "indent",
     "indents",
@@ -68,8 +69,7 @@
     "strip",
     "tag",
     "tagged",
-    "template",
-    "heredoc"
+    "template"
   ],
   "license": "MIT",
   "main": "lib",
