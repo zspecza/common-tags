@@ -12,9 +12,12 @@ const observe = [
   '!index.test.js'
 ]
 
+test.beforeEach(async (t) => {
+  t.context.modules = mm(await node.call(fs.readdir, __dirname), observe)
+})
+
 test('utils exports all the right modules directly', async (t) => {
-  let modules = await node.call(fs.readdir, __dirname)
-  modules = mm(modules, observe)
+  const modules = t.context.modules
   t.plan(modules.length)
   modules.forEach((module) => {
     const _path = path.join(__dirname, module)
@@ -26,8 +29,7 @@ test('utils exports all the right modules directly', async (t) => {
 })
 
 test('utils exports all the right modules as props', async (t) => {
-  let modules = await node.call(fs.readdir, __dirname)
-  modules = mm(modules, observe)
+  const modules = t.context.modules
   t.plan(modules.length)
   modules.forEach((module) => {
     t.true(
