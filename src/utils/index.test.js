@@ -1,18 +1,26 @@
 'use strict'
 
+import fs from 'fs'
+import path from 'path'
 import test from 'ava'
-import {
-  readFromFixture
-} from './'
+import mm from 'micromatch'
+import node from 'when/node'
 
-test('exports all the right modules', (t) => {
-  const exports = [
-    readFromFixture
-  ]
+const observe = [
+  '*',
+  '!index.js',
+  '!index.test.js'
+]
 
-  t.plan(exports.length)
-
-  exports.forEach((module) => {
-    t.true(typeof module === 'function')
+test('exports all the right modules', async (t) => {
+  let modules = await node.call(fs.readdir, __dirname)
+  modules = mm(modules, observe)
+  t.plan(modules.length)
+  modules.forEach((module) => {
+    const _path = path.join(__dirname, module)
+    t.true(
+      typeof require(_path).default === 'function',
+      `${module} is not exported properly`
+    )
   })
 })
