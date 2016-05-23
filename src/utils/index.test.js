@@ -21,7 +21,7 @@ test('utils exports all the right modules directly', async (t) => {
   t.plan(modules.length)
   modules.forEach((module) => {
     const _path = path.join(__dirname, module)
-    t.true(require(_path).default != null, `${module} is not exported properly`)
+    t.true(require(_path) != null, `${module} is not exported properly`)
   })
 })
 
