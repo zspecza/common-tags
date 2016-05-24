@@ -1,5 +1,3 @@
 'use strict'
 
-import oneLineCommaListsAnd from './oneLineCommaListsAnd'
-
-export default oneLineCommaListsAnd
+export default from './oneLineCommaListsAnd'

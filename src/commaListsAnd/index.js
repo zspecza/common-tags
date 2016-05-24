@@ -1,5 +1,3 @@
 'use strict'
 
-import commaListsAnd from './commaListsAnd'
-
-export default commaListsAnd
+export default from './commaListsAnd'

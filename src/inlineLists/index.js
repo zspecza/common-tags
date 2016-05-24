@@ -1,5 +1,3 @@
 'use strict'
 
-import inlineLists from './inlineLists'
-
-export default inlineLists
+export default from './inlineLists'

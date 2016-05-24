@@ -6,5 +6,10 @@
     "lint": {
       "engine": "standard"
     }
+  },
+  "dependencies": {
+    "unused-ignores": [
+      "babel-runtime"
+    ]
   }
 }

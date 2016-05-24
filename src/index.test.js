@@ -1,55 +1,35 @@
 'use strict'
 
+import fs from 'fs'
+import path from 'path'
 import test from 'ava'
+import mm from 'micromatch'
+import node from 'when/node'
 
-import {
-  TemplateTag,
-  trimResultTransformer,
-  stripIndentTransformer,
-  replaceResultTransformer,
-  inlineArrayTransformer,
-  splitStringTransformer,
-  commaLists,
-  commaListsAnd,
-  commaListsOr,
-  html,
-  inlineLists,
-  oneLineInlineLists,
-  oneLine,
-  oneLineCommaLists,
-  oneLineCommaListsAnd,
-  oneLineCommaListsOr,
-  oneLineTrim,
-  stripIndent,
-  stripIndents
-} from './'
+const observe = [
+  '*',
+  '!utils',
+  '!index.js',
+  '!index.test.js'
+]
 
-test('common-tags exports all the right modules', (t) => {
-  const exports = [
-    TemplateTag,
-    trimResultTransformer,
-    stripIndentTransformer,
-    replaceResultTransformer,
-    inlineArrayTransformer,
-    splitStringTransformer,
-    commaLists,
-    commaListsAnd,
-    commaListsOr,
-    html,
-    inlineLists,
-    oneLine,
-    oneLineInlineLists,
-    oneLineCommaLists,
-    oneLineCommaListsAnd,
-    oneLineCommaListsOr,
-    oneLineTrim,
-    stripIndent,
-    stripIndents
-  ]
+test.beforeEach(async (t) => {
+  t.context.modules = mm(await node.call(fs.readdir, __dirname), observe)
+})
 
-  t.plan(exports.length)
+test('common-tags exports all the right modules directly', async (t) => {
+  const modules = t.context.modules
+  t.plan(modules.length)
+  modules.forEach((module) => {
+    const _path = path.join(__dirname, module)
+    t.true(require(_path) != null, `${module} is not exported properly`)
+  })
+})
 
-  exports.forEach((module) => {
-    t.true(typeof module === 'function')
+test('common-tags exports all the right modules as props', async (t) => {
+  const modules = t.context.modules
+  t.plan(modules.length)
+  modules.forEach((module) => {
+    t.true(require('./index')[module] != null, `${module} is not exported properly`)
   })
 })
