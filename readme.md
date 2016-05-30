@@ -146,6 +146,7 @@ import stripIndent from 'common-tags/lib/stripIndent'
 
 
 #### `html`
+##### Aliases: `source`, `codeBlock`
 
 You'll often find that you might want to include an array in a template. Typically, doing something like `${array.join(', ')}` would work - but what if you're printing a list of items in an HTML template and want to maintain the indentation? You'd have to count the spaces manually and include them in the `.join()` call - which is a bit *ugly* for my taste. This tag properly indents arrays, as well as newline characters in string substitutions, by converting them to an array split by newline and re-using the same array inclusion logic:
 
