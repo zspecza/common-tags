@@ -32,6 +32,7 @@
     - [Imports](#imports)
     - [Available Tags](#available-tags)
       - [`html`](#html)
+        - [Aliases: `source`, `codeBlock`](#aliases-source-codeblock)
       - [`oneLine`](#oneline)
       - [`oneLineTrim`](#onelinetrim)
       - [`stripIndent`](#stripindent)
