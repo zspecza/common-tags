@@ -23,3 +23,9 @@ test('throws an error if invalid side supplied', (t) => {
   const trimUp = new TemplateTag(trimResultTransformer('up'))
   t.throws(() => trimUp`foo`)
 })
+
+test('can be used sequentially', (t) => {
+  const trimLeft = new TemplateTag(trimResultTransformer('left'))
+  t.is(trimLeft`  foo  `, 'foo  ')
+  t.is(trimLeft`  bar  `, 'bar  ')
+})

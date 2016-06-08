@@ -7,6 +7,7 @@
  */
 const trimResultTransformer = (side = '') => ({
   onEndResult (endResult) {
+    side = side.toLowerCase()
     // uppercase the first letter of side value
     if (side === 'left' || side === 'right') {
       side = side.charAt(0).toUpperCase() + side.slice(1)
