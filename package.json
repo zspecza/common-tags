@@ -42,7 +42,8 @@
     "regenerator-runtime": "^0.9.5",
     "rimraf": "^2.5.2",
     "snazzy": "^4.0.0",
-    "when": "^3.7.7"
+    "when": "^3.7.7",
+    "which": "^1.2.10"
   },
   "directories": {
     "lib": "lib"

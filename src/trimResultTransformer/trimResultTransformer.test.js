@@ -2,6 +2,7 @@
 
 import test from 'ava'
 import TemplateTag from '../TemplateTag'
+import stripIndentTransformer from '../stripIndentTransformer'
 import trimResultTransformer from './trimResultTransformer'
 
 test('trims outer padding', (t) => {
@@ -25,7 +26,7 @@ test('throws an error if invalid side supplied', (t) => {
 })
 
 test('can be used sequentially', (t) => {
-  const trimLeft = new TemplateTag(trimResultTransformer('left'))
+  const trimLeft = new TemplateTag(stripIndentTransformer, trimResultTransformer('left'))
   t.is(trimLeft`  foo  `, 'foo  ')
   t.is(trimLeft`  bar  `, 'bar  ')
 })
