@@ -9,6 +9,7 @@ export stripIndentTransformer from './stripIndentTransformer'
 export replaceResultTransformer from './replaceResultTransformer'
 export inlineArrayTransformer from './inlineArrayTransformer'
 export splitStringTransformer from './splitStringTransformer'
+export escapeHtmlTransformer from './escapeHtmlTransformer'
 
 // tags
 export commaLists from './commaLists'
