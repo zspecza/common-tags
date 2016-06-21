@@ -1,0 +1,6 @@
+<h1>amaze</h1>
+<ul>
+  one
+  two
+  <li>three</li>
+</ul>
