@@ -31,4 +31,3 @@ test('throws error if no arguments are supplied when used', (t) => {
   const tag = new TemplateTag(replaceSubstitutionTransformer())
   t.throws(() => tag`${'foo'}`)
 })
-
