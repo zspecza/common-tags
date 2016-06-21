@@ -33,6 +33,7 @@
     - [Available Tags](#available-tags)
       - [`html`](#html)
         - [Aliases: `source`, `codeBlock`](#aliases-source-codeblock)
+      - [`safeHtml`](#safehtml)
       - [`oneLine`](#oneline)
       - [`oneLineTrim`](#onelinetrim)
       - [`stripIndent`](#stripindent)
@@ -57,6 +58,7 @@
         - [`trimResultTransformer([side])`](#trimresulttransformerside)
         - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
         - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
+        - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
         - [`inlineArrayTransformer(opts = { separator: '' })`](#inlinearraytransformeropts---separator--)
         - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
 - [How to Contribute](#how-to-contribute)
@@ -174,6 +176,38 @@ Outputs:
     <li>watermelon</li>
     <li>kiwi</li>
     <li>guava</li>
+  </ul>
+</div>
+```
+
+
+
+
+
+#### `safeHtml`
+
+A tag very similar to `html` but it does safe HTML escaping for strings coming from substitutions. When combined with regular `html` tag, you can do basic HTML templating that is safe from XSS (Cross-Site Scripting) attacks.
+
+```js
+import {html, safeHtml} from 'common-tags'
+let userMessages = ['hi', 'what are you up to?', '<script>alert("something evil")</script>']
+html`
+  <div class="chat-list">
+    <ul>
+      ${userMessages.map(message => safeHtml`<li>${message}</li>`)}
+    </ul>
+  </div>
+`
+```
+
+Outputs:
+
+```html
+<div class="chat-list">
+  <ul>
+    <li>hi</li>
+    <li>what are you up to?</li>
+    <li>&lt;script&gt;alert(&quot;something evil&quot;)&lt;/script&gt;</li>
   </ul>
 </div>
 ```
@@ -609,6 +643,12 @@ Strips the indents from the end result. Offers two types: `all`, which removes a
 ##### `replaceResultTransformer(replaceWhat, replaceWith)`
 
 Replaces a value or pattern in the end result with a new value. `replaceWhat` can be a string or a regular expression, `replaceWith` is the new value.
+
+
+
+##### `replaceSubstitutionTransformer(replaceWhat, replaceWith)`
+
+Replaces the result of all substitutions (results of calling `${ ... }`) with a new value. Same as for `replaceResultTransformer`, `replaceWhat` can be a string or regular expression and `replaceWith` is the new value.
 
 
 

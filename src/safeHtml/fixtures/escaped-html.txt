@@ -1,0 +1,7 @@
+<h1>amaze</h1>
+<ul>
+  apple
+  banana
+  kiwi
+  &lt;h1&gt;dangerous fruit&lt;/h1&gt;
+</ul>
