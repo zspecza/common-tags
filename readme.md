@@ -101,7 +101,7 @@ Furthermore, I try to keep this project as transparently stable and updated as f
 
 ### Requirements
 - [Node.js](https://nodejs.org/en/download/) v4.0.0 or higher
-- NPM (v3.0.0+ highly recommended) (this comes with Node.js)
+- NPM (v3.0.0+ highly recommended, but not strictly required) (this comes with Node.js)
 - In order to use `common-tags`, your environment will also need to support ES2015 tagged templates ([pssst… check Babel out](http://babeljs.io)).
 
 
