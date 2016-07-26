@@ -24,7 +24,7 @@
     "Kamil Ogórek (https://github.com/kamilogorek)"
   ],
   "dependencies": {
-    "babel-runtime": "^6.9.1"
+    "babel-runtime": "^6.11.6"
   },
   "devDependencies": {
     "ava": "^0.16.0",
