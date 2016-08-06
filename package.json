@@ -27,7 +27,7 @@
     "babel-runtime": "^6.9.1"
   },
   "devDependencies": {
-    "ava": "^0.15.1",
+    "ava": "^0.16.0",
     "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.4",
     "babel-plugin-add-module-exports": "^0.2.1",
