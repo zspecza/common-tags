@@ -5,7 +5,7 @@ import html from './html'
 import {readFromFixture} from '../utils'
 
 const val = 'amaze'
-const nil = undefined
+const nil = null
 
 test('renders HTML, including arrays', async (t) => {
   const fruits = ['apple', 'banana', 'kiwi']

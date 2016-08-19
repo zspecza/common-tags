@@ -5,12 +5,6 @@ import TemplateTag from '../TemplateTag'
 import inlineArrayTransformer from '../inlineArrayTransformer'
 import removeNonPrintingValuesTransformer from '../removeNonPrintingValuesTransformer'
 
-test('removes undefined', (t) => {
-  const remove = new TemplateTag(removeNonPrintingValuesTransformer)
-  const nil = undefined
-  t.is(remove`a${nil}z`, 'az')
-})
-
 test('removes null', (t) => {
   const remove = new TemplateTag(removeNonPrintingValuesTransformer)
   const nil = null
