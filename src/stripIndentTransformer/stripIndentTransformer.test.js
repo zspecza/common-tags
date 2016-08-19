@@ -26,7 +26,9 @@ test('type "initial" does not remove indents if there is no need to do so', (t) 
     stripIndentTransformer,
     trimResultTransformer
   )
+  t.is(stripIndent``, '')
   t.is(stripIndent`foo`, 'foo')
+  t.is(stripIndent`foo\nbar`, 'foo\nbar')
 })
 
 test('removes all indents if type is "all"', async (t) => {
