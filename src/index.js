@@ -10,6 +10,7 @@ export replaceResultTransformer from './replaceResultTransformer'
 export replaceSubstitutionTransformer from './replaceSubstitutionTransformer'
 export inlineArrayTransformer from './inlineArrayTransformer'
 export splitStringTransformer from './splitStringTransformer'
+export removeNonPrintingValuesTransformer from './removeNonPrintingValuesTransformer'
 
 // tags
 export commaLists from './commaLists'
