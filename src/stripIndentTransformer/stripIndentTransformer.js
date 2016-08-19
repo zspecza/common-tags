@@ -10,6 +10,10 @@ const stripIndentTransformer = (type = 'initial') => ({
     if (type === 'initial') {
       // remove the shortest leading indentation from each line
       const match = endResult.match(/^[ \t]*(?=\S)/gm)
+      // return early if there's nothing to strip
+      if (match === null) {
+        return endResult
+      }
       const indent = Math.min(...match.map(el => el.length))
       const regexp = new RegExp('^[ \\t]{' + indent + '}', 'gm')
       endResult = indent > 0 ? endResult.replace(regexp, '') : endResult
