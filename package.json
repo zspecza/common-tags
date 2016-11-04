@@ -39,7 +39,7 @@
     "doctoc": "^1.0.0",
     "micromatch": "^2.3.8",
     "nyc": "^8.3.2",
-    "regenerator-runtime": "^0.9.5",
+    "regenerator-runtime": "^0.9.6",
     "rimraf": "^2.5.2",
     "snazzy": "^5.0.0",
     "when": "^3.7.7",
