@@ -94,7 +94,8 @@
     "prerelease": "npm run build",
     "preversion": "doctoc readme.md --title '# :books: Table of Contents' && npm test",
     "release": "npm publish",
-    "test": "npm run lint && nyc ava"
+    "test": "npm run lint && nyc ava",
+    "test-ci": "npm run lint && nyc ava --serial --fail-fast"
   },
   "standard": {
     "parser": "babel-eslint",

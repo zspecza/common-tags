@@ -17,7 +17,7 @@ install:
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version
-  - cmd: npm test
+  - cmd: npm test-ci
 build: off
 shallow_clone: true
 clone_depth: 1
