@@ -32,10 +32,11 @@
     "babel-eslint": "^7.1.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.8.0",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "codecov": "^1.0.1",
+    "cross-env": "3.1.3",
     "doctoc": "^1.0.0",
     "micromatch": "^2.3.8",
     "nyc": "^8.3.2",
@@ -81,12 +82,17 @@
   ],
   "license": "MIT",
   "main": "lib",
+  "jsnext:main": "es",
+  "module": "es",
   "repository": {
     "type": "git",
     "url": "https://github.com/declandewet/common-tags"
   },
   "scripts": {
-    "build": "rimraf lib && babel src -d lib",
+    "clear": "rimraf lib && rimraf es",
+    "build": "npm run clear && npm run build:cjs && npm run build:es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib --ignore *.test.js",
+    "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
     "codecov": "npm run coverage && codecov",
     "coverage": "nyc report --reporter=lcov",
     "lint": "snazzy",
@@ -94,13 +100,14 @@
     "prerelease": "npm run build",
     "preversion": "doctoc readme.md --title '# :books: Table of Contents' && npm test",
     "release": "npm publish",
-    "test": "npm run lint && nyc ava",
-    "test-ci": "npm run lint && nyc ava --serial --fail-fast"
+    "test": "npm run lint && cross-env BABEL_ENV=cjs nyc ava",
+    "test-ci": "npm run lint && cross-env BABEL_ENV=cjs nyc ava --serial --fail-fast"
   },
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "readme.md"
+      "readme.md",
+      "es"
     ]
   }
 }

@@ -1,11 +1,28 @@
 {
   "presets": [
-    "es2015",
     "stage-0"
   ],
   "plugins": [
-    "transform-runtime",
-    "add-module-exports"
+    "transform-runtime"
   ],
-  "sourceMaps": "inline"
+  "sourceMaps": "inline",
+  "env": {
+    "cjs": {
+      "presets": [
+        "latest"
+      ],
+      "plugins": [
+        "add-module-exports"
+      ]
+    },
+    "es": {
+      "presets": [
+        ["latest", {
+          "es2015": {
+            "modules": false
+          }
+        }]
+      ]
+    }
+  }
 }
