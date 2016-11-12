@@ -27,3 +27,10 @@ test('does not require preceded whitespace', (t) => {
   )
   t.is(tag`My friends are (${['bob', 'sally', 'jim']})`, 'My friends are (bob, sally, jim)')
 })
+
+test('supports serial/oxford separators', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer({ separator: ',', conjunction: 'or', serial: true })
+  )
+  t.is(tag`My friends are always ${['dramatic', 'emotional', 'needy']}`, 'My friends are always dramatic, emotional, or needy')
+})
