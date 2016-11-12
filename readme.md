@@ -59,7 +59,7 @@
         - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
         - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
         - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
-        - [`inlineArrayTransformer(opts = { separator: '' })`](#inlinearraytransformeropts---separator--)
+        - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
         - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
 - [How to Contribute](#how-to-contribute)
 - [License](#license)
