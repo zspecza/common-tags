@@ -8,8 +8,7 @@ notifications:
 node_js:
   - "6"
   - "5"
-  - "4"
-before_script:
-  - npm prune
+script:
+  - npm run test-ci
 after_script:
   - npm run codecov

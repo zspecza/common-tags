@@ -100,12 +100,13 @@ Furthermore, I try to keep this project as transparently stable and updated as f
 # :arrow_double_down: Installation
 
 ### Requirements
-- [Node.js](https://nodejs.org/en/download/) v4.0.0 or higher
-- NPM (v3.0.0+ highly recommended, but not strictly required) (this comes with Node.js)
+
+The official recommendation for running `common-tags` is as follows:
+
+- [Node.js](https://nodejs.org/en/download/) v5.0.0 or higher
 - In order to use `common-tags`, your environment will also need to support ES2015 tagged templates ([pssst… check Babel out](http://babeljs.io)).
 
-
-
+It might work with below versions of Node, but this is not a gaurantee.
 
 
 ### Instructions

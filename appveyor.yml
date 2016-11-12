@@ -3,7 +3,6 @@ environment:
   matrix:
     - nodejs_version: "6"
     - nodejs_version: "5"
-    - nodejs_version: "4"
 platform:
   - x86
   - x64
@@ -17,7 +16,7 @@ install:
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version
-  - cmd: npm test
+  - cmd: npm run test-ci
 build: off
 shallow_clone: true
 clone_depth: 1
