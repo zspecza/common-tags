@@ -366,7 +366,7 @@ commaListsOr`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas, or watermelons
+// I like apples, bananas or watermelons
 // They're good!
 ```
 
@@ -385,7 +385,7 @@ commaListsAnd`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas, and watermelons
+// I like apples, bananas and watermelons
 // They're good!
 ```
 
@@ -404,7 +404,7 @@ oneLineCommaLists`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas, or watermelons They're good!
+// I like apples, bananas or watermelons They're good!
 ```
 
 
@@ -422,7 +422,7 @@ oneLineCommaListsOr`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas, or watermelons They're good!
+// I like apples, bananas or watermelons They're good!
 ```
 
 
@@ -440,7 +440,7 @@ oneLineCommaListsAnd`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas, and watermelons They're good!
+// I like apples, bananas and watermelons They're good!
 ```
 
 
@@ -653,14 +653,15 @@ Replaces the result of all substitutions (results of calling `${ ... }`) with a 
 
 
 
-##### `inlineArrayTransformer(opts = { separator: '' })`
+##### `inlineArrayTransformer(opts)`
 
 Converts any array substitutions into a string that represents a list. Accepts an options object:
 
 ```js
 opts = {
   separator: ',', // what to separate each item with (always followed by a space)
-  conjunction: 'and' // replace the last separator with this value
+  conjunction: 'and', // replace the last separator with this value
+  serial: true // should the separator be included before the conjunction? As in the case of serial/oxford commas
 }
 ```
 
