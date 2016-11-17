@@ -714,3 +714,4 @@ If `common-tags` doesn't quite fit your bill, and you just can't seem to find wh
 - [sql-composer](https://www.npmjs.com/package/sql-composer) - Composable SQL template strings for Node.js
 - [pg-template-tag](https://www.npmjs.com/package/pg-template-tag) - ECMAScript 6 (2015) template tag function to write queries for node-postgres.
 - [digraph-tag](https://www.npmjs.com/package/digraph-tag) - ES6 string template tag for quickly generating directed graph data
+- [es2015-i18n-tag](https://www.npmjs.com/package/es2015-i18n-tag) - ES2015 template literal tag for i18n and l10n translation and localization
