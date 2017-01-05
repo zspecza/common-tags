@@ -5,7 +5,7 @@ import trimResultTransformer from '../trimResultTransformer'
 import replaceResultTransformer from '../replaceResultTransformer'
 
 const oneLine = new TemplateTag(
-  replaceResultTransformer(/(?:\s+)/g, ' '),
+  replaceResultTransformer(/(?:\n(?:\s*))+/g, ' '),
   trimResultTransformer
 )
 
