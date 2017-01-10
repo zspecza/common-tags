@@ -16,3 +16,12 @@ test('reduces text to one line, replacing newlines with spaces', async (t) => {
   `
   t.is(actual, expected)
 })
+
+test('preserves whitespace within input lines, replacing only newlines', async (t) => {
+  const expected = await readFromFixture('oneLine-sentence')
+  const actual = oneLine`
+    Sentences also work.  Double
+    spacing is preserved.
+  `
+  t.is(actual, expected)
+})
