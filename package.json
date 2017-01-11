@@ -42,7 +42,7 @@
     "nyc": "^8.3.2",
     "regenerator-runtime": "^0.10.0",
     "rimraf": "^2.5.2",
-    "snazzy": "^5.0.0",
+    "snazzy": "^6.0.0",
     "when": "^3.7.7",
     "which": "^1.2.11"
   },
