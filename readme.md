@@ -404,7 +404,7 @@ oneLineCommaLists`
   I like ${['apples', 'bananas', 'watermelons']}
   They're good!
 `
-// I like apples, bananas or watermelons They're good!
+// I like apples, bananas, watermelons They're good!
 ```
 
 
