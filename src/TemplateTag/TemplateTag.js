@@ -45,6 +45,7 @@ export default class TemplateTag {
     }
 
     // else, return a transformed end result of processing the template with our tag
+    args[0] = args[0].map(this.transformLiteral.bind(this))
     return this.transformEndResult(
       args.shift().reduce(this.processSubstitutions.bind(this, args))
     )
@@ -76,6 +77,19 @@ export default class TemplateTag {
       resultSoFar
     )
     return resultSoFar + substitution + remainingPart
+  }
+
+  /**
+   * Iterate through each transformer, applying the transformer's `onLiteral` method to the template
+   * literal before all substitutions are processed.
+   * @param {String}  literal - The input literal
+   * @return {String}         - The final results of processing each transformer
+   */
+  transformLiteral (literal) {
+    const cb = (res, transform) => transform.onLiteral
+      ? transform.onLiteral(res)
+      : res
+    return this.transformers.reduce(cb, literal)
   }
 
   /**

@@ -487,7 +487,7 @@ oneLine(String.raw)`
 
 #### Class is in Session: TemplateTag
 
-`common-tags` exports a `TemplateTag` class. This class is the foundation of `common-tags`. The concept of the class works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a substitution (`onSubstitution`). Any tag produced by this class supports [tail processing](#tail-processing).
+`common-tags` exports a `TemplateTag` class. This class is the foundation of `common-tags`. The concept of the class works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a literal (`onLiteral`) or a substitution (`onSubstitution`). Any tag produced by this class supports [tail processing](#tail-processing).
 
 The easiest tag to create is a tag that does nothing:
 
@@ -506,10 +506,15 @@ doNothing`foo bar`
 
 #### The Anatomy of a Transformer
 
-`TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with two optional methods - `onSubstitution` and `onEndResult` - it looks like this:
+`TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `onLiteral`, `onSubstitution` and `onEndResult` - it looks like this:
 
 ```js
 {
+  onLiteral (literal) {
+    // optional. Called when the tag encounters a literal.
+    // (a literal is whatever's not inside "${}" in your template literal)
+    // `literal` is the string value of the current literal
+  },
   onSubstitution (substitution, resultSoFar) {
     // optional. Called when the tag encounters a substitution.
     // (a substitution is whatever's inside "${}" in your template literal)
@@ -578,8 +583,12 @@ This is super easy. Transformers are just objects, after all. They have full acc
 
 ```js
 const listSubs = {
+  onLiteral(literal) {
+    this.ctx = this.ctx || { literals: [], subs: [] }
+    this.ctx.literals.push(literal);
+    return literal
+  },
   onSubstitution(sub, res) {
-    this.ctx = this.ctx || { subs: [] }
     this.ctx.subs.push({ sub, precededBy: res })
     return sub
   },
@@ -608,6 +617,11 @@ process`
   fizz ${'buzz'}
 `
 // {
+//  "literals": [
+//    "\n  foo ",
+//    "\n  foo bar\n  fizz ",
+//    "\n" 
+//  ],
 //  "subs": [
 //    {
 //      "sub": "bar",
@@ -644,6 +658,12 @@ Strips the indents from the end result. Offers two types: `all`, which removes a
 ##### `replaceResultTransformer(replaceWhat, replaceWith)`
 
 Replaces a value or pattern in the end result with a new value. `replaceWhat` can be a string or a regular expression, `replaceWith` is the new value.
+
+
+
+##### `replaceLiteralTransformer(replaceWhat, replaceWith)`
+
+Replaces the result of all literals (what's not in `${ ... }`) with a new value. Same as for `replaceResultTransformer`, `replaceWhat` can be a string or regular expression and `replaceWith` is the new value.
 
 
 
