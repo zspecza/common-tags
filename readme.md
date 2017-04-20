@@ -58,6 +58,7 @@
         - [`trimResultTransformer([side])`](#trimresulttransformerside)
         - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
         - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
+        - [`replaceLiteralTransformer(replaceWhat, replaceWith)`](#replaceliteraltransformerreplacewhat-replacewith)
         - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
         - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
         - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
