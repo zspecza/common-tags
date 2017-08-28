@@ -3,7 +3,7 @@
 const splitStringTransformer = (splitBy) => ({
   onSubstitution (substitution, resultSoFar) {
     if (splitBy != null && typeof splitBy === 'string') {
-      if (typeof substitution === 'string' && substitution.includes(splitBy)) {
+      if (typeof substitution === 'string' && substitution.indexOf(splitBy) >= 0) {
         substitution = substitution.split(splitBy)
       }
     } else {
