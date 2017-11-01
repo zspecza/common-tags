@@ -18,6 +18,7 @@ const inlineArrayTransformer = (opts = defaults) => ({
   onSubstitution (substitution, resultSoFar) {
     // only operate on arrays
     if (Array.isArray(substitution)) {
+      const arrayLength = substitution.length
       const separator = opts.separator
       const conjunction = opts.conjunction
       const serial = opts.serial
@@ -29,8 +30,8 @@ const inlineArrayTransformer = (opts = defaults) => ({
       } else {
         substitution = substitution.join(separator + ' ')
       }
-      // if conjunction is set, replace the last separator with conjunction
-      if (conjunction) {
+      // if conjunction is set, replace the last separator with conjunction, but only if there is more than one substitution
+      if (conjunction && arrayLength > 1) {
         const separatorIndex = substitution.lastIndexOf(separator)
         substitution = substitution
           .substr(0, separatorIndex) + (serial ? separator : '') + ' ' +
