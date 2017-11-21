@@ -7,7 +7,7 @@ import {readFromFixture} from '../utils'
 const val = 'amaze'
 
 test('strips indentation', async (t) => {
-  const expected = await readFromFixture('stripIndent')
+  const expected = await readFromFixture(__dirname, 'stripIndent')
   const actual = stripIndent`
     wow such indent gone
     very ${val}
@@ -16,7 +16,7 @@ test('strips indentation', async (t) => {
 })
 
 test('strips larger indentation', async (t) => {
-  const expected = await readFromFixture('stripIndent')
+  const expected = await readFromFixture(__dirname, 'stripIndent')
   const actual = stripIndent`
       wow such indent gone
       very ${val}
@@ -25,7 +25,7 @@ test('strips larger indentation', async (t) => {
 })
 
 test('maintains deeper indentation', async (t) => {
-  const expected = await readFromFixture('maintainIndent')
+  const expected = await readFromFixture(__dirname, 'maintainIndent')
   const actual = stripIndent`
     wow such indent gone
         very ${val}
