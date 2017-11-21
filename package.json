@@ -36,7 +36,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "codecov": "^1.0.1",
-    "cross-env": "3.1.4",
+    "cross-env": "5.1.1",
     "doctoc": "^1.0.0",
     "micromatch": "^3.1.4",
     "nyc": "^8.3.2",
