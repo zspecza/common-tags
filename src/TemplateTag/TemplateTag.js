@@ -2,7 +2,7 @@
 
 /**
  * @class TemplateTag
- * @classdesc Consumes a pipeline of composeable transformer plugins and produces a template tag.
+ * @classdesc Consumes a pipeline of composable transformer plugins and produces a template tag.
  */
 export default class TemplateTag {
   /**
@@ -25,7 +25,7 @@ export default class TemplateTag {
     })
 
     // return an ES2015 template tag
-    return ::this.tag
+    return this.tag
   }
 
   /**
@@ -36,7 +36,7 @@ export default class TemplateTag {
    * @param  {...*} [args[1]]                   - Optional list of substitution values.
    * @return {(String|Function)}                - Either an intermediary tag function or the results of processing the template.
    */
-  tag (...args) {
+  tag = (...args) => {
     // if the first argument passed is a function, assume it is a template tag and return
     // an intermediary tag that processes the template using the aforementioned tag, passing the
     // result to our tag
