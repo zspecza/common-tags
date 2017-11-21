@@ -84,6 +84,12 @@
   "main": "lib",
   "jsnext:main": "es",
   "module": "es",
+  "nyc": {
+    "exclude": [
+      "**/*.test.js",
+      ".babelrc.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/declandewet/common-tags"
