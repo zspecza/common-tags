@@ -164,7 +164,7 @@ html`
       ${'<li>kiwi</li>\n<li>guava</li>'}
     </ul>
   </div>
-`);
+`
 ```
 
 Outputs:
@@ -227,7 +227,7 @@ oneLine`
   foo
   bar
   baz
-`)
+`
 // "foo bar baz"
 ```
 
@@ -245,7 +245,7 @@ import {oneLineTrim} from 'common-tags'
 oneLineTrim`
   https://news.com/article
   ?utm_source=designernews.co
-`)
+`
 // https://news.com/article?utm_source=designernews.co
 ```
 
