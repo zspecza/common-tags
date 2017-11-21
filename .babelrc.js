@@ -7,10 +7,8 @@ module.exports = {
   sourceMaps: 'inline',
 
   presets: [
-    ['latest', {
-      es2015: {
-        modules: isEsEnv ? false : 'commonjs'
-      }
+    ['env', {
+      modules: isEsEnv ? false : 'commonjs'
     }]
   ],
 
