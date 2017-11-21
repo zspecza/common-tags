@@ -44,7 +44,7 @@
     "rimraf": "^2.6.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
-    "when": "^3.7.7"
+    "when": "^3.7.8"
   },
   "directories": {
     "lib": "lib"
