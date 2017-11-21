@@ -42,7 +42,8 @@
     "nyc": "^11.3.0",
     "regenerator-runtime": "^0.10.0",
     "rimraf": "^2.6.2",
-    "snazzy": "^6.0.0",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3",
     "when": "^3.7.7"
   },
   "directories": {
@@ -94,7 +95,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
     "codecov": "npm run coverage && codecov",
     "coverage": "nyc report --reporter=lcov",
-    "lint": "snazzy",
+    "lint": "standard | snazzy",
     "precoveralls": "npm run coverage",
     "prerelease": "npm run build",
     "preversion": "doctoc readme.md --title '# :books: Table of Contents' && npm test",
