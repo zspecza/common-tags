@@ -7,7 +7,7 @@ const val = 'amaze'
 
 test('includes arrays as space-separated list', async (t) => {
   const fruits = ['apple', 'banana', 'kiwi']
-  const expected = await readFromFixture('inlineLists')
+  const expected = await readFromFixture(__dirname, 'inlineLists')
   const actual = inlineLists`
     Doge <3's these fruits: ${fruits}
     they are ${val}

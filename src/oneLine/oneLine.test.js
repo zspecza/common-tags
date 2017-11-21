@@ -7,7 +7,7 @@ import {readFromFixture} from '../utils'
 const val = 'amaze'
 
 test('reduces text to one line, replacing newlines with spaces', async (t) => {
-  const expected = await readFromFixture('oneLine')
+  const expected = await readFromFixture(__dirname, 'oneLine')
   const actual = oneLine`
     wow such doge
     is very ${val}
@@ -18,7 +18,7 @@ test('reduces text to one line, replacing newlines with spaces', async (t) => {
 })
 
 test('preserves whitespace within input lines, replacing only newlines', async (t) => {
-  const expected = await readFromFixture('oneLine-sentence')
+  const expected = await readFromFixture(__dirname, 'oneLine-sentence')
   const actual = oneLine`
     Sentences also work.  Double
     spacing is preserved.
