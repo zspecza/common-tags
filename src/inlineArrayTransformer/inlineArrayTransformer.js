@@ -23,7 +23,7 @@ const inlineArrayTransformer = (opts = defaults) => ({
       const serial = opts.serial
       // join each item in the array into a string where each item is separated by separator
       // be sure to maintain indentation
-      const indent = resultSoFar.match(/(\s+)$/)
+      const indent = resultSoFar.match(/(\n?[^\S\n]+)$/)
       if (indent) {
         substitution = substitution.join(separator + indent[1])
       } else {

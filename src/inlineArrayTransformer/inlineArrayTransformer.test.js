@@ -34,3 +34,22 @@ test('supports serial/oxford separators', (t) => {
   )
   t.is(tag`My friends are always ${['dramatic', 'emotional', 'needy']}`, 'My friends are always dramatic, emotional, or needy')
 })
+
+test('maintains indentation', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer()
+  )
+  t.is(tag`My friends are always
+  ${['dramatic', 'emotional', 'needy']}`,
+       'My friends are always\n  dramatic\n  emotional\n  needy')
+})
+
+test('does not introduce excess newlines', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer()
+  )
+  t.is(tag`My friends are always
+
+  ${['dramatic', 'emotional', 'needy']}`,
+       'My friends are always\n\n  dramatic\n  emotional\n  needy')
+})
