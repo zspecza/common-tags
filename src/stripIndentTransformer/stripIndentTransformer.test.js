@@ -11,7 +11,7 @@ test('default behaviour removes the leading indent, but preserves the rest', asy
     stripIndentTransformer,
     trimResultTransformer
   )
-  const expected = await readFromFixture('stripIndent')
+  const expected = await readFromFixture(__dirname, 'stripIndent')
   const actual = stripIndent`
     foo bar baz
     bar baz foo
@@ -36,7 +36,7 @@ test('removes all indents if type is "all"', async (t) => {
     stripIndentTransformer('all'),
     trimResultTransformer
   )
-  const expected = await readFromFixture('stripIndents')
+  const expected = await readFromFixture(__dirname, 'stripIndents')
   const actual = stripIndents`
     foo bar baz
     bar baz foo

@@ -1,5 +1,6 @@
 src
 .babelrc
+.babelrc.js
 .editorconfig
 .gitignore
 .travis.yml
