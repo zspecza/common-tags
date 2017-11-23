@@ -272,6 +272,8 @@ stripIndent`
 //   But we do want to keep this line indented.
 ```
 
+Important note: this tag will not indent multiline strings coming from the substitutions. If you want that behavior, use the `html` tag (aliases: `source`, `codeBlock`).
+
 
 
 
