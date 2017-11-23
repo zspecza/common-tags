@@ -6,7 +6,6 @@
   "ava": {
     "verbose": true,
     "babel": "inherit",
-    "failFast": true,
     "require": [
       "babel-register"
     ],
