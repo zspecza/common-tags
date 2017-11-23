@@ -17,7 +17,7 @@ test('reduces text to one line, replacing newlines with spaces', async (t) => {
   t.is(actual, expected)
 })
 
-test('reduces text to one line, replacing newlines with spaces', async (t) => {
+test('reduces text to one line, replacing newlines with spaces (no indentation)', async (t) => {
   const expected = await readFromFixture(__dirname, 'oneLine')
   const actual = oneLine`
 wow such doge
