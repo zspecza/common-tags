@@ -21,7 +21,8 @@
     "Declan de Wet (https://github.com/declandewet)",
     "Jason Killian (https://github.com/JKillian)",
     "Laurent Goudet (https://github.com/laurentgoudet)",
-    "Kamil Ogórek (https://github.com/kamilogorek)"
+    "Kamil Ogórek (https://github.com/kamilogorek)",
+    "Lucian Buzzo (https://github.com/LucianBuzzo)"
   ],
   "dependencies": {
     "babel-runtime": "^6.26.0"
