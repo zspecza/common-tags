@@ -19,7 +19,7 @@ const stripIndentTransformer = (type = 'initial') => ({
       endResult = indent > 0 ? endResult.replace(regexp, '') : endResult
     } else if (type === 'all') {
       // remove all indentation from each line
-      endResult = endResult.replace(/(?:\n\s*)/g, '\n')
+      endResult = endResult.replace(/(?:\n[^\S\n]*)/g, '\n')
     } else {
       throw new Error(`Unknown type: ${type}`)
     }
