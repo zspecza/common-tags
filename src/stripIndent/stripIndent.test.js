@@ -33,6 +33,16 @@ test('maintains deeper indentation', async (t) => {
   t.is(actual, expected)
 })
 
+test('maintains empty lines', async (t) => {
+  const expected = await readFromFixture(__dirname, 'maintainEmptyLines')
+  const actual = stripIndent`
+    wow such indent gone
+
+        very ${val}
+  `
+  t.is(actual, expected)
+})
+
 test('does nothing if there are no indents', async (t) => {
   const expected = 'wow such doge'
   const actual = stripIndent`wow such doge`

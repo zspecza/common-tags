@@ -15,3 +15,14 @@ test('strips all indentation', async (t) => {
   `
   t.is(actual, expected)
 })
+
+test('maintains empty lines', async (t) => {
+  const expected = await readFromFixture(__dirname, 'maintainEmptyLines')
+  const actual = stripIndents`
+    wow such indent gone
+      very ${val}
+
+        foo bar baz
+  `
+  t.is(actual, expected)
+})
