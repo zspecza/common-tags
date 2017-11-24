@@ -34,8 +34,8 @@ const inlineArrayTransformer = (opts = defaults) => ({
       if (conjunction && arrayLength > 1) {
         const separatorIndex = substitution.lastIndexOf(separator)
         substitution = substitution
-          .substr(0, separatorIndex) + (serial ? separator : '') + ' ' +
-            conjunction + substitution.substr(separatorIndex + 1)
+          .slice(0, separatorIndex) + (serial ? separator : '') + ' ' +
+            conjunction + substitution.slice(separatorIndex + 1)
       }
     }
     return substitution
