@@ -21,7 +21,8 @@
     "Jason Killian (https://github.com/JKillian)",
     "Laurent Goudet (https://github.com/laurentgoudet)",
     "Kamil Ogórek (https://github.com/kamilogorek)",
-    "Lucian Buzzo (https://github.com/LucianBuzzo)"
+    "Lucian Buzzo (https://github.com/LucianBuzzo)",
+    "Rafał Ruciński (https://github.com/fatfisz)"
   ],
   "dependencies": {
     "babel-runtime": "^6.26.0"
