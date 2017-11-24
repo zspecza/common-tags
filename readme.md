@@ -634,7 +634,7 @@ Since `common-tags` is built on the foundation of this TemplateTag class, it com
 
 ##### `trimResultTransformer([side])`
 
-Trims the whitespace surrounding the end result. Accepts an optional `side` (can be `"left"` or `"right"`) that when supplied, will only trim whitespace from that side of the string.
+Trims the whitespace surrounding the end result. Accepts an optional `side` (can be `"start"` or `"end"` or alternatively `"left"` or `"right"`) that when supplied, will only trim whitespace from that side of the string.
 
 
 
