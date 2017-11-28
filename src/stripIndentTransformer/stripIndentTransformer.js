@@ -13,7 +13,7 @@ const stripIndentTransformer = (type = 'initial') => ({
       const indent = match && Math.min(...match.map(el => el.length))
       if (indent) {
         const regexp = new RegExp(`^.{${indent}}`, 'gm')
-        endResult = endResult.replace(regexp, '')
+        return endResult.replace(regexp, '')
       }
       return endResult
     }
