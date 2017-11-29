@@ -48,3 +48,9 @@ test('does nothing if there are no indents', async (t) => {
   const actual = stripIndent`wow such doge`
   t.is(actual, expected)
 })
+
+test('does nothing if minimal indent has zero length', async (t) => {
+  const expected = 'wow\n such\n doge'
+  const actual = stripIndent`wow\n such\n doge`
+  t.is(actual, expected)
+})

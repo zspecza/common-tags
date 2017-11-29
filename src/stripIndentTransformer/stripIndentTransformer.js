@@ -9,21 +9,19 @@ const stripIndentTransformer = (type = 'initial') => ({
   onEndResult (endResult) {
     if (type === 'initial') {
       // remove the shortest leading indentation from each line
-      const match = endResult.match(/^[ \t]*(?=\S)/gm)
-      // return early if there's nothing to strip
-      if (match === null) {
-        return endResult
+      const match = endResult.match(/^[^\S\n]*(?=\S)/gm)
+      const indent = match && Math.min(...match.map(el => el.length))
+      if (indent) {
+        const regexp = new RegExp(`^.{${indent}}`, 'gm')
+        return endResult.replace(regexp, '')
       }
-      const indent = Math.min(...match.map(el => el.length))
-      const regexp = new RegExp('^[ \\t]{' + indent + '}', 'gm')
-      endResult = indent > 0 ? endResult.replace(regexp, '') : endResult
-    } else if (type === 'all') {
-      // remove all indentation from each line
-      endResult = endResult.replace(/(?:\n[^\S\n]*)/g, '\n')
-    } else {
-      throw new Error(`Unknown type: ${type}`)
+      return endResult
     }
-    return endResult
+    if (type === 'all') {
+      // remove all indentation from each line
+      return endResult.replace(/^[^\S\n]+/gm, '')
+    }
+    throw new Error(`Unknown type: ${type}`)
   }
 })
 
