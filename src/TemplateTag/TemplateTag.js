@@ -13,7 +13,7 @@ export default class TemplateTag {
    */
   constructor (...transformers) {
     // if first argument is an array, extrude it as a list of transformers
-    if (transformers.length && Array.isArray(transformers[0])) {
+    if (transformers.length > 0 && Array.isArray(transformers[0])) {
       transformers = transformers[0]
     }
 
