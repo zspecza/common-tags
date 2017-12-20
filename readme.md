@@ -48,6 +48,7 @@
       - [`oneLineCommaListsAnd`](#onelinecommalistsand)
 - [:wrench: Advanced Usage](#wrench-advanced-usage)
     - [Tail Processing](#tail-processing)
+    - [Calling with strings](#calling-with-strings)
     - [Make Your Own Template Tag](#make-your-own-template-tag)
       - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
       - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
@@ -478,6 +479,20 @@ oneLine(String.raw)`
   bar\nbaz
 `
 // "foo bar\nbaz"
+```
+
+
+
+
+### Calling with strings
+
+Sometimes you might want to use a tag on a normal string (e.g. for stripping the indentation). For that purpose just call a tag as a function with the passed string:
+
+```js
+import {stripIndent} from 'common-tags'
+
+stripIndent("  foo\n    bar")
+// "foo\n  bar"
 ```
 
 
