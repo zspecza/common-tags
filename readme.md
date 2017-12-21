@@ -45,7 +45,7 @@
     - [`oneLineCommaListsAnd`](#onelinecommalistsand)
 - [🛠 Advanced Usage](#%F0%9F%9B%A0-advanced-usage)
   - [Tail Processing](#tail-processing)
-  - [Calling with strings](#calling-with-strings)
+  - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
   - [Type Definitions](#type-definitions)
   - [Make Your Own Template Tag](#make-your-own-template-tag)
     - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
@@ -406,7 +406,7 @@ oneLine(String.raw)`
 // "foo bar\nbaz"
 ```
 
-### Calling with strings
+### Using Tags on Regular String Literals
 
 Sometimes you might want to use a tag on a normal string (e.g. for stripping the indentation). For that purpose just call a tag as a function with the passed string:
 
