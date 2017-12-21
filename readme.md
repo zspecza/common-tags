@@ -1,8 +1,20 @@
 # ![common-tags](media/logo.svg)
 
-> 🔖 A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
->
-> 🌟 Plus some extra goodies for easily making your own tags.
+🔖 A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
+
+🌟 Plus some extra goodies for easily making your own tags.
+
+## Example
+
+```js
+import { html } from 'common-tags';
+
+html`
+  <div id="user-card">
+    <h2>${user.name}</h2>
+  </div>
+`
+```
 
 ## Project Status
 
