@@ -1,12 +1,22 @@
-![](http://imgh.us/common-tags_5.png)
+# ![common-tags](media/logo.svg)
 
-> :bookmark: A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
->
-> :star2: Plus some extra goodies for easily making your own tags.
+🔖 A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
 
+🌟 Plus some extra goodies for easily making your own tags.
 
+## Example
 
-# :battery: Project Status
+```js
+import { html } from 'common-tags';
+
+html`
+  <div id="user-card">
+    <h2>${user.name}</h2>
+  </div>
+`
+```
+
+## Project Status
 
 | Info       | Badges                                   |
 | ---------- | ---------------------------------------- |
@@ -17,60 +27,59 @@
 | Quality    | [![bitHound Overall Score](https://www.bithound.io/github/declandewet/common-tags/badges/score.svg)](https://www.bithound.io/github/declandewet/common-tags) [![dependency status](https://img.shields.io/david/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags) [![dev dependency status](https://img.shields.io/david/dev/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags#info=devDependencies) |
 | Style      | [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard) |
 
-
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# :books: Table of Contents
 
-- [:wave: Introduction](#wave-introduction)
-- [:revolving_hearts: Why should you care?](#revolving_hearts-why-should-you-care)
-- [:arrow_double_down: Installation](#arrow_double_down-installation)
-    - [Requirements](#requirements)
-    - [Instructions](#instructions)
-- [:books: Usage](#books-usage)
-    - [Imports](#imports)
-    - [Available Tags](#available-tags)
-      - [`html`](#html)
-        - [Aliases: `source`, `codeBlock`](#aliases-source-codeblock)
-      - [`safeHtml`](#safehtml)
-      - [`oneLine`](#oneline)
-      - [`oneLineTrim`](#onelinetrim)
-      - [`stripIndent`](#stripindent)
-      - [`stripIndents`](#stripindents)
-      - [`inlineLists`](#inlinelists)
-      - [`oneLineInlineLists`](#onelineinlinelists)
-      - [`commaLists`](#commalists)
-      - [`commaListsOr`](#commalistsor)
-      - [`commaListsAnd`](#commalistsand)
-      - [`oneLineCommaLists`](#onelinecommalists)
-      - [`oneLineCommaListsOr`](#onelinecommalistsor)
-      - [`oneLineCommaListsAnd`](#onelinecommalistsand)
-- [:wrench: Advanced Usage](#wrench-advanced-usage)
-    - [Tail Processing](#tail-processing)
-    - [Calling with strings](#calling-with-strings)
-    - [Make Your Own Template Tag](#make-your-own-template-tag)
-      - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
-      - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
-      - [Plugin Transformers](#plugin-transformers)
-      - [Plugin Pipeline](#plugin-pipeline)
-      - [Returning Other Values from a Transformer](#returning-other-values-from-a-transformer)
-      - [List of Built-in Transformers](#list-of-built-in-transformers)
-        - [`trimResultTransformer([side])`](#trimresulttransformerside)
-        - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
-        - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
-        - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
-        - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
-        - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Why You Should Care](#why-you-should-care)
+- [See Who Is Using `common-tags`](#see-who-is-using-common-tags)
+- [Installation](#installation)
+  - [Requirements](#requirements)
+  - [Instructions](#instructions)
+- [Usage](#usage)
+  - [Imports](#imports)
+  - [Available Tags](#available-tags)
+    - [`html`](#html)
+      - [Aliases: `source`, `codeBlock`](#aliases-source-codeblock)
+    - [`safeHtml`](#safehtml)
+    - [`oneLine`](#oneline)
+    - [`oneLineTrim`](#onelinetrim)
+    - [`stripIndent`](#stripindent)
+    - [`stripIndents`](#stripindents)
+    - [`inlineLists`](#inlinelists)
+    - [`oneLineInlineLists`](#onelineinlinelists)
+    - [`commaLists`](#commalists)
+    - [`commaListsOr`](#commalistsor)
+    - [`commaListsAnd`](#commalistsand)
+    - [`oneLineCommaLists`](#onelinecommalists)
+    - [`oneLineCommaListsOr`](#onelinecommalistsor)
+    - [`oneLineCommaListsAnd`](#onelinecommalistsand)
+- [Advanced Usage](#advanced-usage)
+  - [Tail Processing](#tail-processing)
+  - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
+  - [Type Definitions](#type-definitions)
+  - [Make Your Own Template Tag](#make-your-own-template-tag)
+    - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
+    - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
+    - [Plugin Transformers](#plugin-transformers)
+    - [Plugin Pipeline](#plugin-pipeline)
+    - [Returning Other Values from a Transformer](#returning-other-values-from-a-transformer)
+    - [List of Built-in Transformers](#list-of-built-in-transformers)
+      - [`trimResultTransformer([side])`](#trimresulttransformerside)
+      - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
+      - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
+      - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
+      - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
+      - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
 - [How to Contribute](#how-to-contribute)
 - [License](#license)
-- [:stars: Other ES2015 Template Tag Modules](#stars-other-es2015-template-tag-modules)
+- [Other ES2015 Template Tag Modules](#other-es2015-template-tag-modules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
-
-# :wave: Introduction
+## Introduction
 
 `common-tags` initially started out as two template tags I'd always find myself writing - one for stripping indents, and one for trimming multiline strings down to a single line. In it's prime, I was an avid user of [CoffeeScript](http://coffeescript.org), which had this behaviour by default as part of it's block strings feature. I also started out programming in Ruby, which has a similar mechanism called Heredocs.
 
@@ -80,25 +89,36 @@ As more features were proposed, and I found myself needing a way to override the
 
 So I re-wrote this module on top of a core architecture that makes use of transformer plugins which can be composed, imported independently and re-used.
 
-Have a read of the next section to find out why you should care. :smile:
-
-
-
-# :revolving_hearts: Why should you care?
+## Why You Should Care
 
 Tagged templates in ES2015 are a welcome feature. But, they have their downsides. One such downside is that they preserve all whitespace by default - which makes multiline strings in source code look terrible.
 
-Source code is not just for computers to interpret. Humans have to read it too :grin:. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since it's [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
+Source code is not just for computers to interpret. Humans have to read it too 😁. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since it's [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
 
 `common-tags` also [exposes a means of composing pipelines of dynamic transformer plugins](#plugin-transformers). As someone with a little experience writing tagged templates, I can admit that it is often the case that one tag might need to do the same thing as another tag before doing any further processing; for example - a typical tag that renders out HTML could strip initial indents first, then worry about handling character escapes. Both steps could easily be useful as their own separate template tags, but there isn't an immediately obvious way of composing the two together for maximum re-use. `common-tags` offers not [one](#tail-processing), but [two](#plugin-pipeline) ways of doing this.
 
-Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight :smile:. `common-tags` is also already used in production on a number of proprietary sites and dependent projects, and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
+Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already [used in production on a number of proprietary sites and dependent projects](#see-who-is-using-common-tags), and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
 
+## See Who Is Using `common-tags`
 
+- **[Slack](https://slack.com/)** ([ref](https://slack.com/libs/desktop))
+- **[Discord](https://discordapp.com)** ([ref](https://discordapp.com/acknowledgements))
+- **[CircleCI](https://circleci.com)** ([ref](https://circleci.com/docs/2.0/open-source/))
+- **[Confluent](https://www.confluent.io/)** ([ref](https://www.confluent.io/third_party_software/))
+- **[Tessel](https://tessel.io/)** ([ref](https://github.com/tessel/t2-cli/blob/575ddb23f432d10f86b76f5cdca866d1146dedf5/package.json#L56))
+- **[Ember.js](https://www.emberjs.com/)** ([ref](https://github.com/emberjs/ember.js/blob/cacefee49ea4be2621a0ced3e4ceb0010d6cd841/package.json#L93))
+- **[Angular](https://angularjs.org/)** ([ref](https://github.com/angular/angular-cli/blob/90e2e805aae6e0bd2e00e52063221736a8d9cb0c/package.json#L50))
+- **[Prettier](https://prettier.io/)** ([ref](https://github.com/prettier/prettier-eslint/blob/49b762b57b7e7af3b06bd933050c614a91b6742d/package.json#L18))
+- **[Apollo](https://www.apollographql.com)** ([ref](https://github.com/apollographql/apollo-codegen/blob/b9b9a2afd851fa3cba786b26684b26378b1a6f53/package.json#L48))
+- **[Workbox](https://developers.google.com/web/tools/workbox/)** ([ref](https://github.com/GoogleChrome/workbox/blob/d391a0cb51b3e89121c5274fb15f05988233b57e/package.json#L64))
+- **[Gatsby](https://www.gatsbyjs.org/)** ([ref](https://github.com/gatsbyjs/gatsby/blob/3af191c9961b6da1cc04e9cb0a03787af25878db/packages/gatsby-cli/package.json#L16))
+- **[Storybook](https://storybook.js.org/)** ([ref](https://github.com/storybooks/storybook/blob/c275e5c508714bd1a49342e51ddf00bbdb54d277/app/react/package.json#L46))
+- **[Cypress](https://www.cypress.io/)** ([ref](https://github.com/cypress-io/cypress/blob/5d761630f233abb30b9b2e3fede9a4c4887cf880/cli/package.json#L44))
+- **[stylelint](http://stylelint.io/)** ([ref](https://github.com/stylelint/stylelint/blob/5dc5db5599a00cabc875cf99c56d60f93fbbbd2d/package.json#L82))
+- **[pnpm](https://pnpm.js.org/)** ([ref](https://github.com/pnpm/pnpm/blob/36be3d3f0c75992a1f3ff14b60c99115547d0fcc/package.json#L36))
+- **[jss](http://cssinjs.org/)** ([ref](https://github.com/cssinjs/jss/blob/7b9c1222893495c585b4b61d7ca9af05077cefec/package.json#L44))
 
-
-
-# :arrow_double_down: Installation
+## Installation
 
 ### Requirements
 
@@ -110,20 +130,15 @@ The official recommendation for running `common-tags` is as follows:
 
 It might work with below versions of Node, but this is not a guarantee.
 
-
 ### Instructions
 
 `common-tags` is a [Node](https://nodejs.org/) module. So, as long as you have Node.js and NPM installed, installing `common-tags` is as simple as running this in a terminal at the root of your project:
 
 ```sh
-$ npm install common-tags --save
+npm install common-tags
 ```
 
-
-
-
-
-# :books: Usage
+## Usage
 
 ### Imports
 
@@ -143,15 +158,12 @@ import {stripIndent} from 'common-tags'
 import stripIndent from 'common-tags/lib/stripIndent'
 ```
 
-
-
 ### Available Tags
 
 `common-tags` exports a bunch of wonderful pre-cooked template tags for your eager consumption. They are as follows:
 
-
-
 #### `html`
+
 ##### Aliases: `source`, `codeBlock`
 
 You'll often find that you might want to include an array in a template. Typically, doing something like `${array.join(', ')}` would work - but what if you're printing a list of items in an HTML template and want to maintain the indentation? You'd have to count the spaces manually and include them in the `.join()` call - which is a bit *ugly* for my taste. This tag properly indents arrays, as well as newline characters in string substitutions, by converting them to an array split by newline and re-using the same array inclusion logic:
@@ -183,10 +195,6 @@ Outputs:
 </div>
 ```
 
-
-
-
-
 #### `safeHtml`
 
 A tag very similar to `html` but it does safe HTML escaping for strings coming from substitutions. When combined with regular `html` tag, you can do basic HTML templating that is safe from XSS (Cross-Site Scripting) attacks.
@@ -215,13 +223,10 @@ Outputs:
 </div>
 ```
 
-
-
-
-
 #### `oneLine`
 
 Allows you to keep your single-line strings under 80 characters without resorting to crazy string concatenation.
+
 ```js
 import {oneLine} from 'common-tags'
 
@@ -232,10 +237,6 @@ oneLine`
 `
 // "foo bar baz"
 ```
-
-
-
-
 
 #### `oneLineTrim`
 
@@ -250,10 +251,6 @@ oneLineTrim`
 `
 // https://news.com/article?utm_source=designernews.co
 ```
-
-
-
-
 
 #### `stripIndent`
 
@@ -276,10 +273,6 @@ stripIndent`
 
 Important note: this tag will not indent multiline strings coming from the substitutions. If you want that behavior, use the `html` tag (aliases: `source`, `codeBlock`).
 
-
-
-
-
 #### `stripIndents`
 
 If you want to strip *all* of the indentation from the beginning of each line in a multiline string:
@@ -299,10 +292,6 @@ stripIndents`
 // We don't want to keep this line indented either.
 ```
 
-
-
-
-
 #### `inlineLists`
 
 Allows you to inline an array substitution as a list:
@@ -318,10 +307,6 @@ inlineLists`
 // They're good!
 ```
 
-
-
-
-
 #### `oneLineInlineLists`
 
 Allows you to inline an array substitution as a list, rendered out on a single line:
@@ -335,10 +320,6 @@ oneLineInlineLists`
 `
 // I like apples bananas watermelons They're good!
 ```
-
-
-
-
 
 #### `commaLists`
 
@@ -355,10 +336,6 @@ commaLists`
 // They're good!
 ```
 
-
-
-
-
 #### `commaListsOr`
 
 Allows you to inline an array substitution as a comma-separated list, the last of which is preceded by the word "or":
@@ -373,10 +350,6 @@ commaListsOr`
 // I like apples, bananas or watermelons
 // They're good!
 ```
-
-
-
-
 
 #### `commaListsAnd`
 
@@ -393,10 +366,6 @@ commaListsAnd`
 // They're good!
 ```
 
-
-
-
-
 #### `oneLineCommaLists`
 
 Allows you to inline an array substitution as a comma-separated list, and is rendered out on to a single line:
@@ -410,10 +379,6 @@ oneLineCommaLists`
 `
 // I like apples, bananas or watermelons They're good!
 ```
-
-
-
-
 
 #### `oneLineCommaListsOr`
 
@@ -429,10 +394,6 @@ oneLineCommaListsOr`
 // I like apples, bananas or watermelons They're good!
 ```
 
-
-
-
-
 #### `oneLineCommaListsAnd`
 
 Allows you to inline an array substitution as a comma-separated list, the last of which is preceded by the word "and", and is rendered out on to a single line:
@@ -447,9 +408,7 @@ oneLineCommaListsAnd`
 // I like apples, bananas and watermelons They're good!
 ```
 
-
-
-# :wrench: Advanced Usage
+## Advanced Usage
 
 ### Tail Processing
 
@@ -467,8 +426,6 @@ oneLine`
 // "foo bar\nbaz"
 ```
 
-
-
 We can make this neater. Every tag `common-tags` exports can delay execution if it receives a function as it's first argument. This function is assumed to be a template tag, and is called via an intermediary tagging process before the result is passed back to our tag. Use it like so (this code is equivalent to the previous code block):
 
 ```js
@@ -481,10 +438,7 @@ oneLine(String.raw)`
 // "foo bar\nbaz"
 ```
 
-
-
-
-### Calling with strings
+### Using Tags on Regular String Literals
 
 Sometimes you might want to use a tag on a normal string (e.g. for stripping the indentation). For that purpose just call a tag as a function with the passed string:
 
@@ -495,13 +449,20 @@ stripIndent("  foo\n    bar")
 // "foo\n  bar"
 ```
 
+### Type Definitions
 
+There are third-party type definitions for `common-tags` on [npm](https://www.npmjs.com/package/@types/common-tags). Just install them like so:
+
+```sh
+npm install @types/common-tags
+```
+
+Please note that these type definitions are not officially maintained by the authors of
+`common-tags` - they are maintained by the TypeScript community.
 
 ### Make Your Own Template Tag
 
 `common-tags` exposes an interface that allows you to painlessly create your own template tags.
-
-
 
 #### Class is in Session: TemplateTag
 
@@ -518,10 +479,6 @@ doNothing`foo bar`
 // 'foo bar'
 ```
 
-
-
-
-
 #### The Anatomy of a Transformer
 
 `TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with two optional methods - `onSubstitution` and `onEndResult` - it looks like this:
@@ -535,15 +492,11 @@ doNothing`foo bar`
     // `resultSoFar` is the end result up to the point of this substitution
   },
   onEndResult (endResult) {
-  	// optional. Called when all substitutions have been parsed
+    // optional. Called when all substitutions have been parsed
     // `endResult` is the final value.
   }
 }
 ```
-
-
-
-
 
 #### Plugin Transformers
 
@@ -567,8 +520,6 @@ replaceFizzWithBuzz`foo bar ${"fizz"}`
 
 > **note** - if you call `new TemplateTag(substitutionReplacer)`, `substitutionReplacer` will automatically be initiated with no arguments.
 
-
-
 #### Plugin Pipeline
 
 You can pass a list of transformers, and `TemplateTag` will call them on your tag in the order they are specified:
@@ -584,11 +535,7 @@ replace`${"foo"} ${"fizz"}`
 // "bar buzz"
 ```
 
-
-
 When multiple transformers are passed to `TemplateTag`, they will be iterated twice - first, all transformer `onSubstitution` methods will be called. Once they are done processing, all transformer `onEndResult` methods will be called.
-
-
 
 #### Returning Other Values from a Transformer
 
@@ -639,37 +586,25 @@ process`
 // }
 ```
 
-
-
 #### List of Built-in Transformers
 
 Since `common-tags` is built on the foundation of this TemplateTag class, it comes with its own set of built-in transformers:
-
-
 
 ##### `trimResultTransformer([side])`
 
 Trims the whitespace surrounding the end result. Accepts an optional `side` (can be `"start"` or `"end"` or alternatively `"left"` or `"right"`) that when supplied, will only trim whitespace from that side of the string.
 
-
-
 ##### `stripIndentTransformer([type='initial'])`
 
 Strips the indents from the end result. Offers two types: `all`, which removes all indentation from each line, and `initial`, which removes the shortest indent level from each line. Defaults to `initial`.
-
-
 
 ##### `replaceResultTransformer(replaceWhat, replaceWith)`
 
 Replaces a value or pattern in the end result with a new value. `replaceWhat` can be a string or a regular expression, `replaceWith` is the new value.
 
-
-
 ##### `replaceSubstitutionTransformer(replaceWhat, replaceWith)`
 
 Replaces the result of all substitutions (results of calling `${ ... }`) with a new value. Same as for `replaceResultTransformer`, `replaceWhat` can be a string or regular expression and `replaceWith` is the new value.
-
-
 
 ##### `inlineArrayTransformer(opts)`
 
@@ -683,33 +618,21 @@ opts = {
 }
 ```
 
-
-
 ##### `splitStringTransformer(splitBy)`
 
 Splits a string substitution into an array by the provided `splitBy` substring, **only** if the string contains the `splitBy` substring.
 
-
-
-# How to Contribute
+## How to Contribute
 
 Please see the [Contribution Guidelines](contributing.md).
 
-
-
-# License
+## License
 
 MIT. See [license.md](license.md).
 
-
-
-
-
-# :stars: Other ES2015 Template Tag Modules
+## Other ES2015 Template Tag Modules
 
 If `common-tags` doesn't quite fit your bill, and you just can't seem to find what you're looking for - perhaps these might be of use to you?
-
-
 
 - [tage](https://www.npmjs.com/package/tage) - make functions work as template tags too
 - [is-tagged](https://www.npmjs.com/package/is-tagged) - Check whether a function call is initiated by a tagged template string or invoked in a regular way

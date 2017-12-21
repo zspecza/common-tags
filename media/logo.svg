@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800px" height="400px" viewBox="0 0 1800 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="Group-3" transform="translate(755.000000, 81.000000)">
+                <g id="Group-2" transform="translate(58.000000, 0.000000)">
+                    <polygon id="Polygon" stroke="#4958A7" stroke-width="3" points="82.5 0 140.836309 24.1636906 165 82.5 140.836309 140.836309 82.5 165 24.1636906 140.836309 0 82.5 24.1636906 24.1636906"></polygon>
+                    <g id="Group" transform="translate(46.000000, 64.000000)" fill="#4958A7">
+                        <polygon id="`" points="10.6666667 5 16 32 8.88888889 32 0 5"></polygon>
+                        <polygon id="`" points="65.6666667 5 71 32 63.8888889 32 55 5"></polygon>
+                        <text id="…" font-family="HelveticaNeueLTStd-Hv, Helvetica Neue LT Std" font-size="40.96" font-weight="600">
+                            <tspan x="17.02" y="29">…</tspan>
+                        </text>
+                    </g>
+                </g>
+                <text id="common-tags" font-family="HelveticaNeueLTStd-Lt, Helvetica Neue LT Std" font-size="48" font-weight="300" fill="#4958A7">
+                    <tspan x="0.156" y="224">common-tags</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
