@@ -22,6 +22,7 @@
 
 - [👋 Introduction](#-introduction)
 - [💞 Why You Should Care](#-why-you-should-care)
+- [🔍 See Who Is Using `common-tags`](#-see-who-is-using-common-tags)
 - [⏬ Installation](#-installation)
   - [Requirements](#requirements)
   - [Instructions](#instructions)
@@ -84,7 +85,26 @@ Source code is not just for computers to interpret. Humans have to read it too �
 
 `common-tags` also [exposes a means of composing pipelines of dynamic transformer plugins](#plugin-transformers). As someone with a little experience writing tagged templates, I can admit that it is often the case that one tag might need to do the same thing as another tag before doing any further processing; for example - a typical tag that renders out HTML could strip initial indents first, then worry about handling character escapes. Both steps could easily be useful as their own separate template tags, but there isn't an immediately obvious way of composing the two together for maximum re-use. `common-tags` offers not [one](#tail-processing), but [two](#plugin-pipeline) ways of doing this.
 
-Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already used in production on a number of proprietary sites and dependent projects, and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
+Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already [used in production on a number of proprietary sites and dependent projects](#see-who-is-using-common-tags), and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
+
+## 🔍 See Who Is Using `common-tags`
+
+- **[Slack](https://slack.com/)** ([ref](/https://slack.com/libs/desktop))
+- **[Discord](https://discordapp.com)** ([ref](https://discordapp.com/acknowledgements))
+- **[CircleCI](https://circleci.com)** ([ref](https://circleci.com/docs/2.0/open-source/))
+- **[Confluent](https://www.confluent.io/)** ([ref](https://www.confluent.io/third_party_software/))
+- **[Tessel](https://tessel.io/)** ([ref](https://github.com/tessel/t2-cli/blob/575ddb23f432d10f86b76f5cdca866d1146dedf5/package.json#L56))
+- **[Ember.js](https://www.emberjs.com/)** ([ref](https://github.com/emberjs/ember.js/blob/cacefee49ea4be2621a0ced3e4ceb0010d6cd841/package.json#L93))
+- **[Angular](https://angularjs.org/)** ([ref](https://github.com/angular/angular-cli/blob/90e2e805aae6e0bd2e00e52063221736a8d9cb0c/package.json#L50))
+- **[Prettier](https://prettier.io/)** ([ref](https://github.com/prettier/prettier-eslint/blob/49b762b57b7e7af3b06bd933050c614a91b6742d/package.json#L18))
+- **[Apollo](https://www.apollographql.com)** ([ref](https://github.com/apollographql/apollo-codegen/blob/b9b9a2afd851fa3cba786b26684b26378b1a6f53/package.json#L48))
+- **[Workbox](https://developers.google.com/web/tools/workbox/)** ([ref](https://github.com/GoogleChrome/workbox/blob/d391a0cb51b3e89121c5274fb15f05988233b57e/package.json#L64))
+- **[Gatsby](https://www.gatsbyjs.org/)** ([ref](https://github.com/gatsbyjs/gatsby/blob/3af191c9961b6da1cc04e9cb0a03787af25878db/packages/gatsby-cli/package.json#L16))
+- **[Storybook](https://storybook.js.org/)** ([ref](https://github.com/storybooks/storybook/blob/c275e5c508714bd1a49342e51ddf00bbdb54d277/app/react/package.json#L46))
+- **[Cypress](https://www.cypress.io/)** ([ref](https://github.com/cypress-io/cypress/blob/5d761630f233abb30b9b2e3fede9a4c4887cf880/cli/package.json#L44))
+- **[stylelint](http://stylelint.io/)** ([ref](https://github.com/stylelint/stylelint/blob/5dc5db5599a00cabc875cf99c56d60f93fbbbd2d/package.json#L82))
+- **[pnpm](https://pnpm.js.org/)** ([ref](https://github.com/pnpm/pnpm/blob/36be3d3f0c75992a1f3ff14b60c99115547d0fcc/package.json#L36))
+- **[jss](http://cssinjs.org/)** ([ref](https://github.com/cssinjs/jss/blob/7b9c1222893495c585b4b61d7ca9af05077cefec/package.json#L44))
 
 ## ⏬ Installation
 
