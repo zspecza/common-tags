@@ -89,7 +89,7 @@ Furthermore, I try to keep this project as transparently stable and updated as f
 
 ## See Who Is Using `common-tags`
 
-- **[Slack](https://slack.com/)** ([ref](/https://slack.com/libs/desktop))
+- **[Slack](https://slack.com/)** ([ref](https://slack.com/libs/desktop))
 - **[Discord](https://discordapp.com)** ([ref](https://discordapp.com/acknowledgements))
 - **[CircleCI](https://circleci.com)** ([ref](https://circleci.com/docs/2.0/open-source/))
 - **[Confluent](https://www.confluent.io/)** ([ref](https://www.confluent.io/third_party_software/))
