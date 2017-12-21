@@ -46,6 +46,7 @@
 - [🛠 Advanced Usage](#%F0%9F%9B%A0-advanced-usage)
   - [Tail Processing](#tail-processing)
   - [Calling with strings](#calling-with-strings)
+  - [Type Definitions](#type-definitions)
   - [Make Your Own Template Tag](#make-your-own-template-tag)
     - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
     - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
@@ -415,6 +416,17 @@ import {stripIndent} from 'common-tags'
 stripIndent("  foo\n    bar")
 // "foo\n  bar"
 ```
+
+### Type Definitions
+
+There are third-party type definitions for `common-tags` on [npm](https://www.npmjs.com/package/@types/common-tags). Just install them like so:
+
+```sh
+npm install @types/common-tags
+```
+
+Please note that these type definitions are not officially maintained by the authors of
+`common-tags` - they are maintained by the TypeScript community.
 
 ### Make Your Own Template Tag
 
