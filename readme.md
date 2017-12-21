@@ -1,4 +1,4 @@
-![](http://imgh.us/common-tags_5.png)
+![](media/logo.svg)
 
 > :bookmark: A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
 >
