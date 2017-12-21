@@ -4,7 +4,7 @@
 >
 > 🌟 Plus some extra goodies for easily making your own tags.
 
-## 🔋 Project Status
+## Project Status
 
 | Info       | Badges                                   |
 | ---------- | ---------------------------------------- |
@@ -18,15 +18,15 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [👋 Introduction](#-introduction)
-- [💞 Why You Should Care](#-why-you-should-care)
-- [🔍 See Who Is Using `common-tags`](#-see-who-is-using-common-tags)
-- [⏬ Installation](#-installation)
+- [Introduction](#introduction)
+- [Why You Should Care](#why-you-should-care)
+- [See Who Is Using `common-tags`](#see-who-is-using-common-tags)
+- [Installation](#installation)
   - [Requirements](#requirements)
   - [Instructions](#instructions)
-- [📖 Usage](#-usage)
+- [Usage](#usage)
   - [Imports](#imports)
   - [Available Tags](#available-tags)
     - [`html`](#html)
@@ -44,7 +44,7 @@
     - [`oneLineCommaLists`](#onelinecommalists)
     - [`oneLineCommaListsOr`](#onelinecommalistsor)
     - [`oneLineCommaListsAnd`](#onelinecommalistsand)
-- [🛠 Advanced Usage](#%F0%9F%9B%A0-advanced-usage)
+- [Advanced Usage](#advanced-usage)
   - [Tail Processing](#tail-processing)
   - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
   - [Type Definitions](#type-definitions)
@@ -61,13 +61,13 @@
       - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
       - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
       - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
-- [🏗 How to Contribute](#%F0%9F%8F%97-how-to-contribute)
-- [📄 License](#-license)
-- [🌌 Other ES2015 Template Tag Modules](#-other-es2015-template-tag-modules)
+- [How to Contribute](#how-to-contribute)
+- [License](#license)
+- [Other ES2015 Template Tag Modules](#other-es2015-template-tag-modules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 👋 Introduction
+## Introduction
 
 `common-tags` initially started out as two template tags I'd always find myself writing - one for stripping indents, and one for trimming multiline strings down to a single line. In it's prime, I was an avid user of [CoffeeScript](http://coffeescript.org), which had this behaviour by default as part of it's block strings feature. I also started out programming in Ruby, which has a similar mechanism called Heredocs.
 
@@ -77,7 +77,7 @@ As more features were proposed, and I found myself needing a way to override the
 
 So I re-wrote this module on top of a core architecture that makes use of transformer plugins which can be composed, imported independently and re-used.
 
-## 💞 Why You Should Care
+## Why You Should Care
 
 Tagged templates in ES2015 are a welcome feature. But, they have their downsides. One such downside is that they preserve all whitespace by default - which makes multiline strings in source code look terrible.
 
@@ -85,9 +85,9 @@ Source code is not just for computers to interpret. Humans have to read it too �
 
 `common-tags` also [exposes a means of composing pipelines of dynamic transformer plugins](#plugin-transformers). As someone with a little experience writing tagged templates, I can admit that it is often the case that one tag might need to do the same thing as another tag before doing any further processing; for example - a typical tag that renders out HTML could strip initial indents first, then worry about handling character escapes. Both steps could easily be useful as their own separate template tags, but there isn't an immediately obvious way of composing the two together for maximum re-use. `common-tags` offers not [one](#tail-processing), but [two](#plugin-pipeline) ways of doing this.
 
-Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already [used in production on a number of proprietary sites and dependent projects](#see-who-is-using-common-tags), and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
+Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already [used in production on a number of proprietary sites and dependent projects](#see-who-is-using-common-tags), and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
 
-## 🔍 See Who Is Using `common-tags`
+## See Who Is Using `common-tags`
 
 - **[Slack](https://slack.com/)** ([ref](/https://slack.com/libs/desktop))
 - **[Discord](https://discordapp.com)** ([ref](https://discordapp.com/acknowledgements))
@@ -106,7 +106,7 @@ Furthermore, I try to keep this project as transparently stable and updated as f
 - **[pnpm](https://pnpm.js.org/)** ([ref](https://github.com/pnpm/pnpm/blob/36be3d3f0c75992a1f3ff14b60c99115547d0fcc/package.json#L36))
 - **[jss](http://cssinjs.org/)** ([ref](https://github.com/cssinjs/jss/blob/7b9c1222893495c585b4b61d7ca9af05077cefec/package.json#L44))
 
-## ⏬ Installation
+## Installation
 
 ### Requirements
 
@@ -126,7 +126,7 @@ It might work with below versions of Node, but this is not a guarantee.
 npm install common-tags
 ```
 
-## 📖 Usage
+## Usage
 
 ### Imports
 
@@ -396,7 +396,7 @@ oneLineCommaListsAnd`
 // I like apples, bananas and watermelons They're good!
 ```
 
-## 🛠 Advanced Usage
+## Advanced Usage
 
 ### Tail Processing
 
@@ -610,15 +610,15 @@ opts = {
 
 Splits a string substitution into an array by the provided `splitBy` substring, **only** if the string contains the `splitBy` substring.
 
-## 🏗 How to Contribute
+## How to Contribute
 
 Please see the [Contribution Guidelines](contributing.md).
 
-## 📄 License
+## License
 
 MIT. See [license.md](license.md).
 
-## 🌌 Other ES2015 Template Tag Modules
+## Other ES2015 Template Tag Modules
 
 If `common-tags` doesn't quite fit your bill, and you just can't seem to find what you're looking for - perhaps these might be of use to you?
 
