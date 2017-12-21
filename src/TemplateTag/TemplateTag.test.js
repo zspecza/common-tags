@@ -100,3 +100,21 @@ test('supports tail processing of another tag if first argument to tag is a tag'
   `
   t.is(raw, 'FOO BAR\n    500')
 })
+
+test('supports passing string as a first argument', (t) => {
+  let onSubstitutionCalls = 0
+  const tag = new TemplateTag({
+    onSubstitution () {
+      onSubstitutionCalls += 1
+    },
+    onEndResult (endResult) {
+      return endResult.toUpperCase().trim()
+    }
+  })
+  const raw = tag(`
+    foo bar
+    ${500}
+  `)
+  t.is(raw, 'FOO BAR\n    500')
+  t.is(onSubstitutionCalls, 0, 'The `onSubstitution` hook shouldn\'t be called')
+})

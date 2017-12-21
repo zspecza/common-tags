@@ -2,7 +2,7 @@
 
 /**
  * @class TemplateTag
- * @classdesc Consumes a pipeline of composeable transformer plugins and produces a template tag.
+ * @classdesc Consumes a pipeline of composable transformer plugins and produces a template tag.
  */
 export default class TemplateTag {
   /**
@@ -13,7 +13,7 @@ export default class TemplateTag {
    */
   constructor (...transformers) {
     // if first argument is an array, extrude it as a list of transformers
-    if (transformers.length && Array.isArray(transformers[0])) {
+    if (transformers.length > 0 && Array.isArray(transformers[0])) {
       transformers = transformers[0]
     }
 
@@ -25,29 +25,34 @@ export default class TemplateTag {
     })
 
     // return an ES2015 template tag
-    return ::this.tag
+    return this.tag
   }
 
   /**
    * Applies all transformers to a template literal tagged with this method.
    * If a function is passed as the first argument, assumes the function is a template tag
    * and applies it to the template, returning a template tag.
-   * @param  {(Function|Array<String>)} args[0] - Either a template tag or an array containing template strings separated by identifier
-   * @param  {...*} [args[1]]                   - Optional list of substitution values.
-   * @return {(String|Function)}                - Either an intermediary tag function or the results of processing the template.
+   * @param  {(Function|String|Array<String>)} strings        - Either a template tag or an array containing template strings separated by identifier
+   * @param  {...*}                            ...expressions - Optional list of substitution values.
+   * @return {(String|Function)}                              - Either an intermediary tag function or the results of processing the template.
    */
-  tag (...args) {
-    // if the first argument passed is a function, assume it is a template tag and return
-    // an intermediary tag that processes the template using the aforementioned tag, passing the
-    // result to our tag
-    if (typeof args[0] === 'function') {
-      return this.interimTag.bind(this, args.shift())
+  tag = (strings, ...expressions) => {
+    if (typeof strings === 'function') {
+      // if the first argument passed is a function, assume it is a template tag and return
+      // an intermediary tag that processes the template using the aforementioned tag, passing the
+      // result to our tag
+      return this.interimTag.bind(this, strings)
+    }
+
+    if (typeof strings === 'string') {
+      // if the first argument passed is a string, just transform it
+      return this.transformEndResult(strings)
     }
 
     // else, return a transformed end result of processing the template with our tag
     args[0] = args[0].map(this.transformLiteral.bind(this))
     return this.transformEndResult(
-      args.shift().reduce(this.processSubstitutions.bind(this, args))
+      strings.reduce(this.processSubstitutions.bind(this, expressions))
     )
   }
 

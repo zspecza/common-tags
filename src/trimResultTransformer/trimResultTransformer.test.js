@@ -10,9 +10,19 @@ test('trims outer padding', (t) => {
   t.is(trim`  foo  `, 'foo')
 })
 
+test('trims start padding', (t) => {
+  const trimStart = new TemplateTag(trimResultTransformer('start'))
+  t.is(trimStart`  foo  `, 'foo  ')
+})
+
 test('trims left padding', (t) => {
   const trimLeft = new TemplateTag(trimResultTransformer('left'))
   t.is(trimLeft`  foo  `, 'foo  ')
+})
+
+test('trims end padding', (t) => {
+  const trimEnd = new TemplateTag(trimResultTransformer('end'))
+  t.is(trimEnd`  foo  `, '  foo')
 })
 
 test('trims right padding', (t) => {
@@ -26,7 +36,7 @@ test('throws an error if invalid side supplied', (t) => {
 })
 
 test('can be used sequentially', (t) => {
-  const trimLeft = new TemplateTag(stripIndentTransformer, trimResultTransformer('left'))
-  t.is(trimLeft`  foo  `, 'foo  ')
-  t.is(trimLeft`  bar  `, 'bar  ')
+  const trimStart = new TemplateTag(stripIndentTransformer, trimResultTransformer('start'))
+  t.is(trimStart`  foo  `, 'foo  ')
+  t.is(trimStart`  bar  `, 'bar  ')
 })

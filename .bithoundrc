@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "unused-ignores": [
-      "babel-runtime",
-      "regenerator-runtime"
+      "babel-runtime"
     ]
   }
 }

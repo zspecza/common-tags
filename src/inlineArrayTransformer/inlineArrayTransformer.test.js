@@ -21,6 +21,13 @@ test('replaces last separator with a conjunction', (t) => {
   t.is(tag`I like ${['apple', 'banana', 'kiwi']}`, 'I like apple, banana and kiwi')
 })
 
+test('does not use a conjunction if there is only one item in an array', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer({ separator: ',', conjunction: 'and' })
+  )
+  t.is(tag`I like ${['apple']}`, 'I like apple')
+})
+
 test('does not require preceded whitespace', (t) => {
   const tag = new TemplateTag(
     inlineArrayTransformer({ separator: ',' })
@@ -33,4 +40,23 @@ test('supports serial/oxford separators', (t) => {
     inlineArrayTransformer({ separator: ',', conjunction: 'or', serial: true })
   )
   t.is(tag`My friends are always ${['dramatic', 'emotional', 'needy']}`, 'My friends are always dramatic, emotional, or needy')
+})
+
+test('maintains indentation', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer()
+  )
+  t.is(tag`My friends are always
+  ${['dramatic', 'emotional', 'needy']}`,
+       'My friends are always\n  dramatic\n  emotional\n  needy')
+})
+
+test('does not introduce excess newlines', (t) => {
+  const tag = new TemplateTag(
+    inlineArrayTransformer()
+  )
+  t.is(tag`My friends are always
+
+  ${['dramatic', 'emotional', 'needy']}`,
+       'My friends are always\n\n  dramatic\n  emotional\n  needy')
 })

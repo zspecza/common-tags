@@ -7,7 +7,7 @@ import {readFromFixture} from '../utils'
 const val = 'amaze'
 
 test('strips indentation', async (t) => {
-  const expected = await readFromFixture('stripIndent')
+  const expected = await readFromFixture(__dirname, 'stripIndent')
   const actual = stripIndent`
     wow such indent gone
     very ${val}
@@ -16,7 +16,7 @@ test('strips indentation', async (t) => {
 })
 
 test('strips larger indentation', async (t) => {
-  const expected = await readFromFixture('stripIndent')
+  const expected = await readFromFixture(__dirname, 'stripIndent')
   const actual = stripIndent`
       wow such indent gone
       very ${val}
@@ -25,9 +25,19 @@ test('strips larger indentation', async (t) => {
 })
 
 test('maintains deeper indentation', async (t) => {
-  const expected = await readFromFixture('maintainIndent')
+  const expected = await readFromFixture(__dirname, 'maintainIndent')
   const actual = stripIndent`
     wow such indent gone
+        very ${val}
+  `
+  t.is(actual, expected)
+})
+
+test('maintains empty lines', async (t) => {
+  const expected = await readFromFixture(__dirname, 'maintainEmptyLines')
+  const actual = stripIndent`
+    wow such indent gone
+
         very ${val}
   `
   t.is(actual, expected)
@@ -36,5 +46,11 @@ test('maintains deeper indentation', async (t) => {
 test('does nothing if there are no indents', async (t) => {
   const expected = 'wow such doge'
   const actual = stripIndent`wow such doge`
+  t.is(actual, expected)
+})
+
+test('does nothing if minimal indent has zero length', async (t) => {
+  const expected = 'wow\n such\n doge'
+  const actual = stripIndent`wow\n such\n doge`
   t.is(actual, expected)
 })
