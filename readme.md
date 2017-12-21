@@ -21,14 +21,14 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-# :books: Table of Contents
+# 📚 Table of Contents
 
-- [:wave: Introduction](#wave-introduction)
-- [:revolving_hearts: Why should you care?](#revolving_hearts-why-should-you-care)
-- [:arrow_double_down: Installation](#arrow_double_down-installation)
+- [👋 Introduction](#-introduction)
+- [💞 Why should you care?](#-why-should-you-care)
+- [⏬ Installation](#-installation)
     - [Requirements](#requirements)
     - [Instructions](#instructions)
-- [:books: Usage](#books-usage)
+- [📖 Usage](#-usage)
     - [Imports](#imports)
     - [Available Tags](#available-tags)
       - [`html`](#html)
@@ -46,7 +46,7 @@
       - [`oneLineCommaLists`](#onelinecommalists)
       - [`oneLineCommaListsOr`](#onelinecommalistsor)
       - [`oneLineCommaListsAnd`](#onelinecommalistsand)
-- [:wrench: Advanced Usage](#wrench-advanced-usage)
+- [🛠 Advanced Usage](#%F0%9F%9B%A0-advanced-usage)
     - [Tail Processing](#tail-processing)
     - [Calling with strings](#calling-with-strings)
     - [Make Your Own Template Tag](#make-your-own-template-tag)
@@ -62,9 +62,9 @@
         - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
         - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
         - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
-- [How to Contribute](#how-to-contribute)
-- [License](#license)
-- [:stars: Other ES2015 Template Tag Modules](#stars-other-es2015-template-tag-modules)
+- [🏗 How to Contribute](#%F0%9F%8F%97-how-to-contribute)
+- [📄 License](#-license)
+- [🌌 Other ES2015 Template Tag Modules](#-other-es2015-template-tag-modules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

@@ -102,10 +102,11 @@
     "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
     "codecov": "npm run coverage && codecov",
     "coverage": "nyc report --reporter=lcov",
+    "doctoc": "doctoc readme.md --title \"# 📚 Table of Contents\"", 
     "lint": "standard | snazzy",
     "precoveralls": "npm run coverage",
     "prerelease": "npm run build",
-    "preversion": "doctoc readme.md --title \"# 📚 Table of Contents\" && npm test",
+    "preversion": "npm run doctoc  && npm test",
     "release": "npm publish",
     "test": "npm run lint && cross-env BABEL_ENV=cjs nyc ava",
     "test-ci": "npm run lint && cross-env BABEL_ENV=cjs nyc ava --serial --fail-fast"
