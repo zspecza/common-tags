@@ -1,12 +1,12 @@
 ![](media/logo.svg)
 
-> :bookmark: A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
+> 🔖 A set of **well-tested**, commonly used template literal tag functions for use in ES2015+.
 >
-> :star2: Plus some extra goodies for easily making your own tags.
+> 🌟 Plus some extra goodies for easily making your own tags.
 
 
 
-# :battery: Project Status
+# 🔋 Project Status
 
 | Info       | Badges                                   |
 | ---------- | ---------------------------------------- |
@@ -70,7 +70,7 @@
 
 
 
-# :wave: Introduction
+# 👋 Introduction
 
 `common-tags` initially started out as two template tags I'd always find myself writing - one for stripping indents, and one for trimming multiline strings down to a single line. In it's prime, I was an avid user of [CoffeeScript](http://coffeescript.org), which had this behaviour by default as part of it's block strings feature. I also started out programming in Ruby, which has a similar mechanism called Heredocs.
 
@@ -80,25 +80,25 @@ As more features were proposed, and I found myself needing a way to override the
 
 So I re-wrote this module on top of a core architecture that makes use of transformer plugins which can be composed, imported independently and re-used.
 
-Have a read of the next section to find out why you should care. :smile:
+Have a read of the next section to find out why you should care. 😄
 
 
 
-# :revolving_hearts: Why should you care?
+# 💞 Why should you care?
 
 Tagged templates in ES2015 are a welcome feature. But, they have their downsides. One such downside is that they preserve all whitespace by default - which makes multiline strings in source code look terrible.
 
-Source code is not just for computers to interpret. Humans have to read it too :grin:. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since it's [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
+Source code is not just for computers to interpret. Humans have to read it too 😁. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since it's [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
 
 `common-tags` also [exposes a means of composing pipelines of dynamic transformer plugins](#plugin-transformers). As someone with a little experience writing tagged templates, I can admit that it is often the case that one tag might need to do the same thing as another tag before doing any further processing; for example - a typical tag that renders out HTML could strip initial indents first, then worry about handling character escapes. Both steps could easily be useful as their own separate template tags, but there isn't an immediately obvious way of composing the two together for maximum re-use. `common-tags` offers not [one](#tail-processing), but [two](#plugin-pipeline) ways of doing this.
 
-Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight :smile:. `common-tags` is also already used in production on a number of proprietary sites and dependent projects, and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
+Furthermore, I try to keep this project as transparently stable and updated as frequently as I possibly can. As you may have already seen by the [project status table](#battery-project-status), `common-tags` is linted, well tested, tests are well covered, tests pass on both Unix and Windows operating systems, the popularity bandwidth is easily referenced and dependency health is in plain sight 😄. `common-tags` is also already used in production on a number of proprietary sites and dependent projects, and [contributions are always welcome](#how-to-contribute), as are [suggestions](issues).
 
 
 
 
 
-# :arrow_double_down: Installation
+# ⏬ Installation
 
 ### Requirements
 
@@ -123,7 +123,7 @@ $ npm install common-tags --save
 
 
 
-# :books: Usage
+# 📖 Usage
 
 ### Imports
 
@@ -449,7 +449,7 @@ oneLineCommaListsAnd`
 
 
 
-# :wrench: Advanced Usage
+# 🛠 Advanced Usage
 
 ### Tail Processing
 
@@ -691,13 +691,13 @@ Splits a string substitution into an array by the provided `splitBy` substring, 
 
 
 
-# How to Contribute
+# 🏗 How to Contribute
 
 Please see the [Contribution Guidelines](contributing.md).
 
 
 
-# License
+# 📄 License
 
 MIT. See [license.md](license.md).
 
@@ -705,7 +705,7 @@ MIT. See [license.md](license.md).
 
 
 
-# :stars: Other ES2015 Template Tag Modules
+# 🌌 Other ES2015 Template Tag Modules
 
 If `common-tags` doesn't quite fit your bill, and you just can't seem to find what you're looking for - perhaps these might be of use to you?
 

@@ -105,7 +105,7 @@
     "lint": "standard | snazzy",
     "precoveralls": "npm run coverage",
     "prerelease": "npm run build",
-    "preversion": "doctoc readme.md --title \"# :books: Table of Contents\" && npm test",
+    "preversion": "doctoc readme.md --title \"# 📚 Table of Contents\" && npm test",
     "release": "npm publish",
     "test": "npm run lint && cross-env BABEL_ENV=cjs nyc ava",
     "test-ci": "npm run lint && cross-env BABEL_ENV=cjs nyc ava --serial --fail-fast"
