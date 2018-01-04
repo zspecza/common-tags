@@ -50,7 +50,7 @@ export default class TemplateTag {
     }
 
     // else, return a transformed end result of processing the template with our tag
-    args[0] = args[0].map(this.transformLiteral.bind(this))
+    strings = strings.map(this.transformLiteral.bind(this))
     return this.transformEndResult(
       strings.reduce(this.processSubstitutions.bind(this, expressions))
     )
