@@ -25,7 +25,7 @@ html`
 | Popularity | [![npm downloads](https://img.shields.io/npm/dm/common-tags.svg?style=flat-square)](http://npm-stat.com/charts.html?package=common-tags) |
 | Testing    | [![Build status](https://ci.appveyor.com/api/projects/status/75eiommx0llt3sgd?svg=true)](https://ci.appveyor.com/project/declandewet/common-tags) [![build status](https://img.shields.io/travis/declandewet/common-tags.svg?style=flat-square)](https://travis-ci.org/declandewet/common-tags) [![codecov.io](https://img.shields.io/codecov/c/gh/declandewet/common-tags.svg?style=flat-square)](https://codecov.io/gh/declandewet/common-tags?branch=master) |
 | Quality    | [![bitHound Overall Score](https://www.bithound.io/github/declandewet/common-tags/badges/score.svg)](https://www.bithound.io/github/declandewet/common-tags) [![dependency status](https://img.shields.io/david/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags) [![dev dependency status](https://img.shields.io/david/dev/declandewet/common-tags.svg?style=flat-square)](https://david-dm.org/declandewet/common-tags#info=devDependencies) |
-| Style      | [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard) |
+| Style      | [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) |
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

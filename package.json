@@ -113,12 +113,5 @@
     "release": "npm publish",
     "test": "npm run lint && cross-env BABEL_ENV=cjs nyc ava",
     "test-ci": "npm run lint && cross-env BABEL_ENV=cjs nyc ava --serial --fail-fast"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "readme.md",
-      "es"
-    ]
   }
 }
