@@ -71,6 +71,7 @@ html`
       - [`stripIndentTransformer([type='initial'])`](#stripindenttransformertypeinitial)
       - [`replaceResultTransformer(replaceWhat, replaceWith)`](#replaceresulttransformerreplacewhat-replacewith)
       - [`replaceSubstitutionTransformer(replaceWhat, replaceWith)`](#replacesubstitutiontransformerreplacewhat-replacewith)
+      - [`replaceStringTransformer(replaceWhat, replaceWith)`](#replacestringtransformerreplacewhat-replacewith)
       - [`inlineArrayTransformer(opts)`](#inlinearraytransformeropts)
       - [`splitStringTransformer(splitBy)`](#splitstringtransformersplitby)
 - [How to Contribute](#how-to-contribute)
@@ -466,7 +467,7 @@ Please note that these type definitions are not officially maintained by the aut
 
 #### Class is in Session: TemplateTag
 
-`common-tags` exports a `TemplateTag` class. This class is the foundation of `common-tags`. The concept of the class works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a substitution (`onSubstitution`). Any tag produced by this class supports [tail processing](#tail-processing).
+`common-tags` exports a `TemplateTag` class. This class is the foundation of `common-tags`. The concept of the class works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a string (`onString`) or a substitution (`onSubstitution`). Any tag produced by this class supports [tail processing](#tail-processing).
 
 The easiest tag to create is a tag that does nothing:
 
@@ -481,10 +482,15 @@ doNothing`foo bar`
 
 #### The Anatomy of a Transformer
 
-`TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with two optional methods - `onSubstitution` and `onEndResult` - it looks like this:
+`TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `onString`, `onSubstitution` and `onEndResult` - it looks like this:
 
 ```js
 {
+  onString (str) {
+    // optional. Called when the tag encounters a string.
+    // (a string is whatever's not inside "${}" in your template literal)
+    // `str` is the value of the current string
+  },
   onSubstitution (substitution, resultSoFar) {
     // optional. Called when the tag encounters a substitution.
     // (a substitution is whatever's inside "${}" in your template literal)
@@ -535,7 +541,7 @@ replace`${"foo"} ${"fizz"}`
 // "bar buzz"
 ```
 
-When multiple transformers are passed to `TemplateTag`, they will be iterated twice - first, all transformer `onSubstitution` methods will be called. Once they are done processing, all transformer `onEndResult` methods will be called.
+When multiple transformers are passed to `TemplateTag`, they will be iterated three times - first, all transformer `onString` methods will be called. Once they are done processing, `onSubstitution` methods will be called. Finally, all transformer `onEndResult` methods will be called.
 
 #### Returning Other Values from a Transformer
 
@@ -543,8 +549,12 @@ This is super easy. Transformers are just objects, after all. They have full acc
 
 ```js
 const listSubs = {
+  onString(str) {
+    this.ctx = this.ctx || { strings: [], subs: [] }
+    this.ctx.strings.push(str);
+    return str
+  },
   onSubstitution(sub, res) {
-    this.ctx = this.ctx || { subs: [] }
     this.ctx.subs.push({ sub, precededBy: res })
     return sub
   },
@@ -573,6 +583,11 @@ process`
   fizz ${'buzz'}
 `
 // {
+//  "strings": [
+//    "\n  foo ",
+//    "\n  foo bar\n  fizz ",
+//    "\n" 
+//  ],
 //  "subs": [
 //    {
 //      "sub": "bar",
@@ -605,6 +620,10 @@ Replaces a value or pattern in the end result with a new value. `replaceWhat` ca
 ##### `replaceSubstitutionTransformer(replaceWhat, replaceWith)`
 
 Replaces the result of all substitutions (results of calling `${ ... }`) with a new value. Same as for `replaceResultTransformer`, `replaceWhat` can be a string or regular expression and `replaceWith` is the new value.
+
+##### `replaceStringTransformer(replaceWhat, replaceWith)`
+
+Replaces the result of all strings (what's not in `${ ... }`) with a new value. Same as for `replaceResultTransformer`, `replaceWhat` can be a string or regular expression and `replaceWith` is the new value.
 
 ##### `inlineArrayTransformer(opts)`
 

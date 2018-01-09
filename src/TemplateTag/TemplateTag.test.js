@@ -10,25 +10,35 @@ test('does no processing by default', (t) => {
 
 test('transformer methods are optional', (t) => {
   const noMethods = new TemplateTag({})
-  const noSub = new TemplateTag({
+  const noSubNorEnd = new TemplateTag({
+    onString (str) {
+      return str.toUpperCase()
+    }
+  })
+  const noStringNorSub = new TemplateTag({
     onEndResult (endResult) {
       return endResult.toUpperCase()
     }
   })
-  const noEnd = new TemplateTag({
+  const noStringNorEnd = new TemplateTag({
     onSubstitution (sub) {
       return sub.split('').reverse().join('')
     }
   })
   t.is(noMethods`foo`, 'foo')
-  t.is(noSub`bar`, 'BAR')
-  t.is(noEnd`foo ${'bar'}`, 'foo rab')
+  t.is(noSubNorEnd`foo ${'bar'} baz`, 'FOO bar BAZ')
+  t.is(noStringNorSub`bar`, 'BAR')
+  t.is(noStringNorEnd`foo ${'bar'}`, 'foo rab')
 })
 
 test('performs a transformation & provides correct values to transform methods', (t) => {
   const tag = new TemplateTag({
+    onString (str) {
+      this.ctx = this.ctx || { strings: [], subs: [] }
+      this.ctx.strings.push(str)
+      return str
+    },
     onSubstitution (substitution, resultSoFar) {
-      this.ctx = this.ctx || { subs: [] }
       this.ctx.subs.push({ substitution, resultSoFar })
       return substitution
     },
@@ -40,6 +50,7 @@ test('performs a transformation & provides correct values to transform methods',
   const data = tag`foo ${'bar'} baz ${'fizz'}`
   t.deepEqual(data, {
     endResult: 'FOO BAR BAZ FIZZ',
+    strings: ['foo ', ' baz ', ''],
     subs: [{
       substitution: 'bar',
       resultSoFar: 'foo '

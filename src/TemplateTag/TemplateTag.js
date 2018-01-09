@@ -50,6 +50,7 @@ export default class TemplateTag {
     }
 
     // else, return a transformed end result of processing the template with our tag
+    strings = strings.map(this.transformString.bind(this))
     return this.transformEndResult(
       strings.reduce(this.processSubstitutions.bind(this, expressions))
     )
@@ -81,6 +82,19 @@ export default class TemplateTag {
       resultSoFar
     )
     return resultSoFar + substitution + remainingPart
+  }
+
+  /**
+   * Iterate through each transformer, applying the transformer's `onString` method to the template
+   * strings before all substitutions are processed.
+   * @param {String}  str - The input string
+   * @return {String}     - The final results of processing each transformer
+   */
+  transformString (str) {
+    const cb = (res, transform) => transform.onString
+      ? transform.onString(res)
+      : res
+    return this.transformers.reduce(cb, str)
   }
 
   /**
