@@ -1,12 +1,7 @@
-'use strict'
-
-const isValidValue = (x) =>
-  x != null &&
-  !Number.isNaN(x) &&
-  typeof x !== 'boolean'
+const isValidValue = x => x != null && !Number.isNaN(x) && typeof x !== 'boolean'
 
 const removeNonPrintingValuesTransformer = () => ({
-  onSubstitution (substitution) {
+  onSubstitution(substitution) {
     if (Array.isArray(substitution)) {
       return substitution.filter(isValidValue)
     }
@@ -14,7 +9,7 @@ const removeNonPrintingValuesTransformer = () => ({
       return substitution
     }
     return ''
-  }
+  },
 })
 
 export default removeNonPrintingValuesTransformer

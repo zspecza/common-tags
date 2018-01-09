@@ -1,5 +1,3 @@
-'use strict'
-
 import TemplateTag from '../TemplateTag'
 import stripIndentTransformer from '../stripIndentTransformer'
 import inlineArrayTransformer from '../inlineArrayTransformer'
@@ -17,7 +15,7 @@ const safeHtml = new TemplateTag(
   replaceSubstitutionTransformer(/>/g, '&gt;'),
   replaceSubstitutionTransformer(/"/g, '&quot;'),
   replaceSubstitutionTransformer(/'/g, '&#x27;'),
-  replaceSubstitutionTransformer(/`/g, '&#x60;')
+  replaceSubstitutionTransformer(/`/g, '&#x60;'),
 )
 
 export default safeHtml

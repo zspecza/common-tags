@@ -1,9 +1,7 @@
-'use strict'
-
 const defaults = {
   separator: '',
   conjunction: '',
-  serial: false
+  serial: false,
 }
 
 /**
@@ -15,7 +13,7 @@ const defaults = {
  * @return {Object}                     - a TemplateTag transformer
  */
 const inlineArrayTransformer = (opts = defaults) => ({
-  onSubstitution (substitution, resultSoFar) {
+  onSubstitution(substitution, resultSoFar) {
     // only operate on arrays
     if (Array.isArray(substitution)) {
       const arrayLength = substitution.length
@@ -33,13 +31,16 @@ const inlineArrayTransformer = (opts = defaults) => ({
       // if conjunction is set, replace the last separator with conjunction, but only if there is more than one substitution
       if (conjunction && arrayLength > 1) {
         const separatorIndex = substitution.lastIndexOf(separator)
-        substitution = substitution
-          .slice(0, separatorIndex) + (serial ? separator : '') + ' ' +
-            conjunction + substitution.slice(separatorIndex + 1)
+        substitution =
+          substitution.slice(0, separatorIndex) +
+          (serial ? separator : '') +
+          ' ' +
+          conjunction +
+          substitution.slice(separatorIndex + 1)
       }
     }
     return substitution
-  }
+  },
 })
 
 export default inlineArrayTransformer

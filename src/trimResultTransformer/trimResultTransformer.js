@@ -1,12 +1,10 @@
-'use strict'
-
 /**
  * TemplateTag transformer that trims whitespace on the end result of a tagged template
  * @param  {String} side = '' - The side of the string to trim. Can be 'start' or 'end' (alternatively 'left' or 'right')
  * @return {Object}           - a TemplateTag transformer
  */
 const trimResultTransformer = (side = '') => ({
-  onEndResult (endResult) {
+  onEndResult(endResult) {
     if (side === '') {
       return endResult.trim()
     }
@@ -22,7 +20,7 @@ const trimResultTransformer = (side = '') => ({
     }
 
     throw new Error(`Side not supported: ${side}`)
-  }
+  },
 })
 
 export default trimResultTransformer

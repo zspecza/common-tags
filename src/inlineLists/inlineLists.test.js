@@ -1,11 +1,10 @@
-'use strict'
 import test from 'ava'
 import inlineLists from './inlineLists'
-import {readFromFixture} from '../utils'
+import { readFromFixture } from '../utils'
 
 const val = 'amaze'
 
-test('includes arrays as space-separated list', async (t) => {
+test('includes arrays as space-separated list', async t => {
   const fruits = ['apple', 'banana', 'kiwi']
   const expected = await readFromFixture(__dirname, 'inlineLists')
   const actual = inlineLists`

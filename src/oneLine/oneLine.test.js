@@ -1,12 +1,10 @@
-'use strict'
-
 import test from 'ava'
 import oneLine from './oneLine'
-import {readFromFixture} from '../utils'
+import { readFromFixture } from '../utils'
 
 const val = 'amaze'
 
-test('reduces text to one line, replacing newlines with spaces', async (t) => {
+test('reduces text to one line, replacing newlines with spaces', async t => {
   const expected = await readFromFixture(__dirname, 'oneLine')
   const actual = oneLine`
     wow such doge
@@ -17,7 +15,7 @@ test('reduces text to one line, replacing newlines with spaces', async (t) => {
   t.is(actual, expected)
 })
 
-test('reduces text to one line, replacing newlines with spaces (no indentation)', async (t) => {
+test('reduces text to one line, replacing newlines with spaces (no indentation)', async t => {
   const expected = await readFromFixture(__dirname, 'oneLine')
   const actual = oneLine`
 wow such doge
@@ -29,7 +27,7 @@ from multiline
   t.is(actual, expected)
 })
 
-test('preserves whitespace within input lines, replacing only newlines', async (t) => {
+test('preserves whitespace within input lines, replacing only newlines', async t => {
   const expected = await readFromFixture(__dirname, 'oneLine-sentence')
   const actual = oneLine`
     Sentences also work.  Double

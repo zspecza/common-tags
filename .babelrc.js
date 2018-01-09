@@ -7,15 +7,18 @@ module.exports = {
   sourceMaps: 'inline',
 
   presets: [
-    ['env', {
-      modules: isEsEnv ? false : 'commonjs'
-    }]
+    [
+      'env',
+      {
+        modules: isEsEnv ? false : 'commonjs',
+      },
+    ],
   ],
 
   plugins: [
     ...(isCjsEnv ? ['add-module-exports'] : []),
     'transform-class-properties',
     'transform-export-extensions',
-    'transform-runtime'
-  ]
+    'transform-runtime',
+  ],
 }

@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * @class TemplateTag
  * @classdesc Consumes a pipeline of composable transformer plugins and produces a template tag.
@@ -11,17 +9,15 @@ export default class TemplateTag {
    * @param  {...Object} [...transformers] - an array or arguments list of transformers
    * @return {Function}                    - a template tag
    */
-  constructor (...transformers) {
+  constructor(...transformers) {
     // if first argument is an array, extrude it as a list of transformers
     if (transformers.length > 0 && Array.isArray(transformers[0])) {
       transformers = transformers[0]
     }
 
     // if any transformers are functions, this means they are not initiated - automatically initiate them
-    this.transformers = transformers.map((transformer) => {
-      return typeof transformer === 'function'
-        ? transformer()
-        : transformer
+    this.transformers = transformers.map(transformer => {
+      return typeof transformer === 'function' ? transformer() : transformer
     })
 
     // return an ES2015 template tag
@@ -52,7 +48,7 @@ export default class TemplateTag {
     // else, return a transformed end result of processing the template with our tag
     strings = strings.map(this.transformString.bind(this))
     return this.transformEndResult(
-      strings.reduce(this.processSubstitutions.bind(this, expressions))
+      strings.reduce(this.processSubstitutions.bind(this, expressions)),
     )
   }
 
@@ -64,7 +60,7 @@ export default class TemplateTag {
    * @param  {...*}            ...substitutions - `substitutions` is an array of all substitutions in the template
    * @return {*}                                - the final processed value
    */
-  interimTag (previousTag, template, ...substitutions) {
+  interimTag(previousTag, template, ...substitutions) {
     return this.tag`${previousTag(template, ...substitutions)}`
   }
 
@@ -76,11 +72,8 @@ export default class TemplateTag {
    * @param  {String}   remainingPart - the template chunk after the current substitution
    * @return {String}                 - the result of joining this iteration's processed substitution with the result
    */
-  processSubstitutions (substitutions, resultSoFar, remainingPart) {
-    const substitution = this.transformSubstitution(
-      substitutions.shift(),
-      resultSoFar
-    )
+  processSubstitutions(substitutions, resultSoFar, remainingPart) {
+    const substitution = this.transformSubstitution(substitutions.shift(), resultSoFar)
     return resultSoFar + substitution + remainingPart
   }
 
@@ -90,10 +83,8 @@ export default class TemplateTag {
    * @param {String}  str - The input string
    * @return {String}     - The final results of processing each transformer
    */
-  transformString (str) {
-    const cb = (res, transform) => transform.onString
-      ? transform.onString(res)
-      : res
+  transformString(str) {
+    const cb = (res, transform) => (transform.onString ? transform.onString(res) : res)
     return this.transformers.reduce(cb, str)
   }
 
@@ -104,10 +95,9 @@ export default class TemplateTag {
    * @param  {String} resultSoFar  - The result up to and excluding this substitution.
    * @return {*}                   - The final result of applying all substitution transformations.
    */
-  transformSubstitution (substitution, resultSoFar) {
-    const cb = (res, transform) => transform.onSubstitution
-      ? transform.onSubstitution(res, resultSoFar)
-      : res
+  transformSubstitution(substitution, resultSoFar) {
+    const cb = (res, transform) =>
+      transform.onSubstitution ? transform.onSubstitution(res, resultSoFar) : res
     return this.transformers.reduce(cb, substitution)
   }
 
@@ -117,10 +107,8 @@ export default class TemplateTag {
    * @param  {String} endResult - The processed template, just before it is returned from the tag
    * @return {String}           - The final results of processing each transformer
    */
-  transformEndResult (endResult) {
-    const cb = (res, transform) => transform.onEndResult
-      ? transform.onEndResult(res)
-      : res
+  transformEndResult(endResult) {
+    const cb = (res, transform) => (transform.onEndResult ? transform.onEndResult(res) : res)
     return this.transformers.reduce(cb, endResult)
   }
 }

@@ -1,12 +1,10 @@
-'use strict'
-
 /**
  * strips indentation from a template literal
  * @param  {String} type = 'initial' - whether to remove all indentation or just leading indentation. can be 'all' or 'initial'
  * @return {Object}                  - a TemplateTag transformer
  */
 const stripIndentTransformer = (type = 'initial') => ({
-  onEndResult (endResult) {
+  onEndResult(endResult) {
     if (type === 'initial') {
       // remove the shortest leading indentation from each line
       const match = endResult.match(/^[^\S\n]*(?=\S)/gm)
@@ -22,7 +20,7 @@ const stripIndentTransformer = (type = 'initial') => ({
       return endResult.replace(/^[^\S\n]+/gm, '')
     }
     throw new Error(`Unknown type: ${type}`)
-  }
+  },
 })
 
 export default stripIndentTransformer

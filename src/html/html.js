@@ -1,5 +1,3 @@
-'use strict'
-
 import TemplateTag from '../TemplateTag'
 import stripIndentTransformer from '../stripIndentTransformer'
 import inlineArrayTransformer from '../inlineArrayTransformer'
@@ -12,7 +10,7 @@ const html = new TemplateTag(
   removeNonPrintingValuesTransformer,
   inlineArrayTransformer,
   stripIndentTransformer,
-  trimResultTransformer
+  trimResultTransformer,
 )
 
 export default html
