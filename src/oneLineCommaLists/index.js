@@ -1,1 +1,1 @@
-export default from './oneLineCommaLists'
+export default from './oneLineCommaLists';

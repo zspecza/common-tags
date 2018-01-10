@@ -12,16 +12,16 @@ export default class TemplateTag {
   constructor(...transformers) {
     // if first argument is an array, extrude it as a list of transformers
     if (transformers.length > 0 && Array.isArray(transformers[0])) {
-      transformers = transformers[0]
+      transformers = transformers[0];
     }
 
     // if any transformers are functions, this means they are not initiated - automatically initiate them
     this.transformers = transformers.map(transformer => {
-      return typeof transformer === 'function' ? transformer() : transformer
-    })
+      return typeof transformer === 'function' ? transformer() : transformer;
+    });
 
     // return an ES2015 template tag
-    return this.tag
+    return this.tag;
   }
 
   /**
@@ -37,20 +37,20 @@ export default class TemplateTag {
       // if the first argument passed is a function, assume it is a template tag and return
       // an intermediary tag that processes the template using the aforementioned tag, passing the
       // result to our tag
-      return this.interimTag.bind(this, strings)
+      return this.interimTag.bind(this, strings);
     }
 
     if (typeof strings === 'string') {
       // if the first argument passed is a string, just transform it
-      return this.transformEndResult(strings)
+      return this.transformEndResult(strings);
     }
 
     // else, return a transformed end result of processing the template with our tag
-    strings = strings.map(this.transformString.bind(this))
+    strings = strings.map(this.transformString.bind(this));
     return this.transformEndResult(
       strings.reduce(this.processSubstitutions.bind(this, expressions)),
-    )
-  }
+    );
+  };
 
   /**
    * An intermediary template tag that receives a template tag and passes the result of calling the template with the received
@@ -61,7 +61,7 @@ export default class TemplateTag {
    * @return {*}                                - the final processed value
    */
   interimTag(previousTag, template, ...substitutions) {
-    return this.tag`${previousTag(template, ...substitutions)}`
+    return this.tag`${previousTag(template, ...substitutions)}`;
   }
 
   /**
@@ -73,8 +73,8 @@ export default class TemplateTag {
    * @return {String}                 - the result of joining this iteration's processed substitution with the result
    */
   processSubstitutions(substitutions, resultSoFar, remainingPart) {
-    const substitution = this.transformSubstitution(substitutions.shift(), resultSoFar)
-    return resultSoFar + substitution + remainingPart
+    const substitution = this.transformSubstitution(substitutions.shift(), resultSoFar);
+    return resultSoFar + substitution + remainingPart;
   }
 
   /**
@@ -84,8 +84,8 @@ export default class TemplateTag {
    * @return {String}     - The final results of processing each transformer
    */
   transformString(str) {
-    const cb = (res, transform) => (transform.onString ? transform.onString(res) : res)
-    return this.transformers.reduce(cb, str)
+    const cb = (res, transform) => (transform.onString ? transform.onString(res) : res);
+    return this.transformers.reduce(cb, str);
   }
 
   /**
@@ -97,8 +97,8 @@ export default class TemplateTag {
    */
   transformSubstitution(substitution, resultSoFar) {
     const cb = (res, transform) =>
-      transform.onSubstitution ? transform.onSubstitution(res, resultSoFar) : res
-    return this.transformers.reduce(cb, substitution)
+      transform.onSubstitution ? transform.onSubstitution(res, resultSoFar) : res;
+    return this.transformers.reduce(cb, substitution);
   }
 
   /**
@@ -108,7 +108,7 @@ export default class TemplateTag {
    * @return {String}           - The final results of processing each transformer
    */
   transformEndResult(endResult) {
-    const cb = (res, transform) => (transform.onEndResult ? transform.onEndResult(res) : res)
-    return this.transformers.reduce(cb, endResult)
+    const cb = (res, transform) => (transform.onEndResult ? transform.onEndResult(res) : res);
+    return this.transformers.reduce(cb, endResult);
   }
 }

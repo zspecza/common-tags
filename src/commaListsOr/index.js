@@ -1,1 +1,1 @@
-export default from './commaListsOr'
+export default from './commaListsOr';

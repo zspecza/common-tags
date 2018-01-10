@@ -1,1 +1,1 @@
-export default from './oneLine'
+export default from './oneLine';

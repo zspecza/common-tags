@@ -1,7 +1,7 @@
-import TemplateTag from '../TemplateTag'
-import stripIndentTransformer from '../stripIndentTransformer'
-import trimResultTransformer from '../trimResultTransformer'
+import TemplateTag from '../TemplateTag';
+import stripIndentTransformer from '../stripIndentTransformer';
+import trimResultTransformer from '../trimResultTransformer';
 
-const stripIndents = new TemplateTag(stripIndentTransformer('all'), trimResultTransformer)
+const stripIndents = new TemplateTag(stripIndentTransformer('all'), trimResultTransformer);
 
-export default stripIndents
+export default stripIndents;

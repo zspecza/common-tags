@@ -1,1 +1,1 @@
-export default from './trimResultTransformer'
+export default from './trimResultTransformer';

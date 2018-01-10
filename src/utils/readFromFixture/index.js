@@ -1,1 +1,1 @@
-export default from './readFromFixture'
+export default from './readFromFixture';

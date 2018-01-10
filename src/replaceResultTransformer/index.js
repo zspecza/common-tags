@@ -1,1 +1,1 @@
-export default from './replaceResultTransformer'
+export default from './replaceResultTransformer';

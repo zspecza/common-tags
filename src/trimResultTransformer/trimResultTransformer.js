@@ -6,21 +6,21 @@
 const trimResultTransformer = (side = '') => ({
   onEndResult(endResult) {
     if (side === '') {
-      return endResult.trim()
+      return endResult.trim();
     }
 
-    side = side.toLowerCase()
+    side = side.toLowerCase();
 
     if (side === 'start' || side === 'left') {
-      return endResult.replace(/^\s*/, '')
+      return endResult.replace(/^\s*/, '');
     }
 
     if (side === 'end' || side === 'right') {
-      return endResult.replace(/\s*$/, '')
+      return endResult.replace(/\s*$/, '');
     }
 
-    throw new Error(`Side not supported: ${side}`)
+    throw new Error(`Side not supported: ${side}`);
   },
-})
+});
 
-export default trimResultTransformer
+export default trimResultTransformer;

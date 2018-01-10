@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const isCjsEnv = process.env.BABEL_ENV === 'cjs'
-const isEsEnv = process.env.BABEL_ENV === 'es'
+const isCjsEnv = process.env.BABEL_ENV === 'cjs';
+const isEsEnv = process.env.BABEL_ENV === 'es';
 
 module.exports = {
   sourceMaps: 'inline',
@@ -21,4 +21,4 @@ module.exports = {
     'transform-export-extensions',
     'transform-runtime',
   ],
-}
+};
