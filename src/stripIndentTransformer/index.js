@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './stripIndentTransformer'
+export default from './stripIndentTransformer';

@@ -1,14 +1,12 @@
-'use strict'
-
-import TemplateTag from '../TemplateTag'
-import stripIndentTransformer from '../stripIndentTransformer'
-import inlineArrayTransformer from '../inlineArrayTransformer'
-import trimResultTransformer from '../trimResultTransformer'
+import TemplateTag from '../TemplateTag';
+import stripIndentTransformer from '../stripIndentTransformer';
+import inlineArrayTransformer from '../inlineArrayTransformer';
+import trimResultTransformer from '../trimResultTransformer';
 
 const commaLists = new TemplateTag(
   inlineArrayTransformer({ separator: ',' }),
   stripIndentTransformer,
-  trimResultTransformer
-)
+  trimResultTransformer,
+);
 
-export default commaLists
+export default commaLists;

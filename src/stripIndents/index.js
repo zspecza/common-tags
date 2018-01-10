@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './stripIndents'
+export default from './stripIndents';

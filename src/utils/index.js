@@ -1,3 +1,1 @@
-'use strict'
-
-export readFromFixture from './readFromFixture'
+export readFromFixture from './readFromFixture';

@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './splitStringTransformer'
+export default from './splitStringTransformer';

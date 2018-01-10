@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './commaListsAnd'
+export default from './commaListsAnd';

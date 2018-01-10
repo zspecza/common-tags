@@ -1,12 +1,10 @@
-'use strict'
-
-import TemplateTag from '../TemplateTag'
-import trimResultTransformer from '../trimResultTransformer'
-import replaceResultTransformer from '../replaceResultTransformer'
+import TemplateTag from '../TemplateTag';
+import trimResultTransformer from '../trimResultTransformer';
+import replaceResultTransformer from '../replaceResultTransformer';
 
 const oneLineTrim = new TemplateTag(
   replaceResultTransformer(/(?:\n\s*)/g, ''),
-  trimResultTransformer
-)
+  trimResultTransformer,
+);
 
-export default oneLineTrim
+export default oneLineTrim;

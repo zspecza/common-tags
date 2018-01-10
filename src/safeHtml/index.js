@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './safeHtml'
+export default from './safeHtml';

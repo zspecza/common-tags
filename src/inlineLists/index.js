@@ -1,3 +1,1 @@
-'use strict'
-
-export default from './inlineLists'
+export default from './inlineLists';
