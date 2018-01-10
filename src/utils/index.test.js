@@ -23,6 +23,9 @@ test('utils exports all the right modules as props', async t => {
   const modules = t.context.modules;
   t.plan(modules.length);
   modules.forEach(module => {
-    t.true(require('./index')[module] != null, `${module} is not exported properly`);
+    t.true(
+      require('./index')[module] != null,
+      `${module} is not exported properly`,
+    );
   });
 });

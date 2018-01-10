@@ -73,7 +73,10 @@ export default class TemplateTag {
    * @return {String}                 - the result of joining this iteration's processed substitution with the result
    */
   processSubstitutions(substitutions, resultSoFar, remainingPart) {
-    const substitution = this.transformSubstitution(substitutions.shift(), resultSoFar);
+    const substitution = this.transformSubstitution(
+      substitutions.shift(),
+      resultSoFar,
+    );
     return resultSoFar + substitution + remainingPart;
   }
 
@@ -84,7 +87,8 @@ export default class TemplateTag {
    * @return {String}     - The final results of processing each transformer
    */
   transformString(str) {
-    const cb = (res, transform) => (transform.onString ? transform.onString(res) : res);
+    const cb = (res, transform) =>
+      transform.onString ? transform.onString(res) : res;
     return this.transformers.reduce(cb, str);
   }
 
@@ -97,7 +101,9 @@ export default class TemplateTag {
    */
   transformSubstitution(substitution, resultSoFar) {
     const cb = (res, transform) =>
-      transform.onSubstitution ? transform.onSubstitution(res, resultSoFar) : res;
+      transform.onSubstitution
+        ? transform.onSubstitution(res, resultSoFar)
+        : res;
     return this.transformers.reduce(cb, substitution);
   }
 
@@ -108,7 +114,8 @@ export default class TemplateTag {
    * @return {String}           - The final results of processing each transformer
    */
   transformEndResult(endResult) {
-    const cb = (res, transform) => (transform.onEndResult ? transform.onEndResult(res) : res);
+    const cb = (res, transform) =>
+      transform.onEndResult ? transform.onEndResult(res) : res;
     return this.transformers.reduce(cb, endResult);
   }
 }

@@ -4,7 +4,10 @@ import inlineArrayTransformer from '../inlineArrayTransformer';
 import splitStringTransformer from './splitStringTransformer';
 
 test('splits a string substitution into an array by the specified character', t => {
-  const tag = new TemplateTag(splitStringTransformer('\n'), inlineArrayTransformer);
+  const tag = new TemplateTag(
+    splitStringTransformer('\n'),
+    inlineArrayTransformer,
+  );
   t.is(tag`foo ${'bar\nbaz'}`, 'foo bar baz');
 });
 

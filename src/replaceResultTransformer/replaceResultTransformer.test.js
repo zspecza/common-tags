@@ -4,7 +4,10 @@ import replaceResultTransformer from './replaceResultTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
 test('replaces sequential whitespace with a single space', t => {
-  const oneLine = new TemplateTag(replaceResultTransformer(/(?:\s+)/g, ' '), trimResultTransformer);
+  const oneLine = new TemplateTag(
+    replaceResultTransformer(/(?:\s+)/g, ' '),
+    trimResultTransformer,
+  );
   const expected = 'foo bar baz';
   const actual = oneLine`
     foo

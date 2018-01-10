@@ -7,7 +7,9 @@
 const replaceResultTransformer = (replaceWhat, replaceWith) => ({
   onEndResult(endResult) {
     if (replaceWhat == null || replaceWith == null) {
-      throw new Error('replaceResultTransformer requires at least 2 arguments.');
+      throw new Error(
+        'replaceResultTransformer requires at least 2 arguments.',
+      );
     }
     return endResult.replace(replaceWhat, replaceWith);
   },

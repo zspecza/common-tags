@@ -1,7 +1,9 @@
 const replaceSubstitutionTransformer = (replaceWhat, replaceWith) => ({
   onSubstitution(substitution, resultSoFar) {
     if (replaceWhat == null || replaceWith == null) {
-      throw new Error('replaceSubstitutionTransformer requires at least 2 arguments.');
+      throw new Error(
+        'replaceSubstitutionTransformer requires at least 2 arguments.',
+      );
     }
 
     // Do not touch if null or undefined

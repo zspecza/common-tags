@@ -16,7 +16,10 @@ test('includes arrays as comma-separated list on one line with "and"', async t =
 
 test('only returns the first item of a single element array', async t => {
   const fruits = ['apple'];
-  const expected = await readFromFixture(__dirname, 'oneLineCommaListsAndSingleItem');
+  const expected = await readFromFixture(
+    __dirname,
+    'oneLineCommaListsAndSingleItem',
+  );
   const actual = oneLineCommaListsAnd`
     Doge <3's these fruits: ${fruits}
     they are ${val}

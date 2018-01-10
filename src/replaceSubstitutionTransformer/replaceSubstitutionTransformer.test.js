@@ -7,7 +7,10 @@ test('only operates on substitutions', t => {
     replaceSubstitutionTransformer(/</g, '&lt;'),
     replaceSubstitutionTransformer(/>/g, '&gt;'),
   );
-  t.is(tag`<h1>foo${'<bar></bar>'}</h1>`, '<h1>foo&lt;bar&gt;&lt;/bar&gt;</h1>');
+  t.is(
+    tag`<h1>foo${'<bar></bar>'}</h1>`,
+    '<h1>foo&lt;bar&gt;&lt;/bar&gt;</h1>',
+  );
 });
 
 test('does not touch undefined and null substitutions', t => {

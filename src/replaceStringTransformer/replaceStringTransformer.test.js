@@ -7,7 +7,10 @@ test('only operates on strings', t => {
     replaceStringTransformer(/</g, '&lt;'),
     replaceStringTransformer(/>/g, '&gt;'),
   );
-  t.is(tag`<h1>foo${'<bar></bar>'}</h1>`, '&lt;h1&gt;foo<bar></bar>&lt;/h1&gt;');
+  t.is(
+    tag`<h1>foo${'<bar></bar>'}</h1>`,
+    '&lt;h1&gt;foo<bar></bar>&lt;/h1&gt;',
+  );
 });
 
 test('throws error if no arguments are supplied when used', t => {

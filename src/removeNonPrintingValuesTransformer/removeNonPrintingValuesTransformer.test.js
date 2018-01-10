@@ -23,7 +23,10 @@ test('removes NaN', t => {
 });
 
 test('removes non-printing array values', t => {
-  const remove = new TemplateTag(removeNonPrintingValuesTransformer, inlineArrayTransformer);
+  const remove = new TemplateTag(
+    removeNonPrintingValuesTransformer,
+    inlineArrayTransformer,
+  );
   const val = ['foo', undefined, 'bar', null];
   t.is(remove`a ${val} z`, 'a foo bar z');
 });

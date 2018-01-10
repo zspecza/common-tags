@@ -34,7 +34,10 @@ test('throws an error if invalid side supplied', t => {
 });
 
 test('can be used sequentially', t => {
-  const trimStart = new TemplateTag(stripIndentTransformer, trimResultTransformer('start'));
+  const trimStart = new TemplateTag(
+    stripIndentTransformer,
+    trimResultTransformer('start'),
+  );
   t.is(trimStart`  foo  `, 'foo  ');
   t.is(trimStart`  bar  `, 'bar  ');
 });
