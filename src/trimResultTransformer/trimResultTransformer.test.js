@@ -1,43 +1,42 @@
-import test from 'ava';
 import TemplateTag from '../TemplateTag';
 import stripIndentTransformer from '../stripIndentTransformer';
 import trimResultTransformer from './trimResultTransformer';
 
-test('trims outer padding', t => {
+test('trims outer padding', () => {
   const trim = new TemplateTag(trimResultTransformer);
-  t.is(trim`  foo  `, 'foo');
+  expect(trim`  foo  `).toBe('foo');
 });
 
-test('trims start padding', t => {
+test('trims start padding', () => {
   const trimStart = new TemplateTag(trimResultTransformer('start'));
-  t.is(trimStart`  foo  `, 'foo  ');
+  expect(trimStart`  foo  `).toBe('foo  ');
 });
 
-test('trims left padding', t => {
+test('trims left padding', () => {
   const trimLeft = new TemplateTag(trimResultTransformer('left'));
-  t.is(trimLeft`  foo  `, 'foo  ');
+  expect(trimLeft`  foo  `).toBe('foo  ');
 });
 
-test('trims end padding', t => {
+test('trims end padding', () => {
   const trimEnd = new TemplateTag(trimResultTransformer('end'));
-  t.is(trimEnd`  foo  `, '  foo');
+  expect(trimEnd`  foo  `).toBe('  foo');
 });
 
-test('trims right padding', t => {
+test('trims right padding', () => {
   const trimRight = new TemplateTag(trimResultTransformer('right'));
-  t.is(trimRight`  foo  `, '  foo');
+  expect(trimRight`  foo  `).toBe('  foo');
 });
 
-test('throws an error if invalid side supplied', t => {
+test('throws an error if invalid side supplied', () => {
   const trimUp = new TemplateTag(trimResultTransformer('up'));
-  t.throws(() => trimUp`foo`);
+  expect(() => trimUp`foo`).toThrow();
 });
 
-test('can be used sequentially', t => {
+test('can be used sequentially', () => {
   const trimStart = new TemplateTag(
     stripIndentTransformer,
     trimResultTransformer('start'),
   );
-  t.is(trimStart`  foo  `, 'foo  ');
-  t.is(trimStart`  bar  `, 'bar  ');
+  expect(trimStart`  foo  `).toBe('foo  ');
+  expect(trimStart`  bar  `).toBe('bar  ');
 });

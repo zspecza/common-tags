@@ -1,10 +1,9 @@
-import test from 'ava';
 import safeHtml from './safeHtml';
 import { readFromFixture } from '../utils';
 
 const val = 'amaze';
 
-test('renders HTML, including arrays', async t => {
+test('renders HTML, including arrays', async () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = await readFromFixture(__dirname, 'normal-html');
   const actual = safeHtml`
@@ -13,10 +12,10 @@ test('renders HTML, including arrays', async t => {
       ${fruits.map(fruit => `${fruit}`)}
     </ul>
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('converts strings containing newlines into proper indented output', async t => {
+test('converts strings containing newlines into proper indented output', async () => {
   const newlines = 'one\ntwo';
   const expected = await readFromFixture(__dirname, 'newline-conversion');
   const actual = safeHtml`
@@ -26,10 +25,10 @@ test('converts strings containing newlines into proper indented output', async t
       <li>three</li>
     </ul>
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('correctly escapes HTML tags on substitution', async t => {
+test('correctly escapes HTML tags on substitution', async () => {
   const fruits = ['apple', 'banana', 'kiwi', '<h1>dangerous fruit</h1>'];
   const expected = await readFromFixture(__dirname, 'escaped-html');
   const actual = safeHtml`
@@ -38,5 +37,5 @@ test('correctly escapes HTML tags on substitution', async t => {
       ${fruits.map(fruit => `${fruit}`)}
     </ul>
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });

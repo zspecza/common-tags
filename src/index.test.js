@@ -1,31 +1,29 @@
 import fs from 'fs';
 import path from 'path';
-import test from 'ava';
 import mm from 'micromatch';
 import node from 'when/node';
 
 const observe = ['*', '!utils', '!index.js', '!index.test.js'];
 
-test.beforeEach(async t => {
-  t.context.modules = mm(await node.call(fs.readdir, __dirname), observe);
+const context = {};
+
+beforeEach(async () => {
+  context.modules = mm(await node.call(fs.readdir, __dirname), observe);
 });
 
-test('common-tags exports all the right modules directly', async t => {
-  const modules = t.context.modules;
-  t.plan(modules.length);
+test('common-tags exports all the right modules directly', async () => {
+  const modules = context.modules;
+  expect.assertions(modules.length);
   modules.forEach(module => {
     const _path = path.join(__dirname, module);
-    t.true(require(_path) != null, `${module} is not exported properly`);
+    expect(require(_path) != null).toBe(true);
   });
 });
 
-test('common-tags exports all the right modules as props', async t => {
-  const modules = t.context.modules;
-  t.plan(modules.length);
+test('common-tags exports all the right modules as props', async () => {
+  const modules = context.modules;
+  expect.assertions(modules.length);
   modules.forEach(module => {
-    t.true(
-      require('./index')[module] != null,
-      `${module} is not exported properly`,
-    );
+    expect(require('./index')[module] != null).toBe(true);
   });
 });

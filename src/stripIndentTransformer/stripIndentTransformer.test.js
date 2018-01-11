@@ -1,10 +1,9 @@
-import test from 'ava';
 import TemplateTag from '../TemplateTag';
 import stripIndentTransformer from './stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 import { readFromFixture } from '../utils';
 
-test('default behaviour removes the leading indent, but preserves the rest', async t => {
+test('default behaviour removes the leading indent, but preserves the rest', async () => {
   const stripIndent = new TemplateTag(
     stripIndentTransformer,
     trimResultTransformer,
@@ -16,20 +15,20 @@ test('default behaviour removes the leading indent, but preserves the rest', asy
       baz foo bar
         wow such doge
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('type "initial" does not remove indents if there is no need to do so', t => {
+test('type "initial" does not remove indents if there is no need to do so', () => {
   const stripIndent = new TemplateTag(
     stripIndentTransformer,
     trimResultTransformer,
   );
-  t.is(stripIndent``, '');
-  t.is(stripIndent`foo`, 'foo');
-  t.is(stripIndent`foo\nbar`, 'foo\nbar');
+  expect(stripIndent``).toBe('');
+  expect(stripIndent`foo`).toBe('foo');
+  expect(stripIndent`foo\nbar`).toBe('foo\nbar');
 });
 
-test('removes all indents if type is "all"', async t => {
+test('removes all indents if type is "all"', async () => {
   const stripIndents = new TemplateTag(
     stripIndentTransformer('all'),
     trimResultTransformer,
@@ -41,10 +40,10 @@ test('removes all indents if type is "all"', async t => {
       baz foo bar
         wow such doge
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('throws an error if encounters invalid type', t => {
+test('throws an error if encounters invalid type', () => {
   const stripBlueIndents = new TemplateTag(stripIndentTransformer('blue'));
-  t.throws(() => stripBlueIndents`foo`);
+  expect(() => stripBlueIndents`foo`).toThrow();
 });
