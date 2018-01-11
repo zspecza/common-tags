@@ -3,16 +3,6 @@
   "description": "a few common utility template tags for ES2015",
   "version": "1.7.1",
   "author": "Declan de Wet <declandewet@me.com>",
-  "ava": {
-    "verbose": true,
-    "babel": "inherit",
-    "require": [
-      "babel-register"
-    ],
-    "files": [
-      "src/**/*.test.js"
-    ]
-  },
   "bugs": {
     "url": "http://github.com/declandewet/common-tags/issues"
   },
@@ -28,7 +18,6 @@
     "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
-    "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -43,8 +32,8 @@
     "eslint": "^4.15.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.4.0",
+    "jest": "^22.0.5",
     "micromatch": "^3.1.4",
-    "nyc": "^11.3.0",
     "prettier": "^1.9.2",
     "rimraf": "^2.6.2",
     "when": "^3.7.8"
@@ -87,12 +76,6 @@
   "main": "lib",
   "jsnext:main": "es",
   "module": "es",
-  "nyc": {
-    "exclude": [
-      "**/*.test.js",
-      ".babelrc.js"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/declandewet/common-tags"
@@ -100,18 +83,15 @@
   "scripts": {
     "clear": "rimraf lib && rimraf es",
     "build": "npm run clear && npm run build:cjs && npm run build:es",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib --ignore *.test.js",
+    "build:cjs": "babel src -d lib --ignore *.test.js",
     "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
-    "codecov": "npm run coverage && codecov",
-    "coverage": "nyc report --reporter=lcov",
+    "codecov": "codecov",
     "doctoc": "doctoc readme.md --title \"\n## Table of Contents\"",
-    "lint": "eslint .*rc.js src/**/*.js",
-    "lint:fix": "eslint --fix .*rc.js src/**/*.js",
-    "precoveralls": "npm run coverage",
+    "lint": "eslint .*rc.js src/**/*.js --ignore-pattern '!.*rc.js'",
+    "lint:fix": "eslint --fix .*rc.js src/**/*.js --ignore-pattern '!.*rc.js'",
     "prerelease": "npm run build",
     "preversion": "npm run doctoc  && npm test",
     "release": "npm publish",
-    "test": "npm run lint && cross-env BABEL_ENV=cjs nyc ava",
-    "test-ci": "npm run lint && cross-env BABEL_ENV=cjs nyc ava --serial --fail-fast"
+    "test": "npm run lint && jest"
   }
 }

@@ -1,32 +1,31 @@
-import test from 'ava';
 import TemplateTag from '../TemplateTag';
 import inlineArrayTransformer from '../inlineArrayTransformer';
 import removeNonPrintingValuesTransformer from '../removeNonPrintingValuesTransformer';
 
-test('removes null', t => {
+test('removes null', () => {
   const remove = new TemplateTag(removeNonPrintingValuesTransformer);
   const nil = null;
-  t.is(remove`a${nil}z`, 'az');
+  expect(remove`a${nil}z`).toBe('az');
 });
 
-test('removes bool', t => {
+test('removes bool', () => {
   const remove = new TemplateTag(removeNonPrintingValuesTransformer);
   const yep = true;
   const nope = false;
-  t.is(remove`a${yep}${nope}z`, 'az');
+  expect(remove`a${yep}${nope}z`).toBe('az');
 });
 
-test('removes NaN', t => {
+test('removes NaN', () => {
   const remove = new TemplateTag(removeNonPrintingValuesTransformer);
   const nan = 0 / 0;
-  t.is(remove`a${nan}z`, 'az');
+  expect(remove`a${nan}z`).toBe('az');
 });
 
-test('removes non-printing array values', t => {
+test('removes non-printing array values', () => {
   const remove = new TemplateTag(
     removeNonPrintingValuesTransformer,
     inlineArrayTransformer,
   );
   const val = ['foo', undefined, 'bar', null];
-  t.is(remove`a ${val} z`, 'a foo bar z');
+  expect(remove`a ${val} z`).toBe('a foo bar z');
 });

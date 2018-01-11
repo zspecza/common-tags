@@ -1,70 +1,63 @@
-import test from 'ava';
 import inlineArrayTransformer from './inlineArrayTransformer';
 import TemplateTag from '../TemplateTag';
 
-test('only operates on arrays', t => {
+test('only operates on arrays', () => {
   const tag = new TemplateTag(inlineArrayTransformer);
-  t.is(tag`foo ${5} ${'bar'}`, 'foo 5 bar');
+  expect(tag`foo ${5} ${'bar'}`).toBe('foo 5 bar');
 });
 
-test('includes an array as a comma-separated list', t => {
+test('includes an array as a comma-separated list', () => {
   const tag = new TemplateTag(inlineArrayTransformer({ separator: ',' }));
-  t.is(
-    tag`I like ${['apple', 'banana', 'kiwi']}`,
+  expect(tag`I like ${['apple', 'banana', 'kiwi']}`).toBe(
     'I like apple, banana, kiwi',
   );
 });
 
-test('replaces last separator with a conjunction', t => {
+test('replaces last separator with a conjunction', () => {
   const tag = new TemplateTag(
     inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
   );
-  t.is(
-    tag`I like ${['apple', 'banana', 'kiwi']}`,
+  expect(tag`I like ${['apple', 'banana', 'kiwi']}`).toBe(
     'I like apple, banana and kiwi',
   );
 });
 
-test('does not use a conjunction if there is only one item in an array', t => {
+test('does not use a conjunction if there is only one item in an array', () => {
   const tag = new TemplateTag(
     inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
   );
-  t.is(tag`I like ${['apple']}`, 'I like apple');
+  expect(tag`I like ${['apple']}`).toBe('I like apple');
 });
 
-test('does not require preceded whitespace', t => {
+test('does not require preceded whitespace', () => {
   const tag = new TemplateTag(inlineArrayTransformer({ separator: ',' }));
-  t.is(
-    tag`My friends are (${['bob', 'sally', 'jim']})`,
+  expect(tag`My friends are (${['bob', 'sally', 'jim']})`).toBe(
     'My friends are (bob, sally, jim)',
   );
 });
 
-test('supports serial/oxford separators', t => {
+test('supports serial/oxford separators', () => {
   const tag = new TemplateTag(
     inlineArrayTransformer({ separator: ',', conjunction: 'or', serial: true }),
   );
-  t.is(
-    tag`My friends are always ${['dramatic', 'emotional', 'needy']}`,
+  expect(tag`My friends are always ${['dramatic', 'emotional', 'needy']}`).toBe(
     'My friends are always dramatic, emotional, or needy',
   );
 });
 
-test('maintains indentation', t => {
+test('maintains indentation', () => {
   const tag = new TemplateTag(inlineArrayTransformer());
-  t.is(
-    tag`My friends are always
-  ${['dramatic', 'emotional', 'needy']}`,
+  expect(tag`My friends are always
+  ${['dramatic', 'emotional', 'needy']}`).toBe(
     'My friends are always\n  dramatic\n  emotional\n  needy',
   );
 });
 
-test('does not introduce excess newlines', t => {
+test('does not introduce excess newlines', () => {
   const tag = new TemplateTag(inlineArrayTransformer());
-  t.is(
-    tag`My friends are always
+  expect(tag`My friends are always
 
-  ${['dramatic', 'emotional', 'needy']}`,
+  ${['dramatic', 'emotional', 'needy']}`).toBe(
     'My friends are always\n\n  dramatic\n  emotional\n  needy',
   );
 });

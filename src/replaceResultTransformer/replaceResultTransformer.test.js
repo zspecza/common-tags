@@ -1,9 +1,8 @@
-import test from 'ava';
 import TemplateTag from '../TemplateTag';
 import replaceResultTransformer from './replaceResultTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
-test('replaces sequential whitespace with a single space', t => {
+test('replaces sequential whitespace with a single space', () => {
   const oneLine = new TemplateTag(
     replaceResultTransformer(/(?:\s+)/g, ' '),
     trimResultTransformer,
@@ -14,10 +13,10 @@ test('replaces sequential whitespace with a single space', t => {
     bar
     baz
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('can be set so sequence requires a newline at the beginning before triggering replacement', t => {
+test('can be set so sequence requires a newline at the beginning before triggering replacement', () => {
   const oneLineTrim = new TemplateTag(
     replaceResultTransformer(/(?:\n\s+)/g, ''),
     trimResultTransformer,
@@ -28,10 +27,10 @@ test('can be set so sequence requires a newline at the beginning before triggeri
     google.com
     ?utm_source=common-tags
   `;
-  t.is(actual, expected);
+  expect(actual).toBe(expected);
 });
 
-test('throws error if no arguments are supplied', t => {
+test('throws error if no arguments are supplied', () => {
   const tag = new TemplateTag(replaceResultTransformer);
-  t.throws(() => tag`foo`);
+  expect(() => tag`foo`).toThrow();
 });

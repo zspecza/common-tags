@@ -1,12 +1,11 @@
-import test from 'ava';
 import TemplateTag from '../TemplateTag';
 
-test('does no processing by default', t => {
+test('does no processing by default', () => {
   const tag = new TemplateTag();
-  t.is(tag`foo`, 'foo');
+  expect(tag`foo`).toBe('foo');
 });
 
-test('transformer methods are optional', t => {
+test('transformer methods are optional', () => {
   const noMethods = new TemplateTag({});
   const noSubNorEnd = new TemplateTag({
     onString(str) {
@@ -26,13 +25,13 @@ test('transformer methods are optional', t => {
         .join('');
     },
   });
-  t.is(noMethods`foo`, 'foo');
-  t.is(noSubNorEnd`foo ${'bar'} baz`, 'FOO bar BAZ');
-  t.is(noStringNorSub`bar`, 'BAR');
-  t.is(noStringNorEnd`foo ${'bar'}`, 'foo rab');
+  expect(noMethods`foo`).toBe('foo');
+  expect(noSubNorEnd`foo ${'bar'} baz`).toBe('FOO bar BAZ');
+  expect(noStringNorSub`bar`).toBe('BAR');
+  expect(noStringNorEnd`foo ${'bar'}`).toBe('foo rab');
 });
 
-test('performs a transformation & provides correct values to transform methods', t => {
+test('performs a transformation & provides correct values to transform methods', () => {
   const tag = new TemplateTag({
     onString(str) {
       this.ctx = this.ctx || { strings: [], subs: [] };
@@ -49,7 +48,7 @@ test('performs a transformation & provides correct values to transform methods',
     },
   });
   const data = tag`foo ${'bar'} baz ${'fizz'}`;
-  t.deepEqual(data, {
+  expect(data).toEqual({
     endResult: 'FOO BAR BAZ FIZZ',
     strings: ['foo ', ' baz ', ''],
     subs: [
@@ -65,17 +64,17 @@ test('performs a transformation & provides correct values to transform methods',
   });
 });
 
-test('automatically initiates a transformer if passed as a function', t => {
+test('automatically initiates a transformer if passed as a function', () => {
   const plugin = () => ({
     onEndResult(endResult) {
       return endResult.toUpperCase();
     },
   });
   const tag = new TemplateTag(plugin);
-  t.is(tag`foo bar`, 'FOO BAR');
+  expect(tag`foo bar`).toBe('FOO BAR');
 });
 
-test('supports pipeline of transformers as both argument list and as array', t => {
+test('supports pipeline of transformers as both argument list and as array', () => {
   const transform1 = {
     onSubstitution(substitution) {
       return substitution.replace('foo', 'doge');
@@ -88,11 +87,11 @@ test('supports pipeline of transformers as both argument list and as array', t =
   };
   const argumentListTag = new TemplateTag(transform1, transform2);
   const arrayTag = new TemplateTag([transform1, transform2]);
-  t.is(argumentListTag`wow ${'foo'}`, 'WOW DOGE');
-  t.is(arrayTag`bow ${'foo'}`, 'BOW DOGE');
+  expect(argumentListTag`wow ${'foo'}`).toBe('WOW DOGE');
+  expect(arrayTag`bow ${'foo'}`).toBe('BOW DOGE');
 });
 
-test('supports tail processing of another tag if first argument to tag is a tag', t => {
+test('supports tail processing of another tag if first argument to tag is a tag', () => {
   const tag = new TemplateTag({
     onEndResult(endResult) {
       return endResult.toUpperCase().trim();
@@ -102,10 +101,10 @@ test('supports tail processing of another tag if first argument to tag is a tag'
     foo bar
     ${500}
   `;
-  t.is(raw, 'FOO BAR\n    500');
+  expect(raw).toBe('FOO BAR\n    500');
 });
 
-test('supports passing string as a first argument', t => {
+test('supports passing string as a first argument', () => {
   let onSubstitutionCalls = 0;
   const tag = new TemplateTag({
     onSubstitution() {
@@ -119,6 +118,6 @@ test('supports passing string as a first argument', t => {
     foo bar
     ${500}
   `);
-  t.is(raw, 'FOO BAR\n    500');
-  t.is(onSubstitutionCalls, 0, "The `onSubstitution` hook shouldn't be called");
+  expect(raw).toBe('FOO BAR\n    500');
+  expect(onSubstitutionCalls).toBe(0);
 });

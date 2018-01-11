@@ -1,6 +1,3 @@
-'use strict';
-
-const isCjsEnv = process.env.BABEL_ENV === 'cjs';
 const isEsEnv = process.env.BABEL_ENV === 'es';
 
 module.exports = {
@@ -16,7 +13,7 @@ module.exports = {
   ],
 
   plugins: [
-    ...(isCjsEnv ? ['add-module-exports'] : []),
+    ...(isEsEnv ? [] : ['add-module-exports']),
     'transform-class-properties',
     'transform-export-extensions',
     'transform-runtime',
