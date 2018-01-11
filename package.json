@@ -83,7 +83,7 @@
   "scripts": {
     "clear": "rimraf lib && rimraf es",
     "build": "npm run clear && npm run build:cjs && npm run build:es",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src -d lib --ignore *.test.js",
+    "build:cjs": "babel src -d lib --ignore *.test.js",
     "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
     "codecov": "codecov",
     "doctoc": "doctoc readme.md --title \"\n## Table of Contents\"",
@@ -92,6 +92,6 @@
     "prerelease": "npm run build",
     "preversion": "npm run doctoc  && npm test",
     "release": "npm publish",
-    "test": "npm run lint && cross-env BABEL_ENV=cjs jest"
+    "test": "npm run lint && jest"
   }
 }
