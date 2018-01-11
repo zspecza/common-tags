@@ -21,4 +21,13 @@ module.exports = {
     'transform-export-extensions',
     'transform-runtime',
   ],
+
+  env: {
+    development: {
+      plugins: ['transform-es2015-modules-commonjs'],
+    },
+    test: {
+      plugins: ['transform-es2015-modules-commonjs'],
+    },
+  },
 };
