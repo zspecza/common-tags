@@ -5,4 +5,7 @@ module.exports = {
   collectCoverage: true,
   bail: true,
   coverageDirectory: './coverage/',
+  transform: {
+    '^.+\\.js$': 'babel-jest',
+  },
 };
