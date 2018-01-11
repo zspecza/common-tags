@@ -1,5 +1,3 @@
-'use strict';
-
 const isCjsEnv = process.env.BABEL_ENV === 'cjs';
 const isEsEnv = process.env.BABEL_ENV === 'es';
 

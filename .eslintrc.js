@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   root: true,
   extends: ['plugin:prettier/recommended'],
