@@ -16,6 +16,7 @@ test_script:
   - node --version
   - npm --version
   - npm test
+after_test:
   - npm run codecov
 cache:
   - '%APPDATA%\npm-cache'
