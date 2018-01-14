@@ -1,25 +1,21 @@
-version: "{build}"
 environment:
   matrix:
-    - nodejs_version: "6"
-    - nodejs_version: "5"
-platform:
-  - x86
-  - x64
+    - nodejs_version: 8
+    - nodejs_version: 6
 install:
-  - ps: Install-Product node $env:nodejs_version $env:platform
+  - ps: Install-Product node $env:nodejs_version
   - set CI=true
-  - npm install -g npm@latest || (timeout 30 && npm install -g npm@latest)
+  - npm install --global npm@latest
   - set PATH=%APPDATA%\npm;%PATH%
-  - npm install || (timeout 30 && npm install)
-test_script:
-  # Output useful info for debugging.
-  - node --version && npm --version
-  - cmd: npm test
-build: off
-shallow_clone: true
-clone_depth: 1
+  - npm install
 matrix:
   fast_finish: true
+build: off
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+after_test:
+  - npm run codecov
 cache:
-  - node_modules -> package.json # local npm modules
+  - '%APPDATA%\npm-cache'
