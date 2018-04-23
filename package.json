@@ -14,10 +14,8 @@
     "Lucian Buzzo (https://github.com/LucianBuzzo)",
     "Rafał Ruciński (https://github.com/fatfisz)"
   ],
-  "dependencies": {
-    "babel-runtime": "^6.26.0"
-  },
   "devDependencies": {
+    "babel-runtime": "^6.26.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-plugin-add-module-exports": "^0.2.1",
