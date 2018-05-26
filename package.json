@@ -14,16 +14,12 @@
     "Lucian Buzzo (https://github.com/LucianBuzzo)",
     "Rafał Ruciński (https://github.com/fatfisz)"
   ],
-  "dependencies": {
-    "babel-runtime": "^6.26.0"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "codecov": "^3.0.0",
