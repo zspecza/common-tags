@@ -77,7 +77,7 @@ export default class TemplateTag {
       substitutions.shift(),
       resultSoFar,
     );
-    return resultSoFar + substitution + remainingPart;
+    return ''.concat(resultSoFar, substitution, remainingPart);
   }
 
   /**
