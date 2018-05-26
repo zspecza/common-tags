@@ -121,3 +121,25 @@ test('supports passing string as a first argument', () => {
   expect(raw).toBe('FOO BAR\n    500');
   expect(onSubstitutionCalls).toBe(0);
 });
+
+test('transforms substitutions to string as per spec', () => {
+  const get = jest
+    .fn()
+    .mockImplementationOnce((target, prop) => {
+      expect(prop).toBe(Symbol.toPrimitive);
+    })
+    .mockImplementationOnce((target, prop) => {
+      expect(prop).toBe('toString');
+    })
+    .mockImplementationOnce((target, prop) => {
+      expect(prop).toBe('valueOf');
+      return () => 42;
+    });
+
+  const val = new Proxy({}, { get });
+  const tag = new TemplateTag();
+  const result = tag`foo ${val} bar`;
+
+  expect(get).toHaveBeenCalledTimes(3);
+  expect(result).toBe('foo 42 bar');
+});
