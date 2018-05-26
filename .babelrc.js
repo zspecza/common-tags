@@ -16,6 +16,5 @@ module.exports = {
     ...(isEsEnv ? [] : ['add-module-exports']),
     'transform-class-properties',
     'transform-export-extensions',
-    'transform-runtime',
   ],
 };
