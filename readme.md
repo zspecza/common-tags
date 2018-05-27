@@ -139,6 +139,16 @@ It might work with below versions of Node, but this is not a guarantee.
 npm install common-tags
 ```
 
+### With unpkg
+
+`common-tags` is also available at [unpkg](https://unpkg.com/common-tags). Just put this code in your HTML:
+
+```html
+<script src="https://unpkg.com/common-tags"></script>
+```
+
+This will make the library available under a global variable `commonTags`.
+
 ## Usage
 
 ### Imports
