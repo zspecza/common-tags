@@ -93,7 +93,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src -d es --ignore *.test.js",
     "build:unpkg": "cross-env BABEL_ENV=es rollup --config",
     "codecov": "codecov",
-    "doctoc": "doctoc readme.md --title \"\n## Table of Contents\"",
+    "doctoc": "doctoc readme.md --title \"## Table of Contents\"",
     "lint": "eslint .*rc.js src/**/*.js --ignore-pattern '!.*rc.js'",
     "lint:fix": "eslint --fix .*rc.js src/**/*.js --ignore-pattern '!.*rc.js'",
     "prerelease": "npm run build",
