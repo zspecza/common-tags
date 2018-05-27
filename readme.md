@@ -38,6 +38,7 @@ html`
 - [Installation](#installation)
   - [Requirements](#requirements)
   - [Instructions](#instructions)
+  - [With unpkg](#with-unpkg)
 - [Usage](#usage)
   - [Imports](#imports)
   - [Available Tags](#available-tags)
