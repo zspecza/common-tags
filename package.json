@@ -77,6 +77,7 @@
   "jsnext:main": "es",
   "module": "es",
   "unpkg": "dist/common-tags.min.js",
+  "files": ["dist", "es", "lib"],
   "repository": {
     "type": "git",
     "url": "https://github.com/declandewet/common-tags"
