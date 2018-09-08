@@ -62,7 +62,7 @@ html`
   - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
   - [Type Definitions](#type-definitions)
   - [Make Your Own Template Tag](#make-your-own-template-tag)
-    - [Where it all starts: createTag](#where-it-all-starts-createtag)
+    - [Where It All Starts: createTag](#where-it-all-starts-createtag)
     - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
     - [Plugin Transformers](#plugin-transformers)
     - [Plugin Pipeline](#plugin-pipeline)
