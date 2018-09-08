@@ -5,8 +5,8 @@ import trimResultTransformer from '../trimResultTransformer';
 
 const commaListsAnd = new TemplateTag(
   inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
-  stripIndentTransformer,
-  trimResultTransformer,
+  stripIndentTransformer(),
+  trimResultTransformer(),
 );
 
 export default commaListsAnd;

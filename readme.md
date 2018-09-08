@@ -536,8 +536,6 @@ replaceFizzWithBuzz`foo bar ${"fizz"}`
 // "foo bar buzz"
 ```
 
-> **note** - if you call `new TemplateTag(substitutionReplacer)`, `substitutionReplacer` will automatically be initiated with no arguments.
-
 #### Plugin Pipeline
 
 You can pass a list of transformers, and `TemplateTag` will call them on your tag in the order they are specified:

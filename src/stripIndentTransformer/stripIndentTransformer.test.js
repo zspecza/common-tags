@@ -5,8 +5,8 @@ import { readFromFixture } from '../utils';
 
 test('default behaviour removes the leading indent, but preserves the rest', async () => {
   const stripIndent = new TemplateTag(
-    stripIndentTransformer,
-    trimResultTransformer,
+    stripIndentTransformer(),
+    trimResultTransformer(),
   );
   const expected = await readFromFixture(__dirname, 'stripIndent');
   const actual = stripIndent`
@@ -20,8 +20,8 @@ test('default behaviour removes the leading indent, but preserves the rest', asy
 
 test('type "initial" does not remove indents if there is no need to do so', () => {
   const stripIndent = new TemplateTag(
-    stripIndentTransformer,
-    trimResultTransformer,
+    stripIndentTransformer(),
+    trimResultTransformer(),
   );
   expect(stripIndent``).toBe('');
   expect(stripIndent`foo`).toBe('foo');
@@ -31,7 +31,7 @@ test('type "initial" does not remove indents if there is no need to do so', () =
 test('removes all indents if type is "all"', async () => {
   const stripIndents = new TemplateTag(
     stripIndentTransformer('all'),
-    trimResultTransformer,
+    trimResultTransformer(),
   );
   const expected = await readFromFixture(__dirname, 'stripIndents');
   const actual = stripIndents`

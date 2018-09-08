@@ -4,9 +4,9 @@ import trimResultTransformer from '../trimResultTransformer';
 import replaceResultTransformer from '../replaceResultTransformer';
 
 const oneLineInlineLists = new TemplateTag(
-  inlineArrayTransformer,
+  inlineArrayTransformer(),
   replaceResultTransformer(/(?:\s+)/g, ' '),
-  trimResultTransformer,
+  trimResultTransformer(),
 );
 
 export default oneLineInlineLists;

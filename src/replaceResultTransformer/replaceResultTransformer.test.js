@@ -5,7 +5,7 @@ import trimResultTransformer from '../trimResultTransformer';
 test('replaces sequential whitespace with a single space', () => {
   const oneLine = new TemplateTag(
     replaceResultTransformer(/(?:\s+)/g, ' '),
-    trimResultTransformer,
+    trimResultTransformer(),
   );
   const expected = 'foo bar baz';
   const actual = oneLine`
@@ -19,7 +19,7 @@ test('replaces sequential whitespace with a single space', () => {
 test('can be set so sequence requires a newline at the beginning before triggering replacement', () => {
   const oneLineTrim = new TemplateTag(
     replaceResultTransformer(/(?:\n\s+)/g, ''),
-    trimResultTransformer,
+    trimResultTransformer(),
   );
   const expected = 'https://google.com?utm_source=common-tags';
   const actual = oneLineTrim`
@@ -31,6 +31,6 @@ test('can be set so sequence requires a newline at the beginning before triggeri
 });
 
 test('throws error if no arguments are supplied', () => {
-  const tag = new TemplateTag(replaceResultTransformer);
+  const tag = new TemplateTag(replaceResultTransformer());
   expect(() => tag`foo`).toThrow();
 });

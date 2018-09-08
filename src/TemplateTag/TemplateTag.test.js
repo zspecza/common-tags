@@ -64,14 +64,17 @@ test('performs a transformation & provides correct values to transform methods',
   });
 });
 
-test('automatically initiates a transformer if passed as a function', () => {
+test("doesn't handle function arguments specially", () => {
   const plugin = () => ({
     onEndResult(endResult) {
       return endResult.toUpperCase();
     },
   });
-  const tag = new TemplateTag(plugin);
-  expect(tag`foo bar`).toBe('FOO BAR');
+  const invalidTag = new TemplateTag(plugin);
+  expect(invalidTag`foo bar`).toBe('foo bar');
+
+  const properTag = new TemplateTag(plugin());
+  expect(properTag`foo bar`).toBe('FOO BAR');
 });
 
 test('supports pipeline of transformers as both argument list and as array', () => {

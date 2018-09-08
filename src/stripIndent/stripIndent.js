@@ -3,8 +3,8 @@ import stripIndentTransformer from '../stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
 const stripIndent = new TemplateTag(
-  stripIndentTransformer,
-  trimResultTransformer,
+  stripIndentTransformer(),
+  trimResultTransformer(),
 );
 
 export default stripIndent;

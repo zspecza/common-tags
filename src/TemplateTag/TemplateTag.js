@@ -1,3 +1,5 @@
+import { flat } from '../utils';
+
 /**
  * @class TemplateTag
  * @classdesc Consumes a pipeline of composable transformer plugins and produces a template tag.
@@ -10,15 +12,7 @@ export default class TemplateTag {
    * @return {Function}                    - a template tag
    */
   constructor(...transformers) {
-    // if first argument is an array, extrude it as a list of transformers
-    if (transformers.length > 0 && Array.isArray(transformers[0])) {
-      transformers = transformers[0];
-    }
-
-    // if any transformers are functions, this means they are not initiated - automatically initiate them
-    this.transformers = transformers.map(transformer => {
-      return typeof transformer === 'function' ? transformer() : transformer;
-    });
+    this.transformers = flat(transformers);
 
     // return an ES2015 template tag
     return this.tag;

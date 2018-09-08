@@ -3,7 +3,7 @@ import stripIndentTransformer from '../stripIndentTransformer';
 import trimResultTransformer from './trimResultTransformer';
 
 test('trims outer padding', () => {
-  const trim = new TemplateTag(trimResultTransformer);
+  const trim = new TemplateTag(trimResultTransformer());
   expect(trim`  foo  `).toBe('foo');
 });
 
@@ -34,7 +34,7 @@ test('throws an error if invalid side supplied', () => {
 
 test('can be used sequentially', () => {
   const trimStart = new TemplateTag(
-    stripIndentTransformer,
+    stripIndentTransformer(),
     trimResultTransformer('start'),
   );
   expect(trimStart`  foo  `).toBe('foo  ');

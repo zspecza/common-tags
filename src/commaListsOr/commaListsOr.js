@@ -5,8 +5,8 @@ import trimResultTransformer from '../trimResultTransformer';
 
 const commaListsOr = new TemplateTag(
   inlineArrayTransformer({ separator: ',', conjunction: 'or' }),
-  stripIndentTransformer,
-  trimResultTransformer,
+  stripIndentTransformer(),
+  trimResultTransformer(),
 );
 
 export default commaListsOr;

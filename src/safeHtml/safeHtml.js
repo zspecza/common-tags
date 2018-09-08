@@ -7,9 +7,9 @@ import replaceSubstitutionTransformer from '../replaceSubstitutionTransformer';
 
 const safeHtml = new TemplateTag(
   splitStringTransformer('\n'),
-  inlineArrayTransformer,
-  stripIndentTransformer,
-  trimResultTransformer,
+  inlineArrayTransformer(),
+  stripIndentTransformer(),
+  trimResultTransformer(),
   replaceSubstitutionTransformer(/&/g, '&amp;'),
   replaceSubstitutionTransformer(/</g, '&lt;'),
   replaceSubstitutionTransformer(/>/g, '&gt;'),

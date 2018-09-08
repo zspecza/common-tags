@@ -6,7 +6,7 @@ import replaceResultTransformer from '../replaceResultTransformer';
 const oneLineCommaListsAnd = new TemplateTag(
   inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
   replaceResultTransformer(/(?:\s+)/g, ' '),
-  trimResultTransformer,
+  trimResultTransformer(),
 );
 
 export default oneLineCommaListsAnd;

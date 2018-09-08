@@ -4,7 +4,7 @@ import trimResultTransformer from '../trimResultTransformer';
 
 const stripIndents = new TemplateTag(
   stripIndentTransformer('all'),
-  trimResultTransformer,
+  trimResultTransformer(),
 );
 
 export default stripIndents;

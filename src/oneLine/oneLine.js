@@ -4,7 +4,7 @@ import replaceResultTransformer from '../replaceResultTransformer';
 
 const oneLine = new TemplateTag(
   replaceResultTransformer(/(?:\n(?:\s*))+/g, ' '),
-  trimResultTransformer,
+  trimResultTransformer(),
 );
 
 export default oneLine;

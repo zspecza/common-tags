@@ -4,9 +4,9 @@ import inlineArrayTransformer from '../inlineArrayTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
 const inlineLists = new TemplateTag(
-  inlineArrayTransformer,
-  stripIndentTransformer,
-  trimResultTransformer,
+  inlineArrayTransformer(),
+  stripIndentTransformer(),
+  trimResultTransformer(),
 );
 
 export default inlineLists;

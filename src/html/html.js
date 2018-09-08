@@ -7,10 +7,10 @@ import removeNonPrintingValuesTransformer from '../removeNonPrintingValuesTransf
 
 const html = new TemplateTag(
   splitStringTransformer('\n'),
-  removeNonPrintingValuesTransformer,
-  inlineArrayTransformer,
-  stripIndentTransformer,
-  trimResultTransformer,
+  removeNonPrintingValuesTransformer(),
+  inlineArrayTransformer(),
+  stripIndentTransformer(),
+  trimResultTransformer(),
 );
 
 export default html;
