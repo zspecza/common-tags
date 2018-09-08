@@ -1,23 +1,23 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 
 test('does no processing by default', () => {
-  const tag = new TemplateTag();
+  const tag = createTag();
   expect(tag`foo`).toBe('foo');
 });
 
 test('transformer methods are optional', () => {
-  const noMethods = new TemplateTag({});
-  const noSubNorEnd = new TemplateTag({
+  const noMethods = createTag({});
+  const noSubNorEnd = createTag({
     onString(str) {
       return str.toUpperCase();
     },
   });
-  const noStringNorSub = new TemplateTag({
+  const noStringNorSub = createTag({
     onEndResult(endResult) {
       return endResult.toUpperCase();
     },
   });
-  const noStringNorEnd = new TemplateTag({
+  const noStringNorEnd = createTag({
     onSubstitution(sub) {
       return sub
         .split('')
@@ -32,7 +32,7 @@ test('transformer methods are optional', () => {
 });
 
 test('performs a transformation & provides correct values to transform methods', () => {
-  const tag = new TemplateTag({
+  const tag = createTag({
     onString(str) {
       this.ctx = this.ctx || { strings: [], subs: [] };
       this.ctx.strings.push(str);
@@ -70,10 +70,10 @@ test("doesn't handle function arguments specially", () => {
       return endResult.toUpperCase();
     },
   });
-  const invalidTag = new TemplateTag(plugin);
+  const invalidTag = createTag(plugin);
   expect(invalidTag`foo bar`).toBe('foo bar');
 
-  const properTag = new TemplateTag(plugin());
+  const properTag = createTag(plugin());
   expect(properTag`foo bar`).toBe('FOO BAR');
 });
 
@@ -88,14 +88,14 @@ test('supports pipeline of transformers as both argument list and as array', () 
       return endResult.toUpperCase();
     },
   };
-  const argumentListTag = new TemplateTag(transform1, transform2);
-  const arrayTag = new TemplateTag([transform1, transform2]);
+  const argumentListTag = createTag(transform1, transform2);
+  const arrayTag = createTag([transform1, transform2]);
   expect(argumentListTag`wow ${'foo'}`).toBe('WOW DOGE');
   expect(arrayTag`bow ${'foo'}`).toBe('BOW DOGE');
 });
 
 test('supports tail processing of another tag if first argument to tag is a tag', () => {
-  const tag = new TemplateTag({
+  const tag = createTag({
     onEndResult(endResult) {
       return endResult.toUpperCase().trim();
     },
@@ -109,7 +109,7 @@ test('supports tail processing of another tag if first argument to tag is a tag'
 
 test('supports passing string as a first argument', () => {
   let onSubstitutionCalls = 0;
-  const tag = new TemplateTag({
+  const tag = createTag({
     onSubstitution() {
       onSubstitutionCalls += 1;
     },
@@ -140,7 +140,7 @@ test('transforms substitutions to string as per spec', () => {
     });
 
   const val = new Proxy({}, { get });
-  const tag = new TemplateTag();
+  const tag = createTag();
   const result = tag`foo ${val} bar`;
 
   expect(get).toHaveBeenCalledTimes(3);

@@ -61,7 +61,7 @@ html`
   - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
   - [Type Definitions](#type-definitions)
   - [Make Your Own Template Tag](#make-your-own-template-tag)
-    - [Class is in Session: TemplateTag](#class-is-in-session-templatetag)
+    - [Where it all starts: createTag](#where-it-all-starts-createtag)
     - [The Anatomy of a Transformer](#the-anatomy-of-a-transformer)
     - [Plugin Transformers](#plugin-transformers)
     - [Plugin Pipeline](#plugin-pipeline)
@@ -477,16 +477,16 @@ Please note that these type definitions are not officially maintained by the aut
 
 `common-tags` exposes an interface that allows you to painlessly create your own template tags.
 
-#### Class is in Session: TemplateTag
+#### Where It All Starts: createTag
 
-`common-tags` exports a `TemplateTag` class. This class is the foundation of `common-tags`. The concept of the class works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a string (`onString`) or a substitution (`onSubstitution`). Any tag produced by this class supports [tail processing](#tail-processing).
+`common-tags` exports a `createTag` function. This function is the foundation of `common-tags`. The concept of the function works on the premise that transformations occur on a template either when the template is finished being processed (`onEndResult`), or when the tag encounters a string (`onString`) or a substitution (`onSubstitution`). Any tag produced by this function supports [tail processing](#tail-processing).
 
 The easiest tag to create is a tag that does nothing:
 
 ```js
-import {TemplateTag} from 'common-tags'
+import {createTag} from 'common-tags'
 
-const doNothing = new TemplateTag()
+const doNothing = createTag()
 
 doNothing`foo bar`
 // 'foo bar'
@@ -494,7 +494,7 @@ doNothing`foo bar`
 
 #### The Anatomy of a Transformer
 
-`TemplateTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `onString`, `onSubstitution` and `onEndResult` - it looks like this:
+`createTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `onString`, `onSubstitution` and `onEndResult` - it looks like this:
 
 ```js
 {
@@ -530,7 +530,7 @@ const substitutionReplacer = (oldValue, newValue) => ({
   }
 })
 
-const replaceFizzWithBuzz = new TemplateTag(substitutionReplacer('fizz', 'buzz'))
+const replaceFizzWithBuzz = createTag(substitutionReplacer('fizz', 'buzz'))
 
 replaceFizzWithBuzz`foo bar ${"fizz"}`
 // "foo bar buzz"
@@ -538,11 +538,11 @@ replaceFizzWithBuzz`foo bar ${"fizz"}`
 
 #### Plugin Pipeline
 
-You can pass a list of transformers, and `TemplateTag` will call them on your tag in the order they are specified:
+You can pass a list of transformers, and `createTag` will call them on your tag in the order they are specified:
 
 ```js
 // note: passing these as an array also works
-const replace = new TemplateTag(
+const replace = createTag(
   substitutionReplacer('fizz', 'buzz'),
   substitutionReplacer('foo', 'bar')
 )
@@ -551,7 +551,7 @@ replace`${"foo"} ${"fizz"}`
 // "bar buzz"
 ```
 
-When multiple transformers are passed to `TemplateTag`, they will be iterated three times - first, all transformer `onString` methods will be called. Once they are done processing, `onSubstitution` methods will be called. Finally, all transformer `onEndResult` methods will be called.
+When multiple transformers are passed to `createTag`, they will be iterated three times - first, all transformer `onString` methods will be called. Once they are done processing, `onSubstitution` methods will be called. Finally, all transformer `onEndResult` methods will be called.
 
 #### Returning Other Values from a Transformer
 
@@ -586,7 +586,7 @@ const log = {
   }
 }
 
-const process = new TemplateTag([listSubs, toJSON, log])
+const process = createTag([listSubs, toJSON, log])
 
 process`
   foo ${'bar'}
@@ -613,7 +613,7 @@ process`
 
 #### List of Built-in Transformers
 
-Since `common-tags` is built on the foundation of this TemplateTag class, it comes with its own set of built-in transformers:
+Since `common-tags` is built on the foundation of this createTag function, it comes with its own set of built-in transformers:
 
 ##### `trimResultTransformer([side])`
 

@@ -1,9 +1,9 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import inlineArrayTransformer from '../inlineArrayTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 import replaceResultTransformer from '../replaceResultTransformer';
 
-const oneLineCommaListsAnd = new TemplateTag(
+const oneLineCommaListsAnd = createTag(
   inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
   replaceResultTransformer(/(?:\s+)/g, ' '),
   trimResultTransformer(),

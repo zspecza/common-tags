@@ -1,39 +1,39 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import stripIndentTransformer from '../stripIndentTransformer';
 import trimResultTransformer from './trimResultTransformer';
 
 test('trims outer padding', () => {
-  const trim = new TemplateTag(trimResultTransformer());
+  const trim = createTag(trimResultTransformer());
   expect(trim`  foo  `).toBe('foo');
 });
 
 test('trims start padding', () => {
-  const trimStart = new TemplateTag(trimResultTransformer('start'));
+  const trimStart = createTag(trimResultTransformer('start'));
   expect(trimStart`  foo  `).toBe('foo  ');
 });
 
 test('trims left padding', () => {
-  const trimLeft = new TemplateTag(trimResultTransformer('left'));
+  const trimLeft = createTag(trimResultTransformer('left'));
   expect(trimLeft`  foo  `).toBe('foo  ');
 });
 
 test('trims end padding', () => {
-  const trimEnd = new TemplateTag(trimResultTransformer('end'));
+  const trimEnd = createTag(trimResultTransformer('end'));
   expect(trimEnd`  foo  `).toBe('  foo');
 });
 
 test('trims right padding', () => {
-  const trimRight = new TemplateTag(trimResultTransformer('right'));
+  const trimRight = createTag(trimResultTransformer('right'));
   expect(trimRight`  foo  `).toBe('  foo');
 });
 
 test('throws an error if invalid side supplied', () => {
-  const trimUp = new TemplateTag(trimResultTransformer('up'));
+  const trimUp = createTag(trimResultTransformer('up'));
   expect(() => trimUp`foo`).toThrow();
 });
 
 test('can be used sequentially', () => {
-  const trimStart = new TemplateTag(
+  const trimStart = createTag(
     stripIndentTransformer(),
     trimResultTransformer('start'),
   );

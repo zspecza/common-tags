@@ -1,10 +1,10 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import stripIndentTransformer from './stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 import { readFromFixture } from '../utils';
 
 test('default behaviour removes the leading indent, but preserves the rest', async () => {
-  const stripIndent = new TemplateTag(
+  const stripIndent = createTag(
     stripIndentTransformer(),
     trimResultTransformer(),
   );
@@ -19,7 +19,7 @@ test('default behaviour removes the leading indent, but preserves the rest', asy
 });
 
 test('type "initial" does not remove indents if there is no need to do so', () => {
-  const stripIndent = new TemplateTag(
+  const stripIndent = createTag(
     stripIndentTransformer(),
     trimResultTransformer(),
   );
@@ -29,7 +29,7 @@ test('type "initial" does not remove indents if there is no need to do so', () =
 });
 
 test('removes all indents if type is "all"', async () => {
-  const stripIndents = new TemplateTag(
+  const stripIndents = createTag(
     stripIndentTransformer('all'),
     trimResultTransformer(),
   );
@@ -44,6 +44,6 @@ test('removes all indents if type is "all"', async () => {
 });
 
 test('throws an error if encounters invalid type', () => {
-  const stripBlueIndents = new TemplateTag(stripIndentTransformer('blue'));
+  const stripBlueIndents = createTag(stripIndentTransformer('blue'));
   expect(() => stripBlueIndents`foo`).toThrow();
 });

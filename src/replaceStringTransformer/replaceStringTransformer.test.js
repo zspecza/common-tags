@@ -1,8 +1,8 @@
 import replaceStringTransformer from './replaceStringTransformer';
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 
 test('only operates on strings', () => {
-  const tag = new TemplateTag(
+  const tag = createTag(
     replaceStringTransformer(/</g, '&lt;'),
     replaceStringTransformer(/>/g, '&gt;'),
   );
@@ -12,6 +12,6 @@ test('only operates on strings', () => {
 });
 
 test('throws error if no arguments are supplied when used', () => {
-  const tag = new TemplateTag(replaceStringTransformer());
+  const tag = createTag(replaceStringTransformer());
   expect(() => tag`${'foo'}`).toThrow();
 });

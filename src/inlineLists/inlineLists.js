@@ -1,9 +1,9 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import stripIndentTransformer from '../stripIndentTransformer';
 import inlineArrayTransformer from '../inlineArrayTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
-const inlineLists = new TemplateTag(
+const inlineLists = createTag(
   inlineArrayTransformer(),
   stripIndentTransformer(),
   trimResultTransformer(),

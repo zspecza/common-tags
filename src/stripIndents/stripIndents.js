@@ -1,8 +1,8 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import stripIndentTransformer from '../stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 
-const stripIndents = new TemplateTag(
+const stripIndents = createTag(
   stripIndentTransformer('all'),
   trimResultTransformer(),
 );

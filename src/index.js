@@ -1,5 +1,5 @@
 // core
-export TemplateTag from './TemplateTag';
+export createTag from './createTag';
 
 // transformers
 export trimResultTransformer from './trimResultTransformer';
@@ -28,3 +28,6 @@ export inlineLists from './inlineLists';
 export oneLineInlineLists from './oneLineInlineLists';
 export stripIndent from './stripIndent';
 export stripIndents from './stripIndents';
+
+// deprecated
+export TemplateTag from './TemplateTag';

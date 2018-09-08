@@ -1,11 +1,11 @@
-import TemplateTag from '../TemplateTag';
+import createTag from '../createTag';
 import stripIndentTransformer from '../stripIndentTransformer';
 import inlineArrayTransformer from '../inlineArrayTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 import splitStringTransformer from '../splitStringTransformer';
 import replaceSubstitutionTransformer from '../replaceSubstitutionTransformer';
 
-const safeHtml = new TemplateTag(
+const safeHtml = createTag(
   splitStringTransformer('\n'),
   inlineArrayTransformer(),
   stripIndentTransformer(),
