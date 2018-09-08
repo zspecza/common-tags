@@ -46,28 +46,31 @@ export default function createTag(...rawTransformers) {
       return getInterimTag(tag, strings);
     }
 
-    if (typeof strings === 'string') {
-      // if the first argument passed is a string, just transform it
-      return applyTransformersHook(transformers, 'onEndResult', strings);
+    if (Array.isArray(strings)) {
+      // if the first argument is an array, return a transformed end result of processing the template with our tag
+      const processedTemplate = strings
+        .map(string => applyTransformersHook(transformers, 'onString', string))
+        .reduce((result, string, index) =>
+          ''.concat(
+            result,
+            applyTransformersHook(
+              transformers,
+              'onSubstitution',
+              expressions[index - 1],
+              result,
+            ),
+            string,
+          ),
+        );
+
+      return applyTransformersHook(
+        transformers,
+        'onEndResult',
+        processedTemplate,
+      );
     }
 
-    // else, return a transformed end result of processing the template with our tag
-    const processedTemplate = strings
-      .map(string => applyTransformersHook(transformers, 'onString', string))
-      .reduce((result, string) => {
-        const substitution = applyTransformersHook(
-          transformers,
-          'onSubstitution',
-          expressions.shift(),
-          result,
-        );
-        return ''.concat(result, substitution, string);
-      });
-
-    return applyTransformersHook(
-      transformers,
-      'onEndResult',
-      processedTemplate,
-    );
+    // else just transform the argument
+    return applyTransformersHook(transformers, 'onEndResult', strings);
   };
 }

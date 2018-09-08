@@ -127,22 +127,39 @@ test('has the correct order when tail processing', () => {
   expect(raw).toBe('FOO BAR\n    500');
 });
 
-test('supports passing string as a first argument', () => {
-  let onSubstitutionCalls = 0;
-  const tag = createTag({
-    onSubstitution() {
-      onSubstitutionCalls += 1;
-    },
-    onEndResult(endResult) {
-      return endResult.toUpperCase().trim();
-    },
+describe('supports using the tag as a plain function', () => {
+  test('with a string', () => {
+    let onSubstitutionCalls = 0;
+    const tag = createTag({
+      onSubstitution() {
+        onSubstitutionCalls += 1;
+      },
+      onEndResult(endResult) {
+        return endResult.toUpperCase().trim();
+      },
+    });
+    const raw = tag(`
+      foo bar
+      ${500}
+    `);
+    expect(raw).toBe('FOO BAR\n      500');
+    expect(onSubstitutionCalls).toBe(0);
   });
-  const raw = tag(`
-    foo bar
-    ${500}
-  `);
-  expect(raw).toBe('FOO BAR\n    500');
-  expect(onSubstitutionCalls).toBe(0);
+
+  test('with a number', () => {
+    let onSubstitutionCalls = 0;
+    const tag = createTag({
+      onSubstitution() {
+        onSubstitutionCalls += 1;
+      },
+      onEndResult(endResult) {
+        return String(endResult);
+      },
+    });
+    const raw = tag(42);
+    expect(raw).toBe('42');
+    expect(onSubstitutionCalls).toBe(0);
+  });
 });
 
 test('transforms substitutions to string as per spec', () => {
