@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import mm from 'micromatch';
 
-const observe = ['*', '!utils', '!testUtils', '!index.js', '!index.test.js'];
+const observe = ['*', '!index.js', '!index.test.js'];
 
 const context = {};
 
@@ -14,7 +14,7 @@ function requireModule(module) {
   return require(path.join(__dirname, module));
 }
 
-test('common-tags exports all the right modules directly', async () => {
+test('test utils exports all the right modules directly', async () => {
   const modules = context.modules;
   expect.assertions(modules.length);
   modules.forEach(module => {
@@ -22,7 +22,7 @@ test('common-tags exports all the right modules directly', async () => {
   });
 });
 
-test('common-tags exports all the right modules as props', async () => {
+test('test utils exports all the right modules as props', async () => {
   const modules = context.modules;
   expect.assertions(modules.length);
   modules.forEach(module => {

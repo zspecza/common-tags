@@ -1,14 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import mm from 'micromatch';
-import node from 'when/node';
 
 const observe = ['*', '!index.js', '!index.test.js'];
 
 const context = {};
 
 beforeEach(async () => {
-  context.modules = mm(await node.call(fs.readdir, __dirname), observe);
+  context.modules = mm(fs.readdirSync(__dirname), observe);
 });
 
 function requireModule(module) {

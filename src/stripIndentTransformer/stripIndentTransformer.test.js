@@ -1,14 +1,14 @@
 import createTag from '../createTag';
 import stripIndentTransformer from './stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
-import { readFromFixture } from '../utils';
+import { readFromFixture } from '../testUtils';
 
 test('default behaviour removes the leading indent, but preserves the rest', async () => {
   const stripIndent = createTag(
     stripIndentTransformer(),
     trimResultTransformer(),
   );
-  const expected = await readFromFixture(__dirname, 'stripIndent');
+  const expected = readFromFixture(__dirname, 'stripIndent');
   const actual = stripIndent`
     foo bar baz
     bar baz foo
@@ -33,7 +33,7 @@ test('removes all indents if type is "all"', async () => {
     stripIndentTransformer('all'),
     trimResultTransformer(),
   );
-  const expected = await readFromFixture(__dirname, 'stripIndents');
+  const expected = readFromFixture(__dirname, 'stripIndents');
   const actual = stripIndents`
     foo bar baz
     bar baz foo

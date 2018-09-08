@@ -1,0 +1,1 @@
+export readFromFixture from './readFromFixture';

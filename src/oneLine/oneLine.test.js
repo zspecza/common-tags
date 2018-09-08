@@ -1,10 +1,10 @@
 import oneLine from './oneLine';
-import { readFromFixture } from '../utils';
+import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
 test('reduces text to one line, replacing newlines with spaces', async () => {
-  const expected = await readFromFixture(__dirname, 'oneLine');
+  const expected = readFromFixture(__dirname, 'oneLine');
   const actual = oneLine`
     wow such doge
     is very ${val}
@@ -15,7 +15,7 @@ test('reduces text to one line, replacing newlines with spaces', async () => {
 });
 
 test('reduces text to one line, replacing newlines with spaces (no indentation)', async () => {
-  const expected = await readFromFixture(__dirname, 'oneLine');
+  const expected = readFromFixture(__dirname, 'oneLine');
   const actual = oneLine`
 wow such doge
 is very ${val}
@@ -27,7 +27,7 @@ from multiline
 });
 
 test('preserves whitespace within input lines, replacing only newlines', async () => {
-  const expected = await readFromFixture(__dirname, 'oneLine-sentence');
+  const expected = readFromFixture(__dirname, 'oneLine-sentence');
   const actual = oneLine`
     Sentences also work.  Double
     spacing is preserved.

@@ -1,12 +1,12 @@
 import html from './html';
-import { readFromFixture } from '../utils';
+import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 const nil = null;
 
 test('renders HTML, including arrays', async () => {
   const fruits = ['apple', 'banana', 'kiwi'];
-  const expected = await readFromFixture(__dirname, 'html');
+  const expected = readFromFixture(__dirname, 'html');
   const actual = html`
     <h1>${val}${nil}</h1>
     <ul>
@@ -18,7 +18,7 @@ test('renders HTML, including arrays', async () => {
 
 test('converts strings containing newlines into proper indented output', async () => {
   const newlines = '<li>one</li>\n<li>two</li>';
-  const expected = await readFromFixture(__dirname, 'newline-conversion');
+  const expected = readFromFixture(__dirname, 'newline-conversion');
   const actual = html`
     <h1>${val}${nil}</h1>
     <ul>
@@ -31,7 +31,7 @@ test('converts strings containing newlines into proper indented output', async (
 
 test('does not introduce excess newlines', async () => {
   const newlines = '<li>one</li>\n<li>two</li>';
-  const expected = await readFromFixture(
+  const expected = readFromFixture(
     __dirname,
     'newline-conversion-after-newline',
   );

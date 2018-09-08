@@ -1,11 +1,11 @@
 import oneLineCommaListsAnd from './oneLineCommaListsAnd';
-import { readFromFixture } from '../utils';
+import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
 test('includes arrays as comma-separated list on one line with "and"', async () => {
   const fruits = ['apple', 'banana', 'kiwi'];
-  const expected = await readFromFixture(__dirname, 'oneLineCommaListsAnd');
+  const expected = readFromFixture(__dirname, 'oneLineCommaListsAnd');
   const actual = oneLineCommaListsAnd`
     Doge <3's these fruits: ${fruits}
     they are ${val}
@@ -15,10 +15,7 @@ test('includes arrays as comma-separated list on one line with "and"', async () 
 
 test('only returns the first item of a single element array', async () => {
   const fruits = ['apple'];
-  const expected = await readFromFixture(
-    __dirname,
-    'oneLineCommaListsAndSingleItem',
-  );
+  const expected = readFromFixture(__dirname, 'oneLineCommaListsAndSingleItem');
   const actual = oneLineCommaListsAnd`
     Doge <3's these fruits: ${fruits}
     they are ${val}

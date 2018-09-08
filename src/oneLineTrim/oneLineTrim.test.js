@@ -1,10 +1,10 @@
 import oneLineTrim from './oneLineTrim';
-import { readFromFixture } from '../utils';
+import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
 test('reduces to one line while trimming newlines', async () => {
-  const expected = await readFromFixture(__dirname, 'oneLineTrim');
+  const expected = readFromFixture(__dirname, 'oneLineTrim');
   const actual = oneLineTrim`
   wow such reduction
   very absence of space
@@ -14,7 +14,7 @@ test('reduces to one line while trimming newlines', async () => {
 });
 
 test('reduces to one line while trimming newlines (no indentation)', async () => {
-  const expected = await readFromFixture(__dirname, 'oneLineTrim');
+  const expected = readFromFixture(__dirname, 'oneLineTrim');
   const actual = oneLineTrim`
 wow such reduction
 very absence of space

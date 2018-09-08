@@ -36,8 +36,7 @@
     "rollup": "0.65.2",
     "rollup-plugin-babel": "4.0.3",
     "rollup-plugin-node-resolve": "3.4.0",
-    "rollup-plugin-uglify": "5.0.2",
-    "when": "3.7.8"
+    "rollup-plugin-uglify": "5.0.2"
   },
   "directories": {
     "lib": "lib"

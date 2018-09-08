@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import node from 'when/node';
 
 /**
  * reads the text contents of <name>.txt in the fixtures folder
@@ -9,7 +8,9 @@ import node from 'when/node';
  * @return {Promise<String>} - the retrieved fixture's file contents
  */
 export default function readFromFixture(dirname, name) {
-  return node
-    .call(fs.readFile, path.join(dirname, `fixtures/${name}.txt`), 'utf8')
-    .then(contents => contents.replace(/\r\n/g, '\n').trim());
+  const contents = fs.readFileSync(
+    path.join(dirname, `fixtures/${name}.txt`),
+    'utf8',
+  );
+  return contents.replace(/\r\n/g, '\n').trim();
 }
