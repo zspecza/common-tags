@@ -3,10 +3,10 @@ import { flat } from '../utils';
 /**
  * An intermediary template tag that receives a template tag and passes the result of calling the template with the received
  * template tag to our own template tag.
- * @param  {Function}        nextTag          - the received template tag
- * @param  {Array<String>}   template         - the template to process
+ * @param  {Function}        nextTag          - The received template tag
+ * @param  {Array<String>}   template         - The template to process
  * @param  {...*}            ...substitutions - `substitutions` is an array of all substitutions in the template
- * @return {*}                                - the final processed value
+ * @return {*}                                - The final processed value
  */
 function getInterimTag(originalTag, extraTag) {
   return function tag(...args) {
@@ -15,57 +15,28 @@ function getInterimTag(originalTag, extraTag) {
 }
 
 /**
- * Iterate through each transformer, applying the transformer's `onString` method to the template
- * strings before all substitutions are processed.
- * @param {String}  str - The input string
- * @return {String}     - The final results of processing each transformer
+ * Iterate through each transformer, calling the transformer's specified hook.
+ * @param {Array<Function>} transformers - The transformer functions
+ * @param {String} hookName              - The name of the hook
+ * @param {String} initialString         - The input string
+ * @param {...*} ...args                 - Additional arguments passed to the hook
+ * @return {String}                      - The final results of applying each transformer
  */
-function transformString(transformers, str) {
+function applyTransformersHook(transformers, hookName, initialString, ...args) {
   return transformers.reduce(
-    (result, transform) =>
-      transform.onString ? transform.onString(result) : result,
-    str,
-  );
-}
-
-/**
- * When a substitution is encountered, iterates through each transformer and applies the transformer's
- * `onSubstitution` method to the substitution.
- * @param  {*}      substitution - The current substitution
- * @param  {String} resultSoFar  - The result up to and excluding this substitution.
- * @return {*}                   - The final result of applying all substitution transformations.
- */
-function transformSubstitution(transformers, substitution, resultSoFar) {
-  return transformers.reduce(
-    (result, transform) =>
-      transform.onSubstitution
-        ? transform.onSubstitution(result, resultSoFar)
-        : result,
-    substitution,
-  );
-}
-
-/**
- * Iterates through each transformer, applying the transformer's `onEndResult` method to the
- * template literal after all substitutions have finished processing.
- * @param  {String} endResult - The processed template, just before it is returned from the tag
- * @return {String}           - The final results of processing each transformer
- */
-function transformEndResult(transformers, endResult) {
-  return transformers.reduce(
-    (result, transform) =>
-      transform.onEndResult ? transform.onEndResult(result) : result,
-    endResult,
+    (result, transformer) =>
+      transformer[hookName] ? transformer[hookName](result, ...args) : result,
+    initialString,
   );
 }
 
 /**
  * Consumes a pipeline of composable transformer plugins and produces a template tag.
- * @param  {...Object} [...transformers] - an array or arguments list of transformers
- * @return {Function}                    - a template tag
+ * @param  {...Object} [...rawTransformers] - An array or arguments list of transformers
+ * @return {Function}                       - A template tag
  */
-export default function createTag(...transformers) {
-  transformers = flat(transformers);
+export default function createTag(...rawTransformers) {
+  const transformers = flat(rawTransformers);
 
   return function tag(strings, ...expressions) {
     if (typeof strings === 'function') {
@@ -77,21 +48,26 @@ export default function createTag(...transformers) {
 
     if (typeof strings === 'string') {
       // if the first argument passed is a string, just transform it
-      return transformEndResult(transformers, strings);
+      return applyTransformersHook(transformers, 'onEndResult', strings);
     }
 
     // else, return a transformed end result of processing the template with our tag
-    strings = strings.map(string => transformString(transformers, string));
-    return transformEndResult(
-      transformers,
-      strings.reduce((result, string) => {
-        const substitution = transformSubstitution(
+    const processedTemplate = strings
+      .map(string => applyTransformersHook(transformers, 'onString', string))
+      .reduce((result, string) => {
+        const substitution = applyTransformersHook(
           transformers,
+          'onSubstitution',
           expressions.shift(),
           result,
         );
         return ''.concat(result, substitution, string);
-      }),
+      });
+
+    return applyTransformersHook(
+      transformers,
+      'onEndResult',
+      processedTemplate,
     );
   };
 }
