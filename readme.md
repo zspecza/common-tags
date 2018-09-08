@@ -494,22 +494,27 @@ doNothing`foo bar`
 
 #### The Anatomy of a Transformer
 
-`createTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `onString`, `onSubstitution` and `onEndResult` - it looks like this:
+`createTag` receives either an array or argument list of `transformers`. A `transformer` is just a plain object with three optional methods - `getInitialContext`, `onString`, `onSubstitution` and `onEndResult` - it looks like this:
 
 ```js
 {
-  onString (str) {
+  getInitialContext () {
+    // optional. Called before everything else.
+    // The result of this hook will be passed to other hooks as `context`.
+    // If omitted, `context` will be an empty object.
+  },
+  onString (str, context) {
     // optional. Called when the tag encounters a string.
     // (a string is whatever's not inside "${}" in your template literal)
     // `str` is the value of the current string
   },
-  onSubstitution (substitution, resultSoFar) {
+  onSubstitution (substitution, resultSoFar, context) {
     // optional. Called when the tag encounters a substitution.
     // (a substitution is whatever's inside "${}" in your template literal)
     // `substitution` is the value of the current substitution
     // `resultSoFar` is the end result up to the point of this substitution
   },
-  onEndResult (endResult) {
+  onEndResult (endResult, context) {
     // optional. Called when all substitutions have been parsed
     // `endResult` is the final value.
   }
@@ -555,21 +560,23 @@ When multiple transformers are passed to `createTag`, they will be iterated thre
 
 #### Returning Other Values from a Transformer
 
-This is super easy. Transformers are just objects, after all. They have full access to `this`:
+All transformers get an additional context argument. You can use it to calculate the value you need:
 
 ```js
 const listSubs = {
-  onString(str) {
-    this.ctx = this.ctx || { strings: [], subs: [] }
-    this.ctx.strings.push(str);
+  getInitialContext() {
+    return { strings: [], subs: [] }
+  },
+  onString(str, context) {
+    context.strings.push(str)
     return str
   },
-  onSubstitution(sub, res) {
-    this.ctx.subs.push({ sub, precededBy: res })
+  onSubstitution(sub, res, context) {
+    context.subs.push({ sub, precededBy: res })
     return sub
   },
-  onEndResult(res) {
-    return this.ctx
+  onEndResult(res, context) {
+    return context
   }
 }
 

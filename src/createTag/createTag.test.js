@@ -31,20 +31,22 @@ test('transformer methods are optional', () => {
   expect(noStringNorEnd`foo ${'bar'}`).toBe('foo rab');
 });
 
-test('performs a transformation & provides correct values to transform methods', () => {
+test('calls hooks with an additional context argument', () => {
   const tag = createTag({
-    onString(str) {
-      this.ctx = this.ctx || { strings: [], subs: [] };
-      this.ctx.strings.push(str);
+    getInitialContext() {
+      return { strings: [], subs: [] };
+    },
+    onString(str, context) {
+      context.strings.push(str);
       return str;
     },
-    onSubstitution(substitution, resultSoFar) {
-      this.ctx.subs.push({ substitution, resultSoFar });
+    onSubstitution(substitution, resultSoFar, context) {
+      context.subs.push({ substitution, resultSoFar });
       return substitution;
     },
-    onEndResult(endResult) {
-      this.ctx.endResult = endResult.toUpperCase();
-      return this.ctx;
+    onEndResult(endResult, context) {
+      context.endResult = endResult.toUpperCase();
+      return context;
     },
   });
   const data = tag`foo ${'bar'} baz ${'fizz'}`;
@@ -62,6 +64,88 @@ test('performs a transformation & provides correct values to transform methods',
       },
     ],
   });
+});
+
+test('each transformer has its own context', () => {
+  let defaultContext;
+  const transformerWithDefaultContext = {
+    onString(str, context) {
+      context.onStringCalled = true;
+    },
+    onSubstitution(substitution, resultSoFar, context) {
+      context.onSubstitutionCalled = true;
+    },
+    onEndResult(endResult, context) {
+      context.onEndResultCalled = true;
+      defaultContext = context;
+    },
+  };
+
+  const context1 = {};
+  const transformerWithContext1 = {
+    getInitialContext() {
+      return context1;
+    },
+    onString(str, context) {
+      context.onStringCalled = true;
+    },
+    onSubstitution(substitution, resultSoFar, context) {
+      context.onSubstitutionCalled = true;
+    },
+    onEndResult(endResult, context) {
+      context.onEndResultCalled = true;
+    },
+  };
+
+  const context2 = {};
+  const transformerWithContext2 = {
+    getInitialContext() {
+      return context2;
+    },
+    onString(str, context) {
+      context.onStringCalled = true;
+    },
+    onSubstitution(substitution, resultSoFar, context) {
+      context.onSubstitutionCalled = true;
+    },
+    onEndResult(endResult, context) {
+      context.onEndResultCalled = true;
+    },
+  };
+
+  const tag = createTag(
+    transformerWithDefaultContext,
+    transformerWithContext1,
+    transformerWithContext2,
+  );
+
+  tag`foo${42}`;
+
+  expect(defaultContext).toEqual({
+    onStringCalled: true,
+    onSubstitutionCalled: true,
+    onEndResultCalled: true,
+  });
+  expect(context1).toEqual({
+    onStringCalled: true,
+    onSubstitutionCalled: true,
+    onEndResultCalled: true,
+  });
+  expect(context2).toEqual({
+    onStringCalled: true,
+    onSubstitutionCalled: true,
+    onEndResultCalled: true,
+  });
+});
+
+test('calls the "init" hook each time the tag is called', () => {
+  const getInitialContext = jest.fn();
+  const tag = createTag({ getInitialContext });
+
+  tag`foo`;
+  tag`foo`;
+
+  expect(getInitialContext).toHaveBeenCalledTimes(2);
 });
 
 test("doesn't handle function arguments specially", () => {

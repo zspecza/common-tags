@@ -14,18 +14,47 @@ function getInterimTag(originalTag, extraTag) {
   };
 }
 
+function getTagCallInfo(transformers) {
+  return {
+    transformers,
+    context: transformers.map(
+      transformer =>
+        transformer.getInitialContext ? transformer.getInitialContext() : {},
+    ),
+  };
+}
+
 /**
  * Iterate through each transformer, calling the transformer's specified hook.
  * @param {Array<Function>} transformers - The transformer functions
  * @param {String} hookName              - The name of the hook
  * @param {String} initialString         - The input string
- * @param {...*} ...args                 - Additional arguments passed to the hook
  * @return {String}                      - The final results of applying each transformer
  */
-function applyTransformersHook(transformers, hookName, initialString, ...args) {
+function applyHook0({ transformers, context }, hookName, initialString) {
   return transformers.reduce(
-    (result, transformer) =>
-      transformer[hookName] ? transformer[hookName](result, ...args) : result,
+    (result, transformer, index) =>
+      transformer[hookName]
+        ? transformer[hookName](result, context[index])
+        : result,
+    initialString,
+  );
+}
+
+/**
+ * Iterate through each transformer, calling the transformer's specified hook.
+ * @param {Array<Function>} transformers - The transformer functions
+ * @param {String} hookName              - The name of the hook
+ * @param {String} initialString         - The input string
+ * @param {*} arg1                       - An additional argument passed to the hook
+ * @return {String}                      - The final results of applying each transformer
+ */
+function applyHook1({ transformers, context }, hookName, initialString, arg1) {
+  return transformers.reduce(
+    (result, transformer, index) =>
+      transformer[hookName]
+        ? transformer[hookName](result, arg1, context[index])
+        : result,
     initialString,
   );
 }
@@ -46,15 +75,17 @@ export default function createTag(...rawTransformers) {
       return getInterimTag(tag, strings);
     }
 
+    const tagCallInfo = getTagCallInfo(transformers);
+
     if (Array.isArray(strings)) {
       // if the first argument is an array, return a transformed end result of processing the template with our tag
       const processedTemplate = strings
-        .map(string => applyTransformersHook(transformers, 'onString', string))
+        .map(string => applyHook0(tagCallInfo, 'onString', string))
         .reduce((result, string, index) =>
           ''.concat(
             result,
-            applyTransformersHook(
-              transformers,
+            applyHook1(
+              tagCallInfo,
               'onSubstitution',
               expressions[index - 1],
               result,
@@ -63,14 +94,10 @@ export default function createTag(...rawTransformers) {
           ),
         );
 
-      return applyTransformersHook(
-        transformers,
-        'onEndResult',
-        processedTemplate,
-      );
+      return applyHook0(tagCallInfo, 'onEndResult', processedTemplate);
     }
 
     // else just transform the argument
-    return applyTransformersHook(transformers, 'onEndResult', strings);
+    return applyHook0(tagCallInfo, 'onEndResult', strings);
   };
 }
