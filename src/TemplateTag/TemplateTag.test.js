@@ -1,5 +1,24 @@
 import TemplateTag from '../TemplateTag';
 
+beforeEach(() => {
+  console.warn = jest.fn();
+});
+
+test('a warning should be printed the first time a TemplateTag is constructed', () => {
+  expect(console.warn).toHaveBeenCalledTimes(0);
+
+  new TemplateTag();
+
+  expect(console.warn).toHaveBeenCalledTimes(1);
+  expect(console.warn).toHaveBeenCalledWith(
+    expect.stringContaining('Use createTag instead'),
+  );
+
+  new TemplateTag();
+
+  expect(console.warn).toHaveBeenCalledTimes(1);
+});
+
 test('performs a transformation & provides correct values to transform methods', () => {
   const tag = new TemplateTag({
     onString(str) {

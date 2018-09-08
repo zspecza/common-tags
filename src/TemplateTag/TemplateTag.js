@@ -1,5 +1,7 @@
 import createTag from '../createTag';
 
+let deprecationWarningPrinted = false;
+
 /**
  * @class TemplateTag
  * @classdesc Consumes a pipeline of composable transformer plugins and produces a template tag.
@@ -12,6 +14,13 @@ export default class TemplateTag {
    * @return {Function}                    - a template tag
    */
   constructor(...transformers) {
+    if (!deprecationWarningPrinted) {
+      console.warn(
+        'TemplateTag is deprecated and will be removed in the next major version. Use createTag instead.',
+      );
+      deprecationWarningPrinted = true;
+    }
+
     return createTag(...transformers);
   }
 }
