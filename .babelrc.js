@@ -1,15 +1,20 @@
 'use strict';
 
+const presetEnv = require('@babel/preset-env');
+const pluginProposalClassProperties = require('@babel/plugin-proposal-class-properties');
+const pluginProposalExportDefaultFrom = require('@babel/plugin-proposal-export-default-from');
+const pluginAddModuleExports = require('babel-plugin-add-module-exports');
+
 const isEsEnv = process.env.BABEL_ENV === 'es';
 
 module.exports = {
   sourceMaps: 'inline',
 
-  presets: [['env', { modules: isEsEnv ? false : 'commonjs' }]],
+  presets: [[presetEnv, { modules: isEsEnv ? false : 'commonjs' }]],
 
   plugins: [
-    ...(isEsEnv ? [] : ['add-module-exports']),
-    'transform-class-properties',
-    'transform-export-extensions',
+    ...(isEsEnv ? [] : [pluginAddModuleExports]),
+    pluginProposalClassProperties,
+    pluginProposalExportDefaultFrom,
   ],
 };

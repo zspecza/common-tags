@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-  verbose: true,
-  collectCoverage: true,
   bail: true,
+  collectCoverage: true,
   coverageDirectory: './coverage/',
   testEnvironment: 'node',
+  verbose: true,
 };
