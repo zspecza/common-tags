@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   root: true,
   extends: ['plugin:prettier/recommended'],
@@ -9,5 +11,13 @@ module.exports = {
 
   rules: {
     strict: [2, 'global'],
+  },
+
+  overrides: {
+    files: ['.babelrc.js', '.eslintrc.js', 'jest.config.js'],
+
+    parserOptions: {
+      sourceType: 'script',
+    },
   },
 };

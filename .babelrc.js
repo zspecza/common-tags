@@ -1,3 +1,5 @@
+'use strict';
+
 const isEsEnv = process.env.BABEL_ENV === 'es';
 
 module.exports = {
