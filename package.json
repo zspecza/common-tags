@@ -79,9 +79,9 @@
   "module": "es",
   "unpkg": "dist/common-tags.min.js",
   "files": [
-    "dist",
-    "es",
-    "lib"
+    "/dist",
+    "/es",
+    "/lib"
   ],
   "repository": {
     "type": "git",
