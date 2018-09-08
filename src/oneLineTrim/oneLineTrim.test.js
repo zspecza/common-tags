@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('reduces to one line while trimming newlines', async () => {
+test('reduces to one line while trimming newlines', () => {
   const expected = readFromFixture(__dirname, 'oneLineTrim');
   const actual = oneLineTrim`
   wow such reduction
@@ -13,7 +13,7 @@ test('reduces to one line while trimming newlines', async () => {
   expect(actual).toBe(expected);
 });
 
-test('reduces to one line while trimming newlines (no indentation)', async () => {
+test('reduces to one line while trimming newlines (no indentation)', () => {
   const expected = readFromFixture(__dirname, 'oneLineTrim');
   const actual = oneLineTrim`
 wow such reduction

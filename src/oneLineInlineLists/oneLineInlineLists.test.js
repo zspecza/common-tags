@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('includes arrays as inline list on one line', async () => {
+test('includes arrays as inline list on one line', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'oneLineInlineLists');
   const actual = oneLineInlineLists`

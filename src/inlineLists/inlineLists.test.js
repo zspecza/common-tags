@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('includes arrays as space-separated list', async () => {
+test('includes arrays as space-separated list', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'inlineLists');
   const actual = inlineLists`

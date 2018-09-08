@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('includes arrays as comma-separated list on one line', async () => {
+test('includes arrays as comma-separated list on one line', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'oneLineCommaLists');
   const actual = oneLineCommaLists`

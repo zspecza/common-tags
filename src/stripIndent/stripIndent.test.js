@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('strips indentation', async () => {
+test('strips indentation', () => {
   const expected = readFromFixture(__dirname, 'stripIndent');
   const actual = stripIndent`
     wow such indent gone
@@ -12,7 +12,7 @@ test('strips indentation', async () => {
   expect(actual).toBe(expected);
 });
 
-test('strips larger indentation', async () => {
+test('strips larger indentation', () => {
   const expected = readFromFixture(__dirname, 'stripIndent');
   const actual = stripIndent`
       wow such indent gone
@@ -21,7 +21,7 @@ test('strips larger indentation', async () => {
   expect(actual).toBe(expected);
 });
 
-test('maintains deeper indentation', async () => {
+test('maintains deeper indentation', () => {
   const expected = readFromFixture(__dirname, 'maintainIndent');
   const actual = stripIndent`
     wow such indent gone
@@ -30,7 +30,7 @@ test('maintains deeper indentation', async () => {
   expect(actual).toBe(expected);
 });
 
-test('maintains empty lines', async () => {
+test('maintains empty lines', () => {
   const expected = readFromFixture(__dirname, 'maintainEmptyLines');
   const actual = stripIndent`
     wow such indent gone
@@ -40,13 +40,13 @@ test('maintains empty lines', async () => {
   expect(actual).toBe(expected);
 });
 
-test('does nothing if there are no indents', async () => {
+test('does nothing if there are no indents', () => {
   const expected = 'wow such doge';
   const actual = stripIndent`wow such doge`;
   expect(actual).toBe(expected);
 });
 
-test('does nothing if minimal indent has zero length', async () => {
+test('does nothing if minimal indent has zero length', () => {
   const expected = 'wow\n such\n doge';
   const actual = stripIndent`wow\n such\n doge`;
   expect(actual).toBe(expected);

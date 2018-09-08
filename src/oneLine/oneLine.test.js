@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('reduces text to one line, replacing newlines with spaces', async () => {
+test('reduces text to one line, replacing newlines with spaces', () => {
   const expected = readFromFixture(__dirname, 'oneLine');
   const actual = oneLine`
     wow such doge
@@ -14,7 +14,7 @@ test('reduces text to one line, replacing newlines with spaces', async () => {
   expect(actual).toBe(expected);
 });
 
-test('reduces text to one line, replacing newlines with spaces (no indentation)', async () => {
+test('reduces text to one line, replacing newlines with spaces (no indentation)', () => {
   const expected = readFromFixture(__dirname, 'oneLine');
   const actual = oneLine`
 wow such doge
@@ -26,7 +26,7 @@ from multiline
   expect(actual).toBe(expected);
 });
 
-test('preserves whitespace within input lines, replacing only newlines', async () => {
+test('preserves whitespace within input lines, replacing only newlines', () => {
   const expected = readFromFixture(__dirname, 'oneLine-sentence');
   const actual = oneLine`
     Sentences also work.  Double

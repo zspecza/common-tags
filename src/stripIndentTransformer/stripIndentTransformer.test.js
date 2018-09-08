@@ -3,7 +3,7 @@ import stripIndentTransformer from './stripIndentTransformer';
 import trimResultTransformer from '../trimResultTransformer';
 import { readFromFixture } from '../testUtils';
 
-test('default behaviour removes the leading indent, but preserves the rest', async () => {
+test('default behaviour removes the leading indent, but preserves the rest', () => {
   const stripIndent = createTag(
     stripIndentTransformer(),
     trimResultTransformer(),
@@ -28,7 +28,7 @@ test('type "initial" does not remove indents if there is no need to do so', () =
   expect(stripIndent`foo\nbar`).toBe('foo\nbar');
 });
 
-test('removes all indents if type is "all"', async () => {
+test('removes all indents if type is "all"', () => {
   const stripIndents = createTag(
     stripIndentTransformer('all'),
     trimResultTransformer(),

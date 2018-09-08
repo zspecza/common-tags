@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('includes arrays as comma-separated list on one line with "and"', async () => {
+test('includes arrays as comma-separated list on one line with "and"', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'oneLineCommaListsAnd');
   const actual = oneLineCommaListsAnd`
@@ -13,7 +13,7 @@ test('includes arrays as comma-separated list on one line with "and"', async () 
   expect(actual).toBe(expected);
 });
 
-test('only returns the first item of a single element array', async () => {
+test('only returns the first item of a single element array', () => {
   const fruits = ['apple'];
   const expected = readFromFixture(__dirname, 'oneLineCommaListsAndSingleItem');
   const actual = oneLineCommaListsAnd`

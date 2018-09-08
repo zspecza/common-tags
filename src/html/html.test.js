@@ -4,7 +4,7 @@ import { readFromFixture } from '../testUtils';
 const val = 'amaze';
 const nil = null;
 
-test('renders HTML, including arrays', async () => {
+test('renders HTML, including arrays', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'html');
   const actual = html`
@@ -16,7 +16,7 @@ test('renders HTML, including arrays', async () => {
   expect(actual).toBe(expected);
 });
 
-test('converts strings containing newlines into proper indented output', async () => {
+test('converts strings containing newlines into proper indented output', () => {
   const newlines = '<li>one</li>\n<li>two</li>';
   const expected = readFromFixture(__dirname, 'newline-conversion');
   const actual = html`
@@ -29,7 +29,7 @@ test('converts strings containing newlines into proper indented output', async (
   expect(actual).toBe(expected);
 });
 
-test('does not introduce excess newlines', async () => {
+test('does not introduce excess newlines', () => {
   const newlines = '<li>one</li>\n<li>two</li>';
   const expected = readFromFixture(
     __dirname,

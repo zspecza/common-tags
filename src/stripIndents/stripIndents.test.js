@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('strips all indentation', async () => {
+test('strips all indentation', () => {
   const expected = readFromFixture(__dirname, 'stripIndents');
   const actual = stripIndents`
     wow such indent gone
@@ -13,7 +13,7 @@ test('strips all indentation', async () => {
   expect(actual).toBe(expected);
 });
 
-test('maintains empty lines', async () => {
+test('maintains empty lines', () => {
   const expected = readFromFixture(__dirname, 'maintainEmptyLines');
   const actual = stripIndents`
     wow such indent gone

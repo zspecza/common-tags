@@ -3,7 +3,7 @@ import { readFromFixture } from '../testUtils';
 
 const val = 'amaze';
 
-test('renders HTML, including arrays', async () => {
+test('renders HTML, including arrays', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
   const expected = readFromFixture(__dirname, 'normal-html');
   const actual = safeHtml`
@@ -15,7 +15,7 @@ test('renders HTML, including arrays', async () => {
   expect(actual).toBe(expected);
 });
 
-test('converts strings containing newlines into proper indented output', async () => {
+test('converts strings containing newlines into proper indented output', () => {
   const newlines = 'one\ntwo';
   const expected = readFromFixture(__dirname, 'newline-conversion');
   const actual = safeHtml`
@@ -28,7 +28,7 @@ test('converts strings containing newlines into proper indented output', async (
   expect(actual).toBe(expected);
 });
 
-test('correctly escapes HTML tags on substitution', async () => {
+test('correctly escapes HTML tags on substitution', () => {
   const fruits = ['apple', 'banana', 'kiwi', '<h1>dangerous fruit</h1>'];
   const expected = readFromFixture(__dirname, 'escaped-html');
   const actual = safeHtml`

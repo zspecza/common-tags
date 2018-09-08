@@ -6,7 +6,7 @@ const observe = ['*', '!index.js', '!index.test.js'];
 
 const context = {};
 
-beforeEach(async () => {
+beforeEach(() => {
   context.modules = mm(fs.readdirSync(__dirname), observe);
 });
 
@@ -14,7 +14,7 @@ function requireModule(module) {
   return require(path.join(__dirname, module));
 }
 
-test('test utils exports all the right modules directly', async () => {
+test('test utils exports all the right modules directly', () => {
   const modules = context.modules;
   expect.assertions(modules.length);
   modules.forEach(module => {
@@ -22,7 +22,7 @@ test('test utils exports all the right modules directly', async () => {
   });
 });
 
-test('test utils exports all the right modules as props', async () => {
+test('test utils exports all the right modules as props', () => {
   const modules = context.modules;
   expect.assertions(modules.length);
   modules.forEach(module => {
