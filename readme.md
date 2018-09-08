@@ -56,6 +56,7 @@ html`
     - [`oneLineCommaLists`](#onelinecommalists)
     - [`oneLineCommaListsOr`](#onelinecommalistsor)
     - [`oneLineCommaListsAnd`](#onelinecommalistsand)
+    - [`id`](#id)
 - [Advanced Usage](#advanced-usage)
   - [Tail Processing](#tail-processing)
   - [Using Tags on Regular String Literals](#using-tags-on-regular-string-literals)
@@ -419,6 +420,17 @@ oneLineCommaListsAnd`
   They're good!
 `
 // I like apples, bananas and watermelons They're good!
+```
+
+#### `id`
+
+A no-op tag that might come in useful in some scenarios, e.g. mocking.
+
+```js
+import {id} from 'common-tags'
+
+id`hello ${'world'}`
+// hello world
 ```
 
 ## Advanced Usage
