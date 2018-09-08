@@ -118,6 +118,8 @@ Furthermore, I try to keep this project as transparently stable and updated as f
 - **[stylelint](http://stylelint.io/)** ([ref](https://github.com/stylelint/stylelint/blob/5dc5db5599a00cabc875cf99c56d60f93fbbbd2d/package.json#L82))
 - **[pnpm](https://pnpm.js.org/)** ([ref](https://github.com/pnpm/pnpm/blob/36be3d3f0c75992a1f3ff14b60c99115547d0fcc/package.json#L36))
 - **[jss](http://cssinjs.org/)** ([ref](https://github.com/cssinjs/jss/blob/7b9c1222893495c585b4b61d7ca9af05077cefec/package.json#L44))
+- **[BitMidi](https://bitmidi.com/)** ([ref](https://github.com/feross/bitmidi.com/blob/b6cd24f535eaefcbe472063ad5da8418055d77a2/package.json#L68))
+
 
 ## Installation
 
