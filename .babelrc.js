@@ -10,7 +10,15 @@ const isEsEnv = process.env.BABEL_ENV === 'es';
 module.exports = {
   sourceMaps: 'inline',
 
-  presets: [[presetEnv, { modules: isEsEnv ? false : 'commonjs' }]],
+  presets: [
+    [
+      presetEnv,
+      {
+        modules: isEsEnv ? false : 'commonjs',
+        loose: true,
+      },
+    ],
+  ],
 
   plugins: [
     ...(isEsEnv ? [] : [pluginAddModuleExports]),
