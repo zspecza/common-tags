@@ -96,7 +96,7 @@
     "codecov": "codecov",
     "doctoc": "doctoc readme.md --title \"## Table of Contents\"",
     "lint": "eslint .*rc.js *.js src/**/*.js --ignore-pattern '!.*rc.js'",
-    "lint:fix": "eslint --fix .*rc.js src/**/*.js --ignore-pattern '!.*rc.js'",
+    "lint:fix": "npm run lint -- --fix",
     "prerelease": "npm run build",
     "preversion": "npm run doctoc  && npm test",
     "release": "npm publish",
