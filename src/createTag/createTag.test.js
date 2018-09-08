@@ -107,6 +107,26 @@ test('supports tail processing of another tag if first argument to tag is a tag'
   expect(raw).toBe('FOO BAR\n    500');
 });
 
+test('has the correct order when tail processing', () => {
+  const upperCaseTag = createTag({
+    onEndResult(endResult) {
+      expect(endResult).toBe('foo bar\n    500');
+      return endResult.toUpperCase();
+    },
+  });
+  const trimTag = createTag({
+    onEndResult(endResult) {
+      expect(endResult).toBe('\n    foo bar\n    500\n  ');
+      return endResult.trim();
+    },
+  });
+  const raw = upperCaseTag(trimTag)`
+    foo bar
+    ${500}
+  `;
+  expect(raw).toBe('FOO BAR\n    500');
+});
+
 test('supports passing string as a first argument', () => {
   let onSubstitutionCalls = 0;
   const tag = createTag({
