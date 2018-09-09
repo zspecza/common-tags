@@ -4,7 +4,7 @@ import { readFromFixture } from '../testUtils';
 const val = 'amaze';
 
 test('reduces to one line while trimming newlines', () => {
-  const expected = readFromFixture(__dirname, 'oneLineTrim');
+  const expected = readFromFixture(__dirname, 'oneLineTrim').trim();
   const actual = oneLineTrim`
   wow such reduction
   very absence of space
@@ -14,7 +14,7 @@ test('reduces to one line while trimming newlines', () => {
 });
 
 test('reduces to one line while trimming newlines (no indentation)', () => {
-  const expected = readFromFixture(__dirname, 'oneLineTrim');
+  const expected = readFromFixture(__dirname, 'oneLineTrim').trim();
   const actual = oneLineTrim`
 wow such reduction
 very absence of space
