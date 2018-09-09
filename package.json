@@ -89,8 +89,8 @@
   "scripts": {
     "clear": "rimraf lib && rimraf es",
     "build": "npm run clear && npm run build:cjs && npm run build:es && npm run build:unpkg",
-    "build:cjs": "babel src --out-dir lib --ignore '**/*.test.js'",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es --ignore '**/*.test.js'",
+    "build:cjs": "babel src --out-dir lib --ignore **/*.test.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es --ignore **/*.test.js",
     "build:unpkg": "cross-env BABEL_ENV=es rollup --config",
     "codecov": "codecov",
     "doctoc": "doctoc readme.md --title \"## Table of Contents\"",
