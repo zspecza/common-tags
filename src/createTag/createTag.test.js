@@ -213,13 +213,20 @@ test('has the correct order when tail processing', () => {
 
 describe('supports using the tag as a plain function', () => {
   test('with a string', () => {
+    let onStringCalls = 0;
     let onSubstitutionCalls = 0;
+    let onEndResultCalls = 0;
     const tag = createTag({
+      onString(string) {
+        onStringCalls += 1;
+        return string.toUpperCase();
+      },
       onSubstitution() {
         onSubstitutionCalls += 1;
       },
       onEndResult(endResult) {
-        return endResult.toUpperCase().trim();
+        onEndResultCalls += 1;
+        return endResult.trim();
       },
     });
     const raw = tag(`
@@ -227,7 +234,9 @@ describe('supports using the tag as a plain function', () => {
       ${500}
     `);
     expect(raw).toBe('FOO BAR\n      500');
+    expect(onStringCalls).toBe(1);
     expect(onSubstitutionCalls).toBe(0);
+    expect(onEndResultCalls).toBe(1);
   });
 
   test('with a number', () => {

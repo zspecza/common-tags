@@ -91,30 +91,29 @@ export default function createTag(...rawTransformers) {
       return getInterimTag(tag, strings);
     }
 
-    const tagCallInfo = getTagCallInfo(transformers);
-
-    if (Array.isArray(strings)) {
-      // if the first argument is an array, return a transformed end result of processing the template with our tag
-      const processedTemplate = strings
-        .map(string => applyHook0(tagCallInfo, 'onString', string))
-        .reduce((result, string, index) =>
-          ''.concat(
-            result,
-            applyHook1(
-              tagCallInfo,
-              'onSubstitution',
-              expressions[index - 1],
-              result,
-            ),
-            string,
-          ),
-        );
-
-      return applyHook0(tagCallInfo, 'onEndResult', processedTemplate);
+    if (!Array.isArray(strings)) {
+      return tag([strings]);
     }
 
-    // else just transform the argument
-    return applyHook0(tagCallInfo, 'onEndResult', strings);
+    const tagCallInfo = getTagCallInfo(transformers);
+
+    // if the first argument is an array, return a transformed end result of processing the template with our tag
+    const processedTemplate = strings
+      .map(string => applyHook0(tagCallInfo, 'onString', string))
+      .reduce((result, string, index) =>
+        ''.concat(
+          result,
+          applyHook1(
+            tagCallInfo,
+            'onSubstitution',
+            expressions[index - 1],
+            result,
+          ),
+          string,
+        ),
+      );
+
+    return applyHook0(tagCallInfo, 'onEndResult', processedTemplate);
   }
 
   tag[tagTransformersSymbol] = transformers;
