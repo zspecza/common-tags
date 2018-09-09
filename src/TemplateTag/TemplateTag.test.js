@@ -1,5 +1,7 @@
 import TemplateTag from '../TemplateTag';
 
+/* eslint-disable no-console */
+
 beforeEach(() => {
   console.warn = jest.fn();
 });
@@ -18,6 +20,8 @@ test('a warning should be printed the first time a TemplateTag is constructed', 
 
   expect(console.warn).toHaveBeenCalledTimes(1);
 });
+
+/* eslint-enable no-console */
 
 test('performs a transformation & provides correct values to transform methods', () => {
   const tag = new TemplateTag({

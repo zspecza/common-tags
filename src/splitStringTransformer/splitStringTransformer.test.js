@@ -17,9 +17,14 @@ test('ignores substitution if it is not a string', () => {
   expect(tag`foo ${5}`).toBe('foo 5');
 });
 
-test('throws an error if splitBy param is undefined or not a string', () => {
-  const tag1 = createTag(splitStringTransformer());
-  const tag2 = createTag(splitStringTransformer(5));
-  expect(() => tag1`foo ${'bar'}`).toThrow();
-  expect(() => tag2`foo ${'bar'}`).toThrow();
+test('throws an error if splitBy param is undefined', () => {
+  expect(() => {
+    splitStringTransformer();
+  }).toThrow(/specify a string character to split by/);
+});
+
+test('throws an error if splitBy param is not a string', () => {
+  expect(() => {
+    splitStringTransformer(42);
+  }).toThrow(/specify a string character to split by/);
 });

@@ -1,5 +1,5 @@
 const replaceSubstitutionTransformer = (replaceWhat, replaceWith) => ({
-  onSubstitution(substitution, resultSoFar) {
+  onSubstitution(substitution) {
     if (replaceWhat == null || replaceWith == null) {
       throw new Error(
         'replaceSubstitutionTransformer requires at least 2 arguments.',

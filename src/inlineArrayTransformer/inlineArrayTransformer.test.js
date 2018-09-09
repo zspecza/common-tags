@@ -22,6 +22,15 @@ test('replaces last separator with a conjunction', () => {
   );
 });
 
+test('replaces last separator with a conjunction', () => {
+  const tag = createTag(
+    inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
+  );
+  expect(
+    tag`I like ${['apple', 'banana', 'a fruit that has "," in the name']}`,
+  ).toBe('I like apple, banana and a fruit that has "," in the name');
+});
+
 test('does not use a conjunction if there is only one item in an array', () => {
   const tag = createTag(
     inlineArrayTransformer({ separator: ',', conjunction: 'and' }),

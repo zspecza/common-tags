@@ -15,6 +15,7 @@ export default class TemplateTag {
    */
   constructor(...transformers) {
     if (!deprecationWarningPrinted) {
+      // eslint-disable-next-line no-console
       console.warn(
         'TemplateTag is deprecated and will be removed in the next major version. Use createTag instead.',
       );

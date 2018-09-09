@@ -27,11 +27,6 @@ test('trims right padding', () => {
   expect(trimRight`  foo  `).toBe('  foo');
 });
 
-test('throws an error if invalid side supplied', () => {
-  const trimUp = createTag(trimResultTransformer('up'));
-  expect(() => trimUp`foo`).toThrow();
-});
-
 test('can be used sequentially', () => {
   const trimStart = createTag(
     stripIndentTransformer(),
@@ -39,4 +34,10 @@ test('can be used sequentially', () => {
   );
   expect(trimStart`  foo  `).toBe('foo  ');
   expect(trimStart`  bar  `).toBe('bar  ');
+});
+
+test('throws an error if invalid side supplied', () => {
+  expect(() => {
+    trimResultTransformer('up');
+  }).toThrow(/not supported/);
 });
