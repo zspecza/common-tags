@@ -5,7 +5,7 @@ const val = 'amaze';
 
 test('includes arrays as inline list on one line', () => {
   const fruits = ['apple', 'banana', 'kiwi'];
-  const expected = readFromFixture(__dirname, 'oneLineInlineLists');
+  const expected = readFromFixture(__dirname, 'oneLineInlineLists').trim();
   const actual = oneLineInlineLists`
     Doge <3's these fruits: ${fruits}
     they are ${val}

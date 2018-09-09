@@ -12,5 +12,5 @@ export default function readFromFixture(dirname, name) {
     path.join(dirname, `fixtures/${name}.txt`),
     'utf8',
   );
-  return contents.replace(/\r\n/g, '\n').trim();
+  return contents.replace(/\r\n/g, '\n');
 }
