@@ -1,5 +1,21 @@
 import { flat } from '../utils';
 
+const tagTransformersSymbol = 'COMMON_TAGS_TAG_TRANSFORMERS_SYMBOL';
+
+function isTag(fn) {
+  return typeof fn === 'function' && fn[tagTransformersSymbol];
+}
+
+function cleanTransformers(transformers) {
+  return flat(transformers).reduce(
+    (transformers, transformer) =>
+      isTag(transformer)
+        ? [...transformers, ...transformer[tagTransformersSymbol]]
+        : [...transformers, transformer],
+    [],
+  );
+}
+
 /**
  * An intermediary template tag that receives a template tag and passes the result of calling the template with the received
  * template tag to our own template tag.
@@ -65,9 +81,9 @@ function applyHook1({ transformers, context }, hookName, initialString, arg1) {
  * @return {Function}                       - A template tag
  */
 export default function createTag(...rawTransformers) {
-  const transformers = flat(rawTransformers);
+  const transformers = cleanTransformers(rawTransformers);
 
-  return function tag(strings, ...expressions) {
+  function tag(strings, ...expressions) {
     if (typeof strings === 'function') {
       // if the first argument passed is a function, assume it is a template tag and return
       // an intermediary tag that processes the template using the aforementioned tag, passing the
@@ -99,5 +115,9 @@ export default function createTag(...rawTransformers) {
 
     // else just transform the argument
     return applyHook0(tagCallInfo, 'onEndResult', strings);
-  };
+  }
+
+  tag[tagTransformersSymbol] = transformers;
+
+  return tag;
 }

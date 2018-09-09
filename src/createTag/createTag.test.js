@@ -267,3 +267,28 @@ test('transforms substitutions to string as per spec', () => {
   expect(get).toHaveBeenCalledTimes(3);
   expect(result).toBe('foo 42 bar');
 });
+
+test('accepts other tags as arguments and applies them in order', () => {
+  const tag1 = createTag({
+    onEndResult(string) {
+      return string + '1';
+    },
+  });
+  const tag2 = createTag({
+    onEndResult(string) {
+      return string + '2';
+    },
+  });
+  const tag3 = createTag({
+    onEndResult(string) {
+      return string + '3';
+    },
+  });
+  const superTag = createTag(tag1, createTag(tag2, tag3), {
+    onEndResult(string) {
+      return string + '4';
+    },
+  });
+
+  expect(superTag`foo`).toBe('foo1234');
+});
