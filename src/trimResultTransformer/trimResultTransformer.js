@@ -1,4 +1,4 @@
-const supportedSides = ['', 'start', 'left', 'end', 'right'];
+const supportedSides = ['', 'start', 'left', 'end', 'right', 'smart'];
 
 /**
  * TemplateTag transformer that trims whitespace on the end result of a tagged template
@@ -23,6 +23,9 @@ const trimResultTransformer = (side = '') => {
         case 'end':
         case 'right':
           return endResult.replace(/\s*$/, '');
+
+        case 'smart':
+          return endResult.replace(/[^\S\n]+$/gm, '').replace(/^\n/, '');
       }
     },
   };

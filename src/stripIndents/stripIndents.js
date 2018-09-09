@@ -4,7 +4,7 @@ import trimResultTransformer from '../trimResultTransformer';
 
 const stripIndents = createTag(
   stripIndentTransformer('all'),
-  trimResultTransformer(),
+  trimResultTransformer('smart'),
 );
 
 export default stripIndents;

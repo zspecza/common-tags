@@ -6,7 +6,7 @@ import { readFromFixture } from '../testUtils';
 test('default behaviour removes the leading indent, but preserves the rest', () => {
   const stripIndent = createTag(
     stripIndentTransformer(),
-    trimResultTransformer(),
+    trimResultTransformer('smart'),
   );
   const expected = readFromFixture(__dirname, 'stripIndent');
   const actual = stripIndent`
@@ -21,7 +21,7 @@ test('default behaviour removes the leading indent, but preserves the rest', () 
 test('type "initial" does not remove indents if there is no need to do so', () => {
   const stripIndent = createTag(
     stripIndentTransformer(),
-    trimResultTransformer(),
+    trimResultTransformer('smart'),
   );
   expect(stripIndent``).toBe('');
   expect(stripIndent`foo`).toBe('foo');
@@ -31,7 +31,7 @@ test('type "initial" does not remove indents if there is no need to do so', () =
 test('removes all indents if type is "all"', () => {
   const stripIndents = createTag(
     stripIndentTransformer('all'),
-    trimResultTransformer(),
+    trimResultTransformer('smart'),
   );
   const expected = readFromFixture(__dirname, 'stripIndents');
   const actual = stripIndents`
