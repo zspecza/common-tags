@@ -4,15 +4,16 @@
  * @param  {*}               replaceWith - the replacement value
  * @return {Object}                      - a TemplateTag transformer
  */
-const replaceResultTransformer = (replaceWhat, replaceWith) => ({
-  onEndResult(endResult) {
-    if (replaceWhat == null || replaceWith == null) {
-      throw new Error(
-        'replaceResultTransformer requires at least 2 arguments.',
-      );
-    }
-    return endResult.replace(replaceWhat, replaceWith);
-  },
-});
+const replaceResultTransformer = (replaceWhat, replaceWith) => {
+  if (replaceWhat == null || replaceWith == null) {
+    throw new Error('replaceResultTransformer requires exactly 2 arguments.');
+  }
+
+  return {
+    onEndResult(endResult) {
+      return endResult.replace(replaceWhat, replaceWith);
+    },
+  };
+};
 
 export default replaceResultTransformer;

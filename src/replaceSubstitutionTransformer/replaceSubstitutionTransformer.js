@@ -1,18 +1,20 @@
-const replaceSubstitutionTransformer = (replaceWhat, replaceWith) => ({
-  onSubstitution(substitution) {
-    if (replaceWhat == null || replaceWith == null) {
-      throw new Error(
-        'replaceSubstitutionTransformer requires at least 2 arguments.',
-      );
-    }
+const replaceSubstitutionTransformer = (replaceWhat, replaceWith) => {
+  if (replaceWhat == null || replaceWith == null) {
+    throw new Error(
+      'replaceSubstitutionTransformer requires exactly 2 arguments.',
+    );
+  }
 
-    // Do not touch if null or undefined
-    if (substitution == null) {
-      return substitution;
-    } else {
-      return substitution.toString().replace(replaceWhat, replaceWith);
-    }
-  },
-});
+  return {
+    onSubstitution(substitution) {
+      // Do not touch if null or undefined
+      if (substitution == null) {
+        return substitution;
+      } else {
+        return String(substitution).replace(replaceWhat, replaceWith);
+      }
+    },
+  };
+};
 
 export default replaceSubstitutionTransformer;

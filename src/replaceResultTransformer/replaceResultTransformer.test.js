@@ -31,6 +31,7 @@ test('can be set so sequence requires a newline at the beginning before triggeri
 });
 
 test('throws error if no arguments are supplied', () => {
-  const tag = createTag(replaceResultTransformer());
-  expect(() => tag`foo`).toThrow();
+  expect(() => {
+    replaceResultTransformer();
+  }).toThrow(/requires exactly 2 arguments/);
 });

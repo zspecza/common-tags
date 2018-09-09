@@ -1,13 +1,13 @@
-const replaceStringTransformer = (replaceWhat, replaceWith) => ({
-  onString(str) {
-    if (replaceWhat == null || replaceWith == null) {
-      throw new Error(
-        'replaceStringTransformer requires at least 2 arguments.',
-      );
-    }
+const replaceStringTransformer = (replaceWhat, replaceWith) => {
+  if (replaceWhat == null || replaceWith == null) {
+    throw new Error('replaceStringTransformer requires exactly 2 arguments.');
+  }
 
-    return str.replace(replaceWhat, replaceWith);
-  },
-});
+  return {
+    onString(str) {
+      return str.replace(replaceWhat, replaceWith);
+    },
+  };
+};
 
 export default replaceStringTransformer;

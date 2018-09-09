@@ -11,7 +11,8 @@ test('only operates on strings', () => {
   );
 });
 
-test('throws error if no arguments are supplied when used', () => {
-  const tag = createTag(replaceStringTransformer());
-  expect(() => tag`${'foo'}`).toThrow();
+test('throws error if no arguments are supplied', () => {
+  expect(() => {
+    replaceStringTransformer();
+  }).toThrow(/requires exactly 2 arguments/);
 });

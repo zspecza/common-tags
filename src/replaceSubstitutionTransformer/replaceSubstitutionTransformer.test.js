@@ -26,7 +26,8 @@ test('works on arrays', () => {
   expect(tag`${['foo', 'bar', 'foo']}`).toBe('bar,bar,bar');
 });
 
-test('throws error if no arguments are supplied when used', () => {
-  const tag = createTag(replaceSubstitutionTransformer());
-  expect(() => tag`${'foo'}`).toThrow();
+test('throws error if no arguments are supplied', () => {
+  expect(() => {
+    replaceSubstitutionTransformer();
+  }).toThrow(/requires exactly 2 arguments/);
 });

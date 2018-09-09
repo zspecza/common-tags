@@ -44,6 +44,7 @@ test('removes all indents if type is "all"', () => {
 });
 
 test('throws an error if encounters invalid type', () => {
-  const stripBlueIndents = createTag(stripIndentTransformer('blue'));
-  expect(() => stripBlueIndents`foo`).toThrow();
+  expect(() => {
+    stripIndentTransformer('blue');
+  }).toThrow(/not supported/);
 });
