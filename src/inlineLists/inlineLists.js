@@ -1,12 +1,7 @@
 import createTag from '../createTag';
-import stripIndentTransformer from '../stripIndentTransformer';
+import stripIndent from '../stripIndent';
 import inlineArrayTransformer from '../inlineArrayTransformer';
-import trimResultTransformer from '../trimResultTransformer';
 
-const inlineLists = createTag(
-  inlineArrayTransformer(),
-  stripIndentTransformer(),
-  trimResultTransformer(),
-);
+const inlineLists = createTag(inlineArrayTransformer(), stripIndent);
 
 export default inlineLists;

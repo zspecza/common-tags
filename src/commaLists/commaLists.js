@@ -1,12 +1,10 @@
 import createTag from '../createTag';
-import stripIndentTransformer from '../stripIndentTransformer';
+import stripIndent from '../stripIndent';
 import inlineArrayTransformer from '../inlineArrayTransformer';
-import trimResultTransformer from '../trimResultTransformer';
 
 const commaLists = createTag(
   inlineArrayTransformer({ separator: ',' }),
-  stripIndentTransformer(),
-  trimResultTransformer(),
+  stripIndent,
 );
 
 export default commaLists;
