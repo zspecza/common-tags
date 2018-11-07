@@ -83,7 +83,7 @@ html`
 
 ## Introduction
 
-`common-tags` initially started out as two template tags I'd always find myself writing - one for stripping indents, and one for trimming multiline strings down to a single line. In it's prime, I was an avid user of [CoffeeScript](http://coffeescript.org), which had this behaviour by default as part of it's block strings feature. I also started out programming in Ruby, which has a similar mechanism called Heredocs.
+`common-tags` initially started out as two template tags I'd always find myself writing - one for stripping indents, and one for trimming multiline strings down to a single line. In its prime, I was an avid user of [CoffeeScript](http://coffeescript.org), which had this behaviour by default as part of its block strings feature. I also started out programming in Ruby, which has a similar mechanism called Heredocs.
 
 Over time, I found myself needing a few more template tags to cover edge cases - ones that supported including arrays, or ones that helped to render out tiny bits of HTML not large enough to deserve their own file or an entire template engine. So I packaged all of these up into this module.
 
@@ -95,7 +95,7 @@ So I re-wrote this module on top of a core architecture that makes use of transf
 
 Tagged templates in ES2015 are a welcome feature. But, they have their downsides. One such downside is that they preserve all whitespace by default - which makes multiline strings in source code look terrible.
 
-Source code is not just for computers to interpret. Humans have to read it too 😁. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since it's [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
+Source code is not just for computers to interpret. Humans have to read it too 😁. If you care at all about how neat your source code is, or come from a [CoffeeScript](http://coffeescript.org/) background and miss the [block string syntax](http://coffeescript.org/#strings), then you will love `common-tags`, as it was initially intended to bring this feature "back" to JS since its [initial commit](https://github.com/declandewet/common-tags/commit/2595288d6c276439d98d1bcbbb0aa113f4f7cd86).
 
 `common-tags` also [exposes a means of composing pipelines of dynamic transformer plugins](#plugin-transformers). As someone with a little experience writing tagged templates, I can admit that it is often the case that one tag might need to do the same thing as another tag before doing any further processing; for example - a typical tag that renders out HTML could strip initial indents first, then worry about handling character escapes. Both steps could easily be useful as their own separate template tags, but there isn't an immediately obvious way of composing the two together for maximum re-use. `common-tags` offers not [one](#tail-processing), but [two](#plugin-pipeline) ways of doing this.
 
@@ -451,7 +451,7 @@ oneLine`
 // "foo bar\nbaz"
 ```
 
-We can make this neater. Every tag `common-tags` exports can delay execution if it receives a function as it's first argument. This function is assumed to be a template tag, and is called via an intermediary tagging process before the result is passed back to our tag. Use it like so (this code is equivalent to the previous code block):
+We can make this neater. Every tag `common-tags` exports can delay execution if it receives a function as its first argument. This function is assumed to be a template tag, and is called via an intermediary tagging process before the result is passed back to our tag. Use it like so (this code is equivalent to the previous code block):
 
 ```js
 import {oneLine} from 'common-tags'
