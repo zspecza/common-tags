@@ -33,9 +33,8 @@ function getInterimTag(originalTag, extraTag) {
 function getTagCallInfo(transformers) {
   return {
     transformers,
-    context: transformers.map(
-      transformer =>
-        transformer.getInitialContext ? transformer.getInitialContext() : {},
+    context: transformers.map(transformer =>
+      transformer.getInitialContext ? transformer.getInitialContext() : {},
     ),
   };
 }

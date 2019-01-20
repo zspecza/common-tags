@@ -13,6 +13,7 @@ test('renders HTML, including arrays', () => {
       ${fruits.map(fruit => `<li>${fruit}</li>`)}
     </ul>
   `;
+
   expect(actual).toBe(expected);
 });
 
@@ -26,6 +27,7 @@ test('converts strings containing newlines into proper indented output', () => {
       <li>three</li>
     </ul>
   `;
+
   expect(actual).toBe(expected);
 });
 
@@ -35,6 +37,7 @@ test('does not introduce excess newlines', () => {
     __dirname,
     'newline-conversion-after-newline',
   );
+  /* eslint-disable prettier/prettier */
   const actual = html`
     <h1>${val}${nil}</h1>
     <ul>
@@ -43,6 +46,8 @@ test('does not introduce excess newlines', () => {
       <li>three</li>
     </ul>
   `;
+  /* eslint-enable prettier/prettier */
+
   expect(actual).toBe(expected);
 });
 
@@ -84,6 +89,7 @@ test('renders nested HTML without excess empty lines', () => {
     `;
   }
 
+  /* eslint-disable prettier/prettier */
   const actual = html`
     <!DOCTYPE html>
     <html lang="en">
@@ -96,12 +102,14 @@ test('renders nested HTML without excess empty lines', () => {
       </body>
     </html>
   `;
+  /* eslint-enable prettier/prettier */
 
   expect(actual).toBe(expected);
 });
 
 test("just strips indent when there's an empty array inside", () => {
   const expected = readFromFixture(__dirname, 'empty-array');
+  /* eslint-disable prettier/prettier */
   const actual = html`
     <!DOCTYPE html>
     <html lang="en">
@@ -110,6 +118,7 @@ test("just strips indent when there's an empty array inside", () => {
       </body>
     </html>
   `;
+  /* eslint-enable prettier/prettier */
 
   expect(actual).toBe(expected);
 });
@@ -142,6 +151,7 @@ test('may not indent as expected when the array is not in a new line', () => {
     `;
   }
 
+  /* eslint-disable prettier/prettier */
   const actual = html`
     <!DOCTYPE html>
     <html lang="en">
@@ -150,6 +160,7 @@ test('may not indent as expected when the array is not in a new line', () => {
       </body>
     </html>
   `;
+  /* eslint-enable prettier/prettier */
 
   expect(actual).toBe(expected);
 });
