@@ -45,3 +45,29 @@ test('does not introduce excess newlines', () => {
   `;
   expect(actual).toBe(expected);
 });
+
+test('renders nested HTML', () => {
+  const fruits = ['apple', 'banana', 'kiwi'];
+  const expected = readFromFixture(__dirname, 'nesting');
+
+  function renderFruit(fruit) {
+    return html`
+      <li>
+        <div>${fruit}</div>
+      </li>
+    `;
+  }
+
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>
+          ${fruits.map(renderFruit)}
+        </ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});
