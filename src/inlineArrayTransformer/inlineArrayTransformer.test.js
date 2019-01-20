@@ -62,6 +62,38 @@ test('maintains indentation', () => {
   );
 });
 
+test('maintains indentation in multiline strings', () => {
+  const tag = createTag(inlineArrayTransformer({ separator: ',' }));
+  expect(tag`My friends are always
+  ${['dra-\nmatic', 'emo-\ntional', 'nee-\ndy']}`).toBe(
+    'My friends are always\n  dra-\n  matic,\n  emo-\n  tional,\n  nee-\n  dy',
+  );
+});
+
+test('maintains indentation in multiline strings (with conjunction)', () => {
+  const tag = createTag(
+    inlineArrayTransformer({ separator: ',', conjunction: 'and' }),
+  );
+  expect(tag`My friends are always
+  ${['dra-\nmatic', 'emo-\ntional', 'nee-\ndy']}`).toBe(
+    'My friends are always\n  dra-\n  matic,\n  emo-\n  tional\n  and nee-\n  dy',
+  );
+});
+
+test('maintains indentation in multiline strings (with serial/oxford separators)', () => {
+  const tag = createTag(
+    inlineArrayTransformer({
+      separator: ',',
+      conjunction: 'and',
+      serial: true,
+    }),
+  );
+  expect(tag`My friends are always
+  ${['dra-\nmatic', 'emo-\ntional', 'nee-\ndy']}`).toBe(
+    'My friends are always\n  dra-\n  matic,\n  emo-\n  tional,\n  and nee-\n  dy',
+  );
+});
+
 test('does not introduce excess newlines', () => {
   const tag = createTag(inlineArrayTransformer());
   expect(tag`My friends are always

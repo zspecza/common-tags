@@ -45,3 +45,111 @@ test('does not introduce excess newlines', () => {
   `;
   expect(actual).toBe(expected);
 });
+
+test('renders nested HTML', () => {
+  const fruits = ['apple', 'banana', 'kiwi'];
+  const expected = readFromFixture(__dirname, 'nesting');
+
+  function renderFruit(fruit) {
+    return html`
+      <li>
+        <div>${fruit}</div>
+      </li>
+    `;
+  }
+
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>
+          ${fruits.map(renderFruit)}
+        </ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});
+
+test('renders nested HTML without excess empty lines', () => {
+  const fruits = ['apple', 'banana', 'kiwi'];
+  const expected = readFromFixture(__dirname, 'nesting-no-excess');
+
+  function renderFruit(fruit) {
+    return html`
+      <li>
+        <div>${fruit}</div>
+      </li>
+    `;
+  }
+
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>
+
+          ${fruits.map(renderFruit)}
+
+        </ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});
+
+test("just strips indent when there's an empty array inside", () => {
+  const expected = readFromFixture(__dirname, 'empty-array');
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>${[]}</ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});
+
+test("just strips indent when there's an empty array inside (multiline)", () => {
+  const expected = readFromFixture(__dirname, 'empty-array-multiline');
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>
+          ${[]}
+        </ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});
+
+test('may not indent as expected when the array is not in a new line', () => {
+  const fruits = ['apple', 'banana', 'kiwi'];
+  const expected = readFromFixture(__dirname, 'nesting-improper');
+
+  function renderFruit(fruit) {
+    return html`
+      <li>
+        <div>${fruit}</div>
+      </li>
+    `;
+  }
+
+  const actual = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul>${fruits.map(renderFruit)}</ul>
+      </body>
+    </html>
+  `;
+
+  expect(actual).toBe(expected);
+});

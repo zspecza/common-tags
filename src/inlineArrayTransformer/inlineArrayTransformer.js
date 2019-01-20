@@ -1,10 +1,12 @@
+import { prefixLines, stripLastNewLine } from '../utils';
+
 /**
  * Converts an array substitution to a string containing a list
- * @param  {String} [opts.separator = ''] - the character that separates each item
- * @param  {String} [opts.conjunction = '']  - replace the last separator with this
- * @param  {Boolean} [opts.serial = false] - include the separator before the conjunction? (Oxford comma use-case)
+ * @param {String} [opts.separator = '']   - The character that separates each item
+ * @param {String} [opts.conjunction = ''] - Replace the last separator with this
+ * @param {Boolean} [opts.serial = false]  - Include the separator before the conjunction? (Oxford comma use-case)
  *
- * @return {Object}                     - a TemplateTag transformer
+ * @return {Object}                        - A transformer
  */
 const inlineArrayTransformer = ({
   conjunction = '',
@@ -17,20 +19,30 @@ const inlineArrayTransformer = ({
       return substitution;
     }
 
-    // be sure to maintain indentation
-    const indent = resultSoFar.match(/(\n?[^\S\n]+)$/);
-    const fullSeparator = separator.concat(indent ? indent[1] : ' ');
-    const fullConjunction = ''.concat(conjunction, ' ');
-    const conjunctionIndex = conjunction ? substitution.length - 1 : -1;
+    const { length } = substitution;
+    const lastSeparatorIndex = conjunction && !serial ? length - 2 : length - 1;
+    const indentation = resultSoFar.match(/(?:\n)([^\S\n]+)$/);
 
-    return substitution.reduce((result, part, index) =>
-      ''.concat(
+    if (conjunction && length > 1) {
+      substitution[length - 1] = ''.concat(
+        conjunction,
+        ' ',
+        substitution[length - 1],
+      );
+    }
+
+    return substitution.reduce((result, part, index) => {
+      const isFirstPart = index === 0;
+      const strippedPart = stripLastNewLine(part);
+      return ''.concat(
         result,
-        index !== conjunctionIndex || serial ? fullSeparator : ' ',
-        index === conjunctionIndex ? fullConjunction : '',
-        part,
-      ),
-    );
+        isFirstPart ? '' : indentation ? '\n' : ' ',
+        indentation
+          ? prefixLines(indentation[1], strippedPart, isFirstPart)
+          : strippedPart,
+        index < lastSeparatorIndex ? separator : '',
+      );
+    }, '');
   },
 });
 
