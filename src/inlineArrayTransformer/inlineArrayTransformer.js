@@ -1,3 +1,5 @@
+import { prefixLines, stripLastNewLine } from '../utils';
+
 /**
  * Converts an array substitution to a string containing a list
  * @param {String} [opts.separator = '']   - The character that separates each item
@@ -17,20 +19,30 @@ const inlineArrayTransformer = ({
       return substitution;
     }
 
-    const indentation = resultSoFar.match(/(\n?[^\S\n]+)$/);
-    const fullSeparator = separator.concat(indentation ? indentation[1] : ' ');
-    const fullConjunction = ''.concat(conjunction, ' ');
-    const conjunctionIndex = conjunction ? substitution.length - 1 : -1;
+    const { length } = substitution;
+    const lastSeparatorIndex = conjunction && !serial ? length - 2 : length - 1;
+    const indentation = resultSoFar.match(/(?:\n)([^\S\n]+)$/);
+
+    if (conjunction && length > 1) {
+      substitution[length - 1] = ''.concat(
+        conjunction,
+        ' ',
+        substitution[length - 1],
+      );
+    }
 
     return substitution.reduce((result, part, index) => {
-      const shouldUseConjunction = index === conjunctionIndex;
+      const isFirstPart = index === 0;
+      const strippedPart = stripLastNewLine(part);
       return ''.concat(
         result,
-        !shouldUseConjunction || serial ? fullSeparator : ' ',
-        shouldUseConjunction ? fullConjunction : '',
-        part,
+        isFirstPart ? '' : indentation ? '\n' : ' ',
+        indentation
+          ? prefixLines(indentation[1], strippedPart, isFirstPart)
+          : strippedPart,
+        index < lastSeparatorIndex ? separator : '',
       );
-    });
+    }, '');
   },
 });
 

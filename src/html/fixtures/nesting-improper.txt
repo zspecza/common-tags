@@ -1,0 +1,12 @@
+    <!DOCTYPE html>
+    <html lang="en">
+      <body>
+        <ul><li>
+  <div>apple</div>
+</li> <li>
+  <div>banana</div>
+</li> <li>
+  <div>kiwi</div>
+</li></ul>
+      </body>
+    </html>
