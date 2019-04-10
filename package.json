@@ -30,7 +30,7 @@
     "eslint-config-prettier": "3.6.0",
     "eslint-plugin-prettier": "3.0.1",
     "jest": "23.6.0",
-    "micromatch": "3.1.10",
+    "micromatch": "4.0.0",
     "prettier": "1.16.0",
     "rimraf": "2.6.3",
     "rollup": "1.1.1",
