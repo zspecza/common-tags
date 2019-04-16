@@ -22,7 +22,7 @@
     "@babel/preset-env": "7.2.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
-    "babel-plugin-add-module-exports": "1.0.0",
+    "babel-plugin-add-module-exports": "1.0.1",
     "codecov": "3.1.0",
     "cross-env": "5.2.0",
     "doctoc": "1.4.0",
