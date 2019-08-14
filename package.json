@@ -32,7 +32,7 @@
     "jest": "23.6.0",
     "micromatch": "3.1.10",
     "prettier": "1.16.0",
-    "rimraf": "2.6.3",
+    "rimraf": "2.7.0",
     "rollup": "1.1.1",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-node-resolve": "4.0.0",
