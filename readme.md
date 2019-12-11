@@ -130,7 +130,7 @@ The official recommendation for running `common-tags` is as follows:
 
 - [Node.js](https://nodejs.org/en/download/) v5.0.0 or higher
 - In order to use `common-tags`, your environment will also need to support ES2015 tagged templates ([pssst… check Babel out](http://babeljs.io))
-- You might also want to [polyfill some features](https://github.com/zloirock/core-js) if you plan on supporting older browsers: `Array.prototype.includes`
+- You might also want to [polyfill some features](https://github.com/zloirock/core-js) if you plan on supporting older browsers: `String.prototype.includes`
 
 It might work with below versions of Node, but this is not a guarantee.
 
