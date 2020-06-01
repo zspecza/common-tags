@@ -42,7 +42,7 @@
     "lib": "lib"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=10.0.0"
   },
   "homepage": "https://github.com/declandewet/common-tags",
   "keywords": [
