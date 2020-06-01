@@ -1,4 +1,4 @@
-const isValidValue = x =>
+const isValidValue = (x) =>
   x != null && !Number.isNaN(x) && typeof x !== 'boolean';
 
 const removeNonPrintingValuesTransformer = () => ({

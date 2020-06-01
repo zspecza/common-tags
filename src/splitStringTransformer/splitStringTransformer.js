@@ -1,4 +1,4 @@
-const splitStringTransformer = splitBy => {
+const splitStringTransformer = (splitBy) => {
   if (typeof splitBy !== 'string') {
     throw new Error('You need to specify a string character to split by.');
   }

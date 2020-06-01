@@ -33,7 +33,7 @@ function getInterimTag(originalTag, extraTag) {
 function getTagCallInfo(transformers) {
   return {
     transformers,
-    context: transformers.map(transformer =>
+    context: transformers.map((transformer) =>
       transformer.getInitialContext ? transformer.getInitialContext() : {},
     ),
   };
@@ -98,7 +98,7 @@ export default function createTag(...rawTransformers) {
 
     // if the first argument is an array, return a transformed end result of processing the template with our tag
     const processedTemplate = strings
-      .map(string => applyHook0(tagCallInfo, 'onString', string))
+      .map((string) => applyHook0(tagCallInfo, 'onString', string))
       .reduce((result, string, index) =>
         ''.concat(
           result,
