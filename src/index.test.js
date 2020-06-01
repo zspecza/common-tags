@@ -17,7 +17,7 @@ function requireModule(module) {
 test('common-tags exports all the right modules directly', () => {
   const modules = context.modules;
   expect.assertions(modules.length);
-  modules.forEach(module => {
+  modules.forEach((module) => {
     expect(requireModule(module)).toBeDefined();
   });
 });
@@ -25,7 +25,7 @@ test('common-tags exports all the right modules directly', () => {
 test('common-tags exports all the right modules as props', () => {
   const modules = context.modules;
   expect.assertions(modules.length);
-  modules.forEach(module => {
+  modules.forEach((module) => {
     expect(require('./index')).toHaveProperty(module, requireModule(module));
   });
 });

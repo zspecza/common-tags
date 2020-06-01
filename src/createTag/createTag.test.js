@@ -19,10 +19,7 @@ test('transformer methods are optional', () => {
   });
   const noStringNorEnd = createTag({
     onSubstitution(sub) {
-      return sub
-        .split('')
-        .reverse()
-        .join('');
+      return sub.split('').reverse().join('');
     },
   });
   expect(noMethods`foo`).toBe('foo');

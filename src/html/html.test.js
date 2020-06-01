@@ -10,7 +10,7 @@ test('renders HTML, including arrays', () => {
   const actual = html`
     <h1>${val}${nil}</h1>
     <ul>
-      ${fruits.map(fruit => `<li>${fruit}</li>`)}
+      ${fruits.map((fruit) => `<li>${fruit}</li>`)}
     </ul>
   `;
 

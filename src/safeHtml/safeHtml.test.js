@@ -9,7 +9,7 @@ test('renders HTML, including arrays', () => {
   const actual = safeHtml`
     <h1>${val}</h1>
     <ul>
-      ${fruits.map(fruit => `${fruit}`)}
+      ${fruits.map((fruit) => `${fruit}`)}
     </ul>
   `;
   expect(actual).toBe(expected);
@@ -34,7 +34,7 @@ test('correctly escapes HTML tags on substitution', () => {
   const actual = safeHtml`
     <h1>${val}</h1>
     <ul>
-      ${fruits.map(fruit => `${fruit}`)}
+      ${fruits.map((fruit) => `${fruit}`)}
     </ul>
   `;
   expect(actual).toBe(expected);
