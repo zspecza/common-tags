@@ -298,3 +298,16 @@ test('accepts other tags as arguments and applies them in order', () => {
 
   expect(superTag`foo`).toBe('foo1234');
 });
+
+test('invalid template string should throw error message', () => {
+  const getInitialContext = jest.fn();
+  const tag = createTag({ getInitialContext });
+
+  let actual = ()=> {
+    tag`\4`;
+  };
+
+  expect(actual).toThrow(
+    `input string is undefined: Check your template string.`,
+  );
+});
