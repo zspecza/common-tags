@@ -303,7 +303,7 @@ test('invalid template string should throw error message', () => {
   const getInitialContext = jest.fn();
   const tag = createTag({ getInitialContext });
 
-  let actual = ()=> {
+  let actual = () => {
     tag`\4`;
   };
 

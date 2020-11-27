@@ -93,7 +93,7 @@ export default function createTag(...rawTransformers) {
     if (!Array.isArray(strings)) {
       return tag([strings]);
     }
-    
+
     if (typeof strings[0] === 'undefined') {
       throw TypeError(`input string is undefined: Check your template string. 
         (e.g. \\4 will throw SyntaxError with 'Octal escape sequences are not allowed')
