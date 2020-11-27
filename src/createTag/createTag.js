@@ -94,6 +94,12 @@ export default function createTag(...rawTransformers) {
       return tag([strings]);
     }
 
+    if (typeof strings[0] === 'undefined') {
+      throw TypeError(`input string is undefined: Check your template string. 
+        (e.g. \\4 will throw SyntaxError with 'Octal escape sequences are not allowed')
+      `);
+    }
+
     const tagCallInfo = getTagCallInfo(transformers);
 
     // if the first argument is an array, return a transformed end result of processing the template with our tag
