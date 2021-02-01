@@ -1,4 +1,4 @@
-import { flat } from '../utils';
+import { flat } from '../utils/index.js';
 
 const tagTransformersSymbol = 'COMMON_TAGS_TAG_TRANSFORMERS_SYMBOL';
 

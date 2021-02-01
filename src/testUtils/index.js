@@ -1,1 +1,1 @@
-export readFromFixture from './readFromFixture';
+export readFromFixture from './readFromFixture/index.js';

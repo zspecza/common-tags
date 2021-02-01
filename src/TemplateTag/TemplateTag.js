@@ -1,4 +1,4 @@
-import createTag from '../createTag';
+import createTag from '../createTag/index.js';
 
 let deprecationWarningPrinted = false;
 

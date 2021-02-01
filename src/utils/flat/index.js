@@ -1,1 +1,1 @@
-export default from './flat';
+export default from './flat.js';

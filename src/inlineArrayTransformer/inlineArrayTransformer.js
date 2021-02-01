@@ -1,4 +1,4 @@
-import { prefixLines, stripLastNewLine } from '../utils';
+import { prefixLines, stripLastNewLine } from '../utils/index.js';
 
 /**
  * Converts an array substitution to a string containing a list

@@ -1,1 +1,1 @@
-export default from './commaListsAnd';
+export default from './commaListsAnd.js';

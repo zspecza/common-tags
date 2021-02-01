@@ -1,6 +1,6 @@
-import createTag from '../createTag';
-import stripIndentTransformer from '../stripIndentTransformer';
-import trimResultTransformer from '../trimResultTransformer';
+import createTag from '../createTag/index.js';
+import stripIndentTransformer from '../stripIndentTransformer/index.js';
+import trimResultTransformer from '../trimResultTransformer/index.js';
 
 const stripIndent = createTag(
   stripIndentTransformer(),

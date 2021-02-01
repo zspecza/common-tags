@@ -1,34 +1,34 @@
 // core
-export createTag from './createTag';
+export createTag from './createTag/index.js';
 
 // transformers
-export inlineArrayTransformer from './inlineArrayTransformer';
-export removeNonPrintingValuesTransformer from './removeNonPrintingValuesTransformer';
-export replaceResultTransformer from './replaceResultTransformer';
-export replaceStringTransformer from './replaceStringTransformer';
-export replaceSubstitutionTransformer from './replaceSubstitutionTransformer';
-export splitStringTransformer from './splitStringTransformer';
-export stripIndentTransformer from './stripIndentTransformer';
-export trimResultTransformer from './trimResultTransformer';
+export inlineArrayTransformer from './inlineArrayTransformer/index.js';
+export removeNonPrintingValuesTransformer from './removeNonPrintingValuesTransformer/index.js';
+export replaceResultTransformer from './replaceResultTransformer/index.js';
+export replaceStringTransformer from './replaceStringTransformer/index.js';
+export replaceSubstitutionTransformer from './replaceSubstitutionTransformer/index.js';
+export splitStringTransformer from './splitStringTransformer/index.js';
+export stripIndentTransformer from './stripIndentTransformer/index.js';
+export trimResultTransformer from './trimResultTransformer/index.js';
 
 // tags
-export codeBlock from './codeBlock';
-export commaLists from './commaLists';
-export commaListsAnd from './commaListsAnd';
-export commaListsOr from './commaListsOr';
-export html from './html';
-export id from './id';
-export inlineLists from './inlineLists';
-export oneLine from './oneLine';
-export oneLineCommaLists from './oneLineCommaLists';
-export oneLineCommaListsAnd from './oneLineCommaListsAnd';
-export oneLineCommaListsOr from './oneLineCommaListsOr';
-export oneLineInlineLists from './oneLineInlineLists';
-export oneLineTrim from './oneLineTrim';
-export safeHtml from './safeHtml';
-export source from './source';
-export stripIndent from './stripIndent';
-export stripIndents from './stripIndents';
+export codeBlock from './codeBlock/index.js';
+export commaLists from './commaLists/index.js';
+export commaListsAnd from './commaListsAnd/index.js';
+export commaListsOr from './commaListsOr/index.js';
+export html from './html/index.js';
+export id from './id/index.js';
+export inlineLists from './inlineLists/index.js';
+export oneLine from './oneLine/index.js';
+export oneLineCommaLists from './oneLineCommaLists/index.js';
+export oneLineCommaListsAnd from './oneLineCommaListsAnd/index.js';
+export oneLineCommaListsOr from './oneLineCommaListsOr/index.js';
+export oneLineInlineLists from './oneLineInlineLists/index.js';
+export oneLineTrim from './oneLineTrim/index.js';
+export safeHtml from './safeHtml/index.js';
+export source from './source/index.js';
+export stripIndent from './stripIndent/index.js';
+export stripIndents from './stripIndents/index.js';
 
 // deprecated
-export TemplateTag from './TemplateTag';
+export TemplateTag from './TemplateTag/index.js';

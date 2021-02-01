@@ -1,1 +1,1 @@
-export default from './oneLineTrim';
+export default from './oneLineTrim.js';
