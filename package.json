@@ -93,7 +93,7 @@
     "doctoc": "doctoc readme.md --title \"## Table of Contents\"",
     "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix",
-    "prerelease": "npm run build",
+    "prepare": "npm run build",
     "preversion": "npm run doctoc && npm test",
     "release": "npm publish",
     "test": "npm run lint && jest src"
