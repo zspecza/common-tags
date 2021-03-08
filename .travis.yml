@@ -8,7 +8,6 @@ node_js:
   - 14
   - 13
   - 12
-  - 10
 script:
   - npm test
 after_script:

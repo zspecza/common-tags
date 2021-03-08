@@ -1,8 +1,8 @@
-import createTag from '../createTag';
-import stripIndent from '../stripIndent';
-import inlineArrayTransformer from '../inlineArrayTransformer';
-import splitStringTransformer from '../splitStringTransformer';
-import replaceSubstitutionTransformer from '../replaceSubstitutionTransformer';
+import createTag from '../createTag/index.js';
+import stripIndent from '../stripIndent/index.js';
+import inlineArrayTransformer from '../inlineArrayTransformer/index.js';
+import splitStringTransformer from '../splitStringTransformer/index.js';
+import replaceSubstitutionTransformer from '../replaceSubstitutionTransformer/index.js';
 
 const safeHtml = createTag(
   splitStringTransformer('\n'),

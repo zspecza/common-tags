@@ -1,1 +1,1 @@
-export default from './prefixLines';
+export default from './prefixLines.js';

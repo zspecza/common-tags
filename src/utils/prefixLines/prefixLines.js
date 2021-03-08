@@ -1,4 +1,4 @@
-import toString from '../toString';
+import toString from '../toString/index.js';
 
 export default function prefixLines(prefix, value, skipFirst = false) {
   return toString(value)

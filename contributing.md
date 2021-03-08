@@ -5,7 +5,7 @@
 1. Fork this repository
 2. `git clone` your fork down to your local machine
 3. `cd` into the directory for your fork
-4. run `npm install`
+4. run `npm ci`
 
 ## Tests
 

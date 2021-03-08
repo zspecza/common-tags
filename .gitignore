@@ -7,7 +7,6 @@ logs
 npm-debug.log*
 
 dist
-lib
 es
 .DS_Store
 

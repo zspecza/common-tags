@@ -132,7 +132,10 @@ The official recommendation for running `common-tags` is as follows:
 - In order to use `common-tags`, your environment will also need to support ES2015 tagged templates ([pssst… check Babel out](http://babeljs.io))
 - You might also want to [polyfill some features](https://github.com/zloirock/core-js) if you plan on supporting older browsers: `Array.prototype.includes`
 
-It might work with below versions of Node, but this is not a guarantee.
+Use the upcoming release for more modern environments:
+
+- [Node.js](https://nodejs.org/en/download/) v14.0.0 or higher
+- In order to use `common-tags`, your environment will need to support ECMAScript modules
 
 ### Instructions
 
@@ -140,6 +143,11 @@ It might work with below versions of Node, but this is not a guarantee.
 
 ```sh
 npm install common-tags
+```
+
+Or for the upcoming release:
+```sh
+npm install common-tags@next
 ```
 
 ### With unpkg
