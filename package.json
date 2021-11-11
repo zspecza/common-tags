@@ -4,10 +4,10 @@
   "version": "1.8.0",
   "author": "Declan de Wet <declandewet@me.com>",
   "bugs": {
-    "url": "http://github.com/declandewet/common-tags/issues"
+    "url": "http://github.com/zspecza/common-tags/issues"
   },
   "contributors": [
-    "Declan de Wet (https://github.com/declandewet)",
+    "Declan de Wet (https://github.com/zspecza)",
     "Jason Killian (https://github.com/JKillian)",
     "Laurent Goudet (https://github.com/laurentgoudet)",
     "Kamil Ogórek (https://github.com/kamilogorek)",
@@ -44,7 +44,7 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "homepage": "https://github.com/declandewet/common-tags",
+  "homepage": "https://github.com/zspecza/common-tags",
   "keywords": [
     "array",
     "babel",
@@ -84,7 +84,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/declandewet/common-tags"
+    "url": "https://github.com/zspecza/common-tags"
   },
   "scripts": {
     "clear": "rimraf lib && rimraf es",
