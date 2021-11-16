@@ -1,7 +1,7 @@
 {
   "name": "common-tags",
   "description": "a few common utility template tags for ES2015",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "author": "Declan de Wet <declandewet@me.com>",
   "bugs": {
     "url": "http://github.com/zspecza/common-tags/issues"
